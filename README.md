@@ -29,6 +29,10 @@ See [SERVER-ADAPTER.md](docs/SERVER-ADAPTER.md) for its boundaries and validatio
 Standalone builds compile only the Run component; a core build collects `src/`
 through its normal module loader.
 
+The offline [client candidate builder](docs/CLIENT-CANDIDATE.md) preserves the full
+preceding DBC tables and assigns isolated WMO root identities. Its output still
+requires matching native extraction and controlled client validation.
+
 ## Integration contract
 
 - Allocate a durable, globally unique run ID before admission. Never derive it
