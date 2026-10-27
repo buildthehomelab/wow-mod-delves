@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 if(DEFINED AC_PATH_ROOT)
-  message(FATAL_ERROR "Delve foundation has no server adapter yet; build standalone only")
+  return() # AzerothCore collects src/ and the mod_delves loader itself.
 endif()
 project(EvermoreDelvesFoundation LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)

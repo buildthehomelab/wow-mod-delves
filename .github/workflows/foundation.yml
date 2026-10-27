@@ -18,3 +18,17 @@ jobs:
         run: cmake --build build --parallel 2
       - name: Check recovery and isolation
         run: ctest --test-dir build --output-on-failure
+
+  core-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-azerothcore
+          ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
+          path: .core
+      - name: Ensure build headers
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libboost-dev libssl-dev
+      - name: Compile real core adapter headers
+        run: python3 tools/check_core_headers.py --core .core
