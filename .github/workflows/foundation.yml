@@ -18,6 +18,8 @@ jobs:
         run: cmake --build build --parallel 2
       - name: Check recovery and isolation
         run: ctest --test-dir build --output-on-failure
+      - name: Check client metadata preservation and ID collisions
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
 
   core-headers:
     runs-on: ubuntu-latest
