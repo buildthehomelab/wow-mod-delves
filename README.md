@@ -1,6 +1,6 @@
-# Evermore Delves — run foundation
+# Evermore Delves — development foundation and adapter
 
-**Development only. This is not yet an installable server module or a playable delve.**
+**Development only. The server adapter is disabled by default; there is no playable delve yet.**
 
 The target is a faithful Earthcrawl Mines pilot with Brann, progression-era scaling
 and repeatable Tarnished Undermine Reals. This first component implements the
@@ -19,6 +19,14 @@ Requires CMake 3.16+ and a C++17 compiler. The current Evermore core uses C++20;
 this component uses the compatible C++17 subset and has no external dependencies.
 The tests use synthetic objective entries. They do not reproduce retail encounter
 content, create creatures, allocate a game instance or pay currency.
+
+## Development server adapter
+
+The optional AzerothCore adapter adds instance-save, real-player kill-credit and
+objective-interaction hooks. It has no entry path, production content or rewards.
+See [SERVER-ADAPTER.md](docs/SERVER-ADAPTER.md) for its boundaries and validation.
+Standalone builds compile only the Run component; a core build collects `src/`
+through its normal module loader.
 
 ## Integration contract
 
@@ -48,7 +56,7 @@ content, create creatures, allocate a game instance or pay currency.
 
 ## Remaining components
 
-AzerothCore adapter and persistent storage, verified retail objective/encounter
+Confirmed durable storage, admission and entry, verified retail objective/encounter
 catalog, creature/gameobject templates and spawn data, Brann AI, difficulty/era
 scaling, exactly-once wallet integration, client DBC/map packaging, Journal UI,
 server build/CI, and gameplay validation are not yet implemented here.

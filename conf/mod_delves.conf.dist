@@ -1,0 +1,10 @@
+# Development adapter only. No player entry path, verified encounter catalog or
+# rewards exist yet. Enablement is startup-only; leave off on the live realm.
+Delves.Prototype.Enable = 0
+
+# Zero values deliberately prevent registration. Definitions must not change for
+# a revision. Map ID 890 needs realm reservation and production DBC registration.
+Delves.Prototype.ContentRevision = 0
+Delves.Prototype.ObjectiveEntry = 0
+Delves.Prototype.ObjectiveCount = 0
+Delves.Prototype.BossEntry = 0
