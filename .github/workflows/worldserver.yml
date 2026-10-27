@@ -1,0 +1,52 @@
+name: Delve worldserver link
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  worldserver:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-azerothcore
+          ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
+          path: .core
+      - name: Install core build dependencies
+        run: >-
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends
+          cmake ninja-build g++ libssl-dev default-libmysqlclient-dev
+          libboost-filesystem-dev libboost-program-options-dev libboost-iostreams-dev
+          libboost-regex-dev libboost-thread-dev libreadline-dev zlib1g-dev libbz2-dev
+      - name: Stage only this module in the isolated core checkout
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          module = Path('.core/modules/mod-delves')
+          module.mkdir()
+          shutil.copy2('CMakeLists.txt', module / 'CMakeLists.txt')
+          shutil.copytree('src', module / 'src')
+          shutil.copytree('conf', module / 'conf')
+          PY
+      - name: Configure worldserver with the static module
+        run: >-
+          cmake -S .core -B core-build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release -DAPPS_BUILD=world-only -DTOOLS_BUILD=none
+          -DSCRIPTS=none -DMODULES=static -DNOPCH=1 -DBUILD_TESTING=OFF
+      - name: Compile and link worldserver
+        run: cmake --build core-build --target worldserver --parallel 2
+      - name: Verify the delve loader is in the linked executable
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          binary = Path('core-build/src/server/apps/worldserver')
+          assert binary.is_file(), 'worldserver executable missing'
+          symbols = subprocess.check_output(['nm', '--demangle', str(binary)], text=True)
+          assert 'Addmod_delvesScripts()' in symbols, 'delve module loader was not linked'
+          print('worldserver linked with the delve module loader; binary was not started')
+          PY
