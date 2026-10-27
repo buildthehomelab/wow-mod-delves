@@ -23,7 +23,8 @@ content, create creatures, allocate a game instance or pay currency.
 ## Development server adapter
 
 The optional AzerothCore adapter adds instance-save, real-player kill-credit and
-objective-interaction hooks. It has no entry path, production content or rewards.
+objective-interaction hooks, confirmed run checkpoints and optional administrator
+entry/return controls. It has no production content or rewards.
 See [SERVER-ADAPTER.md](docs/SERVER-ADAPTER.md) for its boundaries and validation.
 Standalone builds compile only the Run component; a core build collects `src/`
 through its normal module loader.
@@ -56,7 +57,7 @@ through its normal module loader.
 
 ## Remaining components
 
-Confirmed durable storage, admission and entry, verified retail objective/encounter
+Player admission and entry, verified retail objective/encounter
 catalog, creature/gameobject templates and spawn data, Brann AI, difficulty/era
 scaling, exactly-once wallet integration, client DBC/map packaging, Journal UI,
 server build/CI, and gameplay validation are not yet implemented here.
