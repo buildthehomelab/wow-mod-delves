@@ -1,4 +1,5 @@
 #include "DelveRun.h"
+#include "ConfirmedRun.h"
 #include <functional>
 #include <iostream>
 #include <stdexcept>
@@ -74,6 +75,41 @@ namespace
         Check(!recovered.Credit({2680, 10, 1, EventKind::Interact, 100, 1000}), "abandoned credit");
     }
 
+    void ConfirmedCheckpoints()
+    {
+        auto initial = Start();
+        auto durable = initial.Save();
+        bool acknowledge = true;
+        unsigned writes = 0;
+        auto writer = [&](std::string const& oldState, std::string const& newState)
+        {
+            ++writes;
+            if (durable != oldState)
+                return false;
+            // Simulate a committed write whose acknowledgement is lost.
+            durable = newState;
+            return acknowledge;
+        };
+        ConfirmedRun run(initial, writer);
+        Event first{2680, 10, 1, EventKind::Interact, 100, 1000};
+        Check(run.Credit(first), "confirmed checkpoint rejected");
+        Check(!run.Credit(first) && writes == 1, "duplicate wrote checkpoint");
+        auto const before = run.Current().Save();
+        acknowledge = false;
+        Check(!run.Credit({2680, 10, 1, EventKind::Interact, 100, 1001}), "uncertain write acknowledged");
+        Check(run.Blocked() && run.Current().Save() == before, "uncertain state published");
+        Check(!run.Abandon() && writes == 2, "frozen session wrote again");
+        ConfirmedRun recovered(Run::Load(durable, Story()), writer);
+        acknowledge = true;
+        Check(recovered.Current().Stage() == 1, "committed uncertain write not recovered");
+        Check(recovered.Credit({2680, 10, 1, EventKind::Kill, 200, 2000}), "completion checkpoint failed");
+        Check(recovered.Current().Status() == RunStatus::Complete, "confirmed completion missing");
+
+        ConfirmedRun stale(initial, writer);
+        Check(!stale.Abandon() && stale.Blocked(), "stale checkpoint overwrote newer state");
+        Check(Run::Load(durable, Story()).Status() == RunStatus::Complete, "stale writer corrupted checkpoint");
+    }
+
     void Corruption()
     {
         auto run = Start();
@@ -103,6 +139,7 @@ int main()
         RecoveryAndRewards();
         Isolation();
         Corruption();
+        ConfirmedCheckpoints();
         std::cout << "delve run recovery, isolation and corruption checks passed\n";
     }
     catch (std::exception const& error)

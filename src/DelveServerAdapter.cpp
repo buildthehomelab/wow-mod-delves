@@ -10,6 +10,7 @@
 #include "PlayerScript.h"
 #include "WorldSession.h"
 #include "DBCStores.h"
+#include "DatabaseEnv.h"
 #include <limits>
 #include <stdexcept>
 #include <utility>
@@ -35,7 +36,26 @@ namespace Evermore::Delves
     }
 
     InstanceRun::InstanceRun(Map* map, Definition definition)
-        : InstanceScript(map), _definition(std::move(definition)) { }
+        : InstanceScript(map), _definition(std::move(definition)), _journal(map->GetInstanceId()) { }
+
+    void InstanceRun::Initialize()
+    {
+        // Core omits Load when its own asynchronous save was empty. The journal
+        // may already contain a confirmed checkpoint after a crash in that gap.
+        Load(nullptr);
+    }
+
+    std::optional<Run> InstanceRun::CurrentRun() const
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        return _run ? std::optional<Run>(_run->Current()) : std::nullopt;
+    }
+
+    bool InstanceRun::Blocked() const
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        return _invalidSave || (_run && _run->Blocked());
+    }
 
     bool InstanceRun::IsRealMemberPresent(Player const* player) const
     {
@@ -43,9 +63,9 @@ namespace Evermore::Delves
             player->GetSession() && !player->GetSession()->IsHeadless() && CharacterId(player);
     }
 
-    bool InstanceRun::Begin(std::uint64_t allocatedRunId, std::uint32_t tier,
-        std::vector<Member> const& members)
+    bool InstanceRun::Begin(std::uint32_t tier, std::vector<Member> const& members)
     {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
         if (_invalidSave || _run || !instance->GetInstanceId() || !instance->IsDungeon() ||
             instance->GetId() != _definition.map)
             return false;
@@ -67,7 +87,22 @@ namespace Evermore::Delves
         }
         try
         {
-            _run = std::make_unique<Run>(allocatedRunId, instance->GetInstanceId(), tier, _definition, members);
+            // An existing checkpoint belongs to the existing run, never a reset.
+            if (!_journal.Read().empty())
+                return false;
+            auto const allocatedRunId = _journal.Reserve();
+            if (!allocatedRunId)
+                return false;
+            Run initial(allocatedRunId, instance->GetInstanceId(), tier, _definition, members);
+            if (!_journal.Replace("", initial.Save()))
+            {
+                _invalidSave = true;
+                return false;
+            }
+            _run = std::make_unique<ConfirmedRun>(std::move(initial), [this](auto const& oldState, auto const& newState)
+            {
+                return _journal.Replace(oldState, newState);
+            });
         }
         catch (std::invalid_argument const&)
         {
@@ -79,11 +114,20 @@ namespace Evermore::Delves
 
     bool InstanceRun::Accept(Event const& event)
     {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
         if (!_run || _invalidSave || !_run->Credit(event))
             return false;
-        // Core instance saves are asynchronous. No completion acknowledgement,
-        // item or wallet grant is emitted here. Reward delivery needs a confirmed
-        // durable journal/outbox before this prototype can become a released delve.
+        // The module journal is authoritative; core's asynchronous instance save
+        // is a compatibility mirror and cannot roll a recovered run backwards.
+        SaveToDB();
+        return true;
+    }
+
+    bool InstanceRun::Abandon()
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        if (!_run || _invalidSave || !_run->Abandon())
+            return false;
         SaveToDB();
         return true;
     }
@@ -109,32 +153,40 @@ namespace Evermore::Delves
 
     std::string InstanceRun::GetSaveData()
     {
-        return _run ? _run->Save() : _invalidSaveData;
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        return _run ? _run->Current().Save() : _invalidSaveData;
     }
 
     void InstanceRun::Load(char const* data)
     {
-        if (!data || !*data)
-            return;
-        // A second load may not overwrite an already active run.
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        // Core's compatibility mirror may be older, newer or corrupt. Once the
+        // authoritative journal was loaded, no mirror may replace it.
         if (_run || _invalidSave)
-        {
-            _invalidSave = true;
             return;
-        }
         try
         {
-            auto recovered = Run::Load(data, _definition);
+            auto const checkpoint = _journal.Read();
+            if (checkpoint.empty())
+            {
+                if (!data || !*data)
+                    return;
+                throw std::invalid_argument("core save has no authoritative delve journal");
+            }
+            auto recovered = Run::Load(checkpoint, _definition);
             // The save carries its original instance ID. A cross-instance save
             // cannot be transplanted and then earn credit in the new instance.
             if (recovered.InstanceId() != instance->GetInstanceId())
                 throw std::invalid_argument("delve instance identity mismatch");
-            _run = std::make_unique<Run>(std::move(recovered));
+            _run = std::make_unique<ConfirmedRun>(std::move(recovered), [this](auto const& oldState, auto const& newState)
+            {
+                return _journal.Replace(oldState, newState);
+            });
         }
         catch (std::invalid_argument const& error)
         {
             _invalidSave = true;
-            _invalidSaveData = data;
+            _invalidSaveData = data ? data : "";
             LOG_ERROR("module.delves", "Refusing invalid delve save for instance {}: {}",
                 instance->GetInstanceId(), error.what());
         }
@@ -178,6 +230,8 @@ namespace Evermore::Delves
     };
 }
 
+void AddEvermoreDelveTestControls(uint32 revision);
+
 void AddEvermoreDelveScripts()
 {
     using namespace Evermore::Delves;
@@ -185,6 +239,12 @@ void AddEvermoreDelveScripts()
     // definition of a run that is already saved or active.
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.Enable", false))
         return;
+    if (!CharacterDatabase.Query("SELECT COUNT(*) FROM mod_delves_run WHERE 1 = 0") ||
+        !CharacterDatabase.Query("SELECT COUNT(*) FROM mod_delves_visit WHERE 1 = 0"))
+    {
+        LOG_ERROR("module.delves", "Delve prototype not registered: required development journal schema is missing");
+        return;
+    }
     auto const* map = sMapStore.LookupEntry(PilotMapId);
     uint32 const objective = sConfigMgr->GetOption<uint32>("Delves.Prototype.ObjectiveEntry", 0);
     uint32 const boss = sConfigMgr->GetOption<uint32>("Delves.Prototype.BossEntry", 0);
@@ -199,4 +259,5 @@ void AddEvermoreDelveScripts()
     new DelveInstanceScript(std::move(definition));
     new DelvePlayerScript();
     new DelveObjectiveScript();
+    AddEvermoreDelveTestControls(revision);
 }

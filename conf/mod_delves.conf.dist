@@ -1,4 +1,4 @@
-# Development adapter only. No player entry path, verified encounter catalog or
+# Development adapter only. No ordinary player entry path, verified encounter catalog or
 # rewards exist yet. Enablement is startup-only; leave off on the live realm.
 Delves.Prototype.Enable = 0
 
@@ -8,3 +8,12 @@ Delves.Prototype.ContentRevision = 0
 Delves.Prototype.ObjectiveEntry = 0
 Delves.Prototype.ObjectiveCount = 0
 Delves.Prototype.BossEntry = 0
+
+# Administrator-only development controls, not ordinary player admission.
+# First verify safe coordinates in the matching client/geometry package.
+Delves.Prototype.TestCommands.Enable = 0
+Delves.Prototype.TestCommands.EntryConfigured = 0
+Delves.Prototype.TestCommands.EntryX = 0
+Delves.Prototype.TestCommands.EntryY = 0
+Delves.Prototype.TestCommands.EntryZ = 0
+Delves.Prototype.TestCommands.EntryO = 0
