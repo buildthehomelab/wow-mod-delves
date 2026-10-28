@@ -105,6 +105,7 @@ namespace Evermore::Delves
                 chat.SendSysMessage("This instance cannot admit this test character. Use .delve leave.");
                 return;
             }
+            instance->EnsureCompanion(player);
             chat.SendSysMessage("Delve test checkpoint loaded. Use .delve status for objectives and .delve leave to return. No rewards are enabled.");
         }
     }
