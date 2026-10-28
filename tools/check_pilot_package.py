@@ -36,10 +36,8 @@ def check(wallet):
     for key, expected in required.items():
         if config.get(key) != str(expected):
             raise ValueError('Candidate config/manifest mismatch: ' + key)
-    if 'client_mpq_sha256' not in world:
-        raise SystemExit('Converted-client tooling: the ' + str(world.get('layout')) + ' layout uses a stock 3.3.5 WMO and '
-                         'ships no converted client archive (see README, content revision 2026102804).')
-    if manifest['client_mpq_sha256'] != world['client_mpq_sha256']:
+    # A stock-WMO layout (README, revision 2026102804) has no converted client archive to pair.
+    if 'client_mpq_sha256' in world and manifest['client_mpq_sha256'] != world['client_mpq_sha256']:
         raise ValueError('Client archive identities differ')
     if subprocess.run(['git', '-C', str(wallet), 'diff', '--quiet', 'HEAD', '--'], check=False).returncode:
         raise ValueError('Wallet has tracked source modifications')
@@ -59,7 +57,7 @@ def check(wallet):
                 raise ValueError('Characters migration mismatch: ' + str(relative))
     return {'status': 'candidate source/config pairing verified; no installation or gameplay evidence',
             'wallet_candidate': manifest['wallet_candidate'], 'content_revision': world['content_revision'],
-            'client_mpq_sha256': world['client_mpq_sha256'],
+            'client_mpq_sha256': world.get('client_mpq_sha256'),
             'delves_characters': manifest['delves_characters'], 'wallet_characters': manifest['wallet_characters']}
 
 
