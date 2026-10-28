@@ -112,6 +112,8 @@ def references(path, data):
 
 
 def audit(root):
+    if not root.is_dir():
+        raise ValueError("Client input must be an existing directory")
     files = {}
     for path in root.rglob('*'):
         if path.is_file():
@@ -121,6 +123,10 @@ def audit(root):
             if name in files:
                 raise ValueError('Case-insensitive duplicate path: ' + name)
             files[name] = path
+    if not files:
+        raise ValueError("Client input contains no files")
+    if not any(path.suffix.lower() in (".m2", ".adt", ".wdt", ".wmo") for path in files.values()):
+        raise ValueError("Client input contains no supported model or map files")
     inventory = hashlib.sha256()
     for name, path in sorted(files.items()):
         inventory.update(name.encode("utf8") + b"\0" + hashlib.sha256(path.read_bytes()).digest())

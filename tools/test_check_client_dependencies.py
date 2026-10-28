@@ -26,6 +26,20 @@ def model(texture=b'textures\\sample.blp\0', external=False):
 
 
 class DependencyAuditTests(unittest.TestCase):
+    def test_rejects_absent_file_empty_and_unrelated_inputs(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            with self.assertRaises(ValueError):
+                audit(root / 'missing')
+            with self.assertRaises(ValueError):
+                audit(root)
+            unrelated = root / 'readme.txt'
+            unrelated.write_text('not a converted candidate')
+            with self.assertRaises(ValueError):
+                audit(unrelated)
+            with self.assertRaises(ValueError):
+                audit(root)
+
     def test_model_companions_and_missing_file(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
