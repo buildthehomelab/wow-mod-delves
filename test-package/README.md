@@ -19,11 +19,18 @@ contains explicit enablement for an eventual approved, isolated test stack.
 
 - Reviewed module revision containing the encounter and this package. PR #9 is
   the encounter dependency; do not deploy a branch name as a server version pin.
-  After implementation merges, prepare a reviewed wow-server pin to the actual
-  resulting commit. A pin is currently blocked by the incomplete gameplay release.
-- Existing characters schema in `data/sql/characters`, applied to an isolated
-  characters database, followed by the progression migration, with journal/visit
-  tables retained across reconnects.
+  After implementation merges, prepare reviewed wow-server pins to the actual
+  resulting commits, including the durable wallet dependency. A pin is blocked
+  until those implementations merge; the candidate SHAs below are not pins.
+- Characters migrations in order: `2026_10_27_00_delves_journal.sql`,
+  `2026_10_28_00_delves_progression.sql`, then `2026_10_28_01_delves_rewards.sql`.
+  Retain journal/visit/outbox tables and their sequences across reconnects.
+- Durable wallet source from wow-mod-boss-coins PR #22, candidate commit
+  `472de63ffc3a321c1226bc38c294e6589a89b32c`, tree
+  `e17cbac2769d2e497adfa0322fb8c991d98abe41`. Its base characters schema and
+  `mod_boss_coins_delve_awards.sql` must be applied to the same isolated characters
+  clone. Keep receipts, wallet and ledger with the outbox. See
+  [reward delivery](../docs/REWARD-DELIVERY.md).
 - Generated world install SQL from this directory's manifest. It only accepts
   a database whose name ends `_delve_test`; use a separately backed-up clone.
 - Complete `client-registered-candidate/DBFilesClient` tables and the matching
@@ -63,7 +70,8 @@ server state. Preserve separate database and client/data-directory backups.
 Stop the isolated test realm before changing its world data. This document does
 not authorize a live realm stop, database write or restart.
 
-1. Build the reviewed module under the exact folder `modules/mod-delves` using
+1. Build the reviewed modules under `modules/mod-delves` and
+   `modules/mod-boss-coins` using
    the documented wow-server build flow. Stage matching native data and complete
    DBCs in the test server's data directory. Do not replace existing DBCs with an
    extraction fixture. Preserve each overwritten file's backup and hash.
@@ -92,7 +100,7 @@ not authorize a live realm stop, database write or restart.
 
 ## Controlled gameplay checks
 
-Start with a real level30 Classic administrator, solo, outside combat on an
+Start with a real non-Self-Found level30 Classic administrator, solo, outside combat on an
 ordinary continent. Repeat at levels60/70/80 with matching progression stages
 after the initial route and combat checks; invalid era/level combinations must
 be refused.
@@ -115,8 +123,11 @@ combat portion. Keep a second administrator available to recover the test actor.
    old potions on logout, leaving, death or terminal run. Healer levels/talents
    and retail knockout/revive remain future work.
 5. Complete the boss kill and verify confirmed completion. Duplicate kills and
-   outsiders must never receive credit. No loot or coins are enabled by this
-   package; reward transactions remain an explicit incomplete requirement.
+   outsiders must never receive credit. Note wallet balance before the kill: the
+   combined candidate enables tier coins within ten seconds. Verify one matching
+   outbox/receipt/ledger result, reconnect and confirm no second payment. A new
+   run ID may pay again. Follow the marker-failure/capacity cases in
+   [reward delivery](../docs/REWARD-DELIVERY.md); do not inject failures on a live realm.
 6. In the isolated stack, test disconnect/restart recovery, stale core mirrors,
    unavailable journal writes and frozen-session escape. Use `.delve leave` and
    verify arrival at the saved origin before the visit is removed. Retain journal
@@ -138,7 +149,7 @@ DROP PROCEDURE IF EXISTS evermore_delve_rollback_v1;
 ```
 
 Restore the backed-up server/client files and previous module pin through the
-normal reviewed workflow. Keep characters journal/visit/instance data together;
+normal reviewed workflow. Keep characters journal/visit/instance/outbox/wallet/ledger/receipt data together;
 rollback does not delete them or reset sequences. The world receipt table remains
 empty after successful rollback. If a character has no usable origin, recover it
 before uninstalling the test map. No automatic live SQL, file replacement, restart
@@ -146,9 +157,15 @@ or deployment is performed by the package tools.
 
 ## Remaining readiness gates
 
-MySQL install/collision/injected-failure/rollback CI must pass against the pinned
-core schema. Formal review and complete worldserver link are required on the
-final source revision. Finish retail story/encounter mechanics, validate and tune the new scaling,
-complete idempotent Undermine wallet integration and actual test-stack baseline
-checks. The current harness is useful for staged validation but does not satisfy
-the full gameplay goal or establish a morning-test promise.
+The preceding reward delivery revision passed actual MySQL install/rollback,
+reward recovery, real core headers, formal review and combined full worldserver
+link/startup checks. Repeat required review/CI on this final package revision.
+Before controlled server testing, verify actual merged server pins, complete
+client dependency closure and test-stack baseline/patch ordering, then record a
+loaded-world startup smoke check. These steps require separate installation/start
+authorization. The broader retail story/Burning Cart, final tuning and Self-Found
+personal rewards remain unfinished; this is a controlled combat/economy pilot.
+
+Run `python3 tools/check_pilot_package.py --wallet /path/to/wow-mod-boss-coins`
+to check candidate config, immutable module dependency and migration hashes.
+Combine its report with the client/native asset checker; neither starts a realm.

@@ -1,0 +1,32 @@
+{
+  "status": "candidate inputs; actual merged commits need reviewed server pins",
+  "wallet_candidate": {
+    "commit": "472de63ffc3a321c1226bc38c294e6589a89b32c",
+    "tree": "e17cbac2769d2e497adfa0322fb8c991d98abe41"
+  },
+  "client_mpq_sha256": "ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4",
+  "delves_characters": [
+    {
+      "path": "data/sql/characters/2026_10_27_00_delves_journal.sql",
+      "sha256": "302fa09320d724f581693bee9da26cfd7cba316f62e6bf73f4796548c3a4c5e8"
+    },
+    {
+      "path": "data/sql/characters/2026_10_28_00_delves_progression.sql",
+      "sha256": "fe327aa525174f22dea13ecc3d451ac99160a6c5e472345c0582d1103257a244"
+    },
+    {
+      "path": "data/sql/characters/2026_10_28_01_delves_rewards.sql",
+      "sha256": "efc0b52ec17174e058cde221348c46ed5be6df51e8af17c68b2cd7b6ba15ce0d"
+    }
+  ],
+  "wallet_characters": [
+    {
+      "path": "data/sql/db-characters/mod_boss_coins_characters.sql",
+      "sha256": "fbacf88c1b918835c4b298392cefc8bb83da5f58e218214a8be0d8734f8e072f"
+    },
+    {
+      "path": "data/sql/db-characters/mod_boss_coins_delve_awards.sql",
+      "sha256": "23aa90208a0bda741af23fd7c87662297fde874a6ef566a043116dc02761ba07"
+    }
+  ]
+}

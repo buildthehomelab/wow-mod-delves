@@ -41,6 +41,7 @@ jobs:
         run: |
           python3 tools/check_core_headers.py --core .core
           python3 tools/check_core_headers.py --core .core --wallet .wallet
+          python3 tools/check_pilot_package.py --wallet .wallet
 
   journal-schema:
     runs-on: ubuntu-latest
