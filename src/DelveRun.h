@@ -55,6 +55,7 @@ namespace Evermore::Delves
 
         bool Credit(Event const& event);
         bool Abandon();
+        bool IsCurrentObjective(EventKind kind, std::uint32_t entry) const;
         std::string Save() const;
         static Run Load(std::string const& saved, Definition const& expected);
 
@@ -64,6 +65,7 @@ namespace Evermore::Delves
         RunStatus Status() const { return _status; }
         std::uint32_t Stage() const { return _stage; }
         std::uint32_t Progress() const { return _progress; }
+        std::uint32_t Tier() const { return _tier; }
         std::uint64_t Id() const { return _id; }
         std::uint32_t InstanceId() const { return _instance; }
         std::vector<Member> const& Members() const { return _members; }

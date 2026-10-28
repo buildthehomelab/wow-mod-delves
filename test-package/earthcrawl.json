@@ -1,0 +1,28 @@
+{
+  "package": "earthcrawl-combat-pilot-v1",
+  "status": "development candidate; not approved for installation",
+  "content_revision": 2026102802,
+  "map": 890,
+  "area": 14999,
+  "boss_entry": 1499000,
+  "brann_entry": 1499001,
+  "objective_entry": 1499000,
+  "potion_entry": 1499001,
+  "boss_spawn": 14990000,
+  "objective_spawns": [14990000, 14990001, 14990002, 14990003],
+  "boss_display": 27856,
+  "brann_display": 26353,
+  "objective_display": 1787,
+  "potion_display": 8537,
+  "entry_xyz": [-736.0, -266.667, 76.5202],
+  "boss_xyz": [-783.84, -315.36, 76.3743],
+  "objective_xyz": [
+    [-715.644, -256.356, 76.6562],
+    [-759.378, -249.956, 76.1821],
+    [-756.8, -297.067, 76.7299],
+    [-693.778, -269.689, 76.551]
+  ],
+  "native_route_samples": [22, 18, 17, 24, 11],
+  "geometry_provenance": "VMap-supported floors +0.2; complete Detour paths from entry probe. Not client-tested or retail spawn data.",
+  "client_mpq_sha256": "ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4"
+}

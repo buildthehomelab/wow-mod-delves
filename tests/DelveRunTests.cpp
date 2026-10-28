@@ -1,5 +1,6 @@
 #include "DelveRun.h"
 #include "ConfirmedRun.h"
+#include "DelveScaling.h"
 #include <functional>
 #include <iostream>
 #include <stdexcept>
@@ -57,6 +58,23 @@ namespace
         Check(!complete.Credit(first) && !complete.Abandon(), "terminal run changed");
     }
 
+    void EncounterUnlockRecovery()
+    {
+        auto run = Start();
+        Check(!run.IsCurrentObjective(EventKind::Kill, 200), "boss unlocked before objectives");
+        run.Credit({2680, 10, 1, EventKind::Interact, 100, 1000});
+        auto partial = Run::Load(run.Save(), Story());
+        Check(!partial.IsCurrentObjective(EventKind::Kill, 200), "partial rescue unlocked boss");
+        partial.Credit({2680, 10, 1, EventKind::Interact, 100, 1001});
+        auto unlocked = Run::Load(partial.Save(), Story());
+        Check(unlocked.IsCurrentObjective(EventKind::Kill, 200), "recovery lost boss unlock");
+        Check(!unlocked.IsCurrentObjective(EventKind::Kill, 201), "wrong boss unlocked");
+        unlocked.Credit({2680, 10, 1, EventKind::Kill, 200, 2000});
+        Check(!unlocked.IsCurrentObjective(EventKind::Kill, 200), "terminal run allows boss combat");
+        partial.Abandon();
+        Check(!partial.IsCurrentObjective(EventKind::Kill, 200), "abandoned run allows boss combat");
+    }
+
     void Isolation()
     {
         auto run = Start();
@@ -110,6 +128,32 @@ namespace
         Check(Run::Load(durable, Story()).Status() == RunStatus::Complete, "stale writer corrupted checkpoint");
     }
 
+    void ScalingPolicy()
+    {
+        Check(!MakeScaleProfile(61, 7, 1), "Classic cap bypass");
+        Check(!MakeScaleProfile(71, 12, 1), "TBC cap bypass");
+        Check(!MakeScaleProfile(81, 18, 1), "realm level cap bypass");
+        Check(!MakeScaleProfile(9, 0, 1), "minimum level bypass");
+        Check(!MakeScaleProfile(60, 4294967295u, 1), "unknown progression treated as Classic");
+        Check(!MakeScaleProfile(60, 19, 1), "unknown future progression accepted");
+        auto classic = MakeScaleProfile(60, 7, 1);
+        auto tbc = MakeScaleProfile(70, 8, 2);
+        auto wrath = MakeScaleProfile(80, 13, 3);
+        auto alt = MakeScaleProfile(20, 18, 1);
+        Check(classic && classic->expansion == 0 && classic->healthPercent == 100, "Classic baseline invalid");
+        Check(tbc && tbc->expansion == 1 && tbc->healthPercent > classic->healthPercent, "TBC tier invalid");
+        Check(wrath && wrath->expansion == 2 && wrath->damagePercent > tbc->damagePercent, "Wrath tier invalid");
+        Check(alt && alt->expansion == 0, "low-level alt used high-era stats");
+        Check(!MakeScaleProfile(20, 0, 0) && !MakeScaleProfile(20, 0, 12), "tier bound bypass");
+        Check(ScaleAmount(101, 135) == 137, "scaling did not round upwards");
+        Check(!ScaleAmount(4294967295u, 450), "scaled health overflow");
+        Check(!ScaleAmount(0, 100), "zero health accepted");
+        Run scaled(4, 7, 3, Story(), {{1, 10, 80, 18}});
+        auto loaded = Run::Load(scaled.Save(), Story());
+        Check(loaded.Tier() == 3 && loaded.Members()[0].level == 80 && loaded.Members()[0].progression == 18,
+            "scaling inputs changed after restart");
+    }
+
     void Corruption()
     {
         auto run = Start();
@@ -138,7 +182,9 @@ int main()
     {
         RecoveryAndRewards();
         Isolation();
+        EncounterUnlockRecovery();
         Corruption();
+        ScalingPolicy();
         ConfirmedCheckpoints();
         std::cout << "delve run recovery, isolation and corruption checks passed\n";
     }

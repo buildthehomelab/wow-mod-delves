@@ -1,5 +1,7 @@
 #include "DelveServerAdapter.h"
 #include "DelveCompanion.h"
+#include "DelveScaling.h"
+#include "DelveRewardDelivery.h"
 #include "Config.h"
 #include "Creature.h"
 #include "GameObject.h"
@@ -7,9 +9,11 @@
 #include "InstanceMapScript.h"
 #include "Log.h"
 #include "Map.h"
+#include "ObjectMgr.h"
 #include "Player.h"
 #include "PlayerScript.h"
 #include "WorldSession.h"
+#include "WorldScript.h"
 #include "DBCStores.h"
 #include "DatabaseEnv.h"
 #include <limits>
@@ -18,8 +22,10 @@
 
 namespace Evermore::Delves
 {
+    void InitializeDelveRuntime();
     namespace
     {
+        std::optional<Definition> pilotDefinition;
         constexpr uint32 PilotMapId = 890; // provisional; production ID reservation is still required
 
         uint32 CharacterId(Player const* player)
@@ -37,7 +43,7 @@ namespace Evermore::Delves
     }
 
     InstanceRun::InstanceRun(Map* map, Definition definition)
-        : InstanceScript(map), _definition(std::move(definition)), _journal(map->GetInstanceId()) { }
+        : InstanceScript(map), _definition(std::move(definition)), _journal(map->GetInstanceId(), _definition) { }
 
     void InstanceRun::Initialize()
     {
@@ -64,6 +70,19 @@ namespace Evermore::Delves
             player->GetSession() && !player->GetSession()->IsHeadless() && CharacterId(player);
     }
 
+    bool InstanceRun::IsSnapshotMemberPresent(Player const* player) const
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        if (!IsRealMemberPresent(player) || !_run || Blocked())
+            return false;
+        for (auto const& member : _run->Current().Members())
+            if (member.guid == CharacterId(player) && member.account == player->GetSession()->GetAccountId() &&
+                member.level == player->GetLevel() &&
+                (!ScalingEnabled() || ReadDelveProgression(player) == member.progression))
+                return true;
+        return false;
+    }
+
     bool InstanceRun::Begin(std::uint32_t tier, std::vector<Member> const& members)
     {
         std::lock_guard<std::recursive_mutex> guard(_lock);
@@ -72,12 +91,15 @@ namespace Evermore::Delves
             return false;
         for (auto const& member : members)
         {
+            if (ScalingEnabled() && !MakeScaleProfile(member.level, member.progression, tier))
+                return false;
             bool present = false;
             for (auto const& reference : instance->GetPlayers())
             {
                 Player* player = reference.GetSource();
-                if (IsRealMemberPresent(player) && CharacterId(player) == member.guid &&
-                    player->GetSession()->GetAccountId() == member.account && player->GetLevel() == member.level)
+                if (IsRealMemberPresent(player) && RewardsAdmissionAllowed(player) && CharacterId(player) == member.guid &&
+                    player->GetSession()->GetAccountId() == member.account && player->GetLevel() == member.level &&
+                    (!ScalingEnabled() || ReadDelveProgression(player) == member.progression))
                 {
                     present = true;
                     break;
@@ -111,6 +133,32 @@ namespace Evermore::Delves
         }
         SaveToDB();
         return true;
+    }
+
+    void InstanceRun::ScaleEncounterCreature(Creature* creature)
+    {
+        if (!ScalingEnabled() || !_run || Blocked() || _run->Current().Members().size() != 1 ||
+            _run->Current().Status() != RunStatus::Active || !creature || !creature->IsAlive() ||
+            creature->IsInCombat() || !creature->GetSpawnId() || _definition.objectives.empty())
+            return;
+        auto const& boss = _definition.objectives.back();
+        if (boss.kind == EventKind::Kill && boss.entry == creature->GetEntry() &&
+            creature->GetCreatureTemplate()->ScriptID == sObjectMgr->GetScriptId("boss_evermore_abenar"))
+            ApplyDelveScale(creature, _run->Current().Members()[0], _run->Current().Tier());
+    }
+
+    void InstanceRun::OnCreatureCreate(Creature* creature)
+    {
+        InstanceScript::OnCreatureCreate(creature);
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        ScaleEncounterCreature(creature);
+    }
+
+    void InstanceRun::RefreshEncounterScale()
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        for (auto const& entry : instance->GetCreatureBySpawnIdStore())
+            ScaleEncounterCreature(entry.second);
     }
 
     void InstanceRun::EnsureCompanion(Player* player)
@@ -152,7 +200,7 @@ namespace Evermore::Delves
 
     bool InstanceRun::CreditKill(Player* player, Creature* creature)
     {
-        if (!IsRealMemberPresent(player) || !creature || creature->GetMap() != instance ||
+        if (!IsSnapshotMemberPresent(player) || !creature || creature->GetMap() != instance ||
             creature->IsAlive() || !creature->GetSpawnId())
             return false;
         return Accept({instance->GetId(), instance->GetInstanceId(), CharacterId(player), EventKind::Kill,
@@ -161,7 +209,7 @@ namespace Evermore::Delves
 
     bool InstanceRun::CreditInteraction(Player* player, GameObject* object)
     {
-        if (!IsRealMemberPresent(player) || !player->IsAlive() || !object || !object->IsInWorld() ||
+        if (!IsSnapshotMemberPresent(player) || !player->IsAlive() || !object || !object->IsInWorld() ||
             object->GetMap() != instance || !object->GetSpawnId() ||
             !player->IsWithinDistInMap(object, INTERACTION_DISTANCE))
             return false;
@@ -213,15 +261,19 @@ namespace Evermore::Delves
     class DelveInstanceScript : public InstanceMapScript
     {
     public:
-        explicit DelveInstanceScript(Definition definition)
-            : InstanceMapScript("instance_evermore_delves", PilotMapId), _definition(std::move(definition)) { }
+        DelveInstanceScript() : InstanceMapScript("instance_evermore_delves", PilotMapId) { }
 
         InstanceScript* GetInstanceScript(InstanceMap* map) const override
         {
-            return new InstanceRun(map, _definition);
+            return pilotDefinition ? new InstanceRun(map, *pilotDefinition) : nullptr;
         }
-    private:
-        Definition _definition;
+    };
+
+    class DelveStartup : public WorldScript
+    {
+    public:
+        DelveStartup() : WorldScript("evermore_delve_startup", {WORLDHOOK_ON_BEFORE_WORLD_INITIALIZED}) { }
+        void OnBeforeWorldInitialized() override { InitializeDelveRuntime(); }
     };
 
     class DelvePlayerScript : public PlayerScript
@@ -248,9 +300,12 @@ namespace Evermore::Delves
     };
 }
 
-void AddEvermoreDelveTestControls(uint32 revision);
+void AddEvermoreDelveTestControls();
+void InitializeEvermoreDelveTestControls(uint32 revision);
+bool InitializeEvermoreDelveEncounter();
+void AddEvermoreDelveEncounterScripts();
 
-void AddEvermoreDelveScripts()
+void Evermore::Delves::InitializeDelveRuntime()
 {
     using namespace Evermore::Delves;
     // Enablement is intentionally startup-only. A reload may not replace the
@@ -258,11 +313,21 @@ void AddEvermoreDelveScripts()
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.Enable", false))
         return;
     if (!CharacterDatabase.Query("SELECT COUNT(*) FROM mod_delves_run WHERE 1 = 0") ||
-        !CharacterDatabase.Query("SELECT COUNT(*) FROM mod_delves_visit WHERE 1 = 0"))
+        !CharacterDatabase.Query("SELECT COUNT(progression) FROM mod_delves_visit WHERE 1 = 0") ||
+        !CharacterDatabase.Query("SELECT COUNT(coins) FROM mod_delves_reward WHERE 1 = 0"))
     {
         LOG_ERROR("module.delves", "Delve prototype not registered: required development journal schema is missing");
         return;
     }
+    auto engines = CharacterDatabase.Query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() "
+        "AND table_name IN ('mod_delves_run','mod_delves_reward') AND engine='InnoDB'");
+    if (!engines || engines->Fetch()[0].Get<uint32>() != 2)
+    {
+        LOG_ERROR("module.delves", "Delve startup refused: completion journal and outbox require InnoDB");
+        return;
+    }
+    if (!InitializeDelveScaling())
+        return;
     auto const* map = sMapStore.LookupEntry(PilotMapId);
     uint32 const objective = sConfigMgr->GetOption<uint32>("Delves.Prototype.ObjectiveEntry", 0);
     uint32 const boss = sConfigMgr->GetOption<uint32>("Delves.Prototype.BossEntry", 0);
@@ -273,10 +338,39 @@ void AddEvermoreDelveScripts()
         LOG_ERROR("module.delves", "Delve prototype not registered: map/catalog/revision is not configured");
         return;
     }
-    Definition definition{revision, PilotMapId, {{EventKind::Interact, objective, count}, {EventKind::Kill, boss, 1}}};
-    new DelveInstanceScript(std::move(definition));
+    auto const* instanceTemplate = sObjectMgr->GetInstanceTemplate(PilotMapId);
+    auto const* objectiveTemplate = sObjectMgr->GetGameObjectTemplate(objective);
+    auto const* bossTemplate = sObjectMgr->GetCreatureTemplate(boss);
+    if (!instanceTemplate || !instanceTemplate->ScriptId ||
+        instanceTemplate->ScriptId != sObjectMgr->GetScriptId("instance_evermore_delves") ||
+        !objectiveTemplate || !objectiveTemplate->ScriptId || objectiveTemplate->type != GAMEOBJECT_TYPE_GOOBER ||
+        objectiveTemplate->ScriptId != sObjectMgr->GetScriptId("go_evermore_delve_objective") ||
+        !bossTemplate || !bossTemplate->ScriptID ||
+        bossTemplate->ScriptID != sObjectMgr->GetScriptId("boss_evermore_abenar"))
+    {
+        LOG_ERROR("module.delves", "Delve startup refused: dedicated world script bindings missing or mismatched");
+        return;
+    }
+    if (!InitializeEvermoreDelveCompanion() || !InitializeEvermoreDelveEncounter())
+        return;
+    if (!InitializeDelveRewards())
+        return;
+    pilotDefinition = Definition{revision, PilotMapId, {{EventKind::Interact, objective, count}, {EventKind::Kill, boss, 1}}};
+    InitializeEvermoreDelveTestControls(revision);
+    LOG_INFO("module.delves", "Delve prototype initialized after world data; revision {}", revision);
+}
+
+void AddEvermoreDelveScripts()
+{
+    using namespace Evermore::Delves;
+    // ScriptMgr registers modules before StartDB. Register inert scripts only;
+    // database/DBC/template validation runs in the loaded-world startup hook.
+    AddDelveRewardDelivery();
+    new DelveStartup();
+    new DelveInstanceScript();
     new DelvePlayerScript();
     new DelveObjectiveScript();
-    AddEvermoreDelveTestControls(revision);
+    AddEvermoreDelveTestControls();
     AddEvermoreDelveCompanionScripts();
+    AddEvermoreDelveEncounterScripts();
 }

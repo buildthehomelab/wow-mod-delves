@@ -1,13 +1,15 @@
 # Development server adapter
 
 This slice adds real AzerothCore hooks, confirmed checkpoints and optional
-administrator test controls. It is **not a playable Earthcrawl delve**. Production
-map/actor registration, encounter content, Brann, era scaling and rewards remain
-outstanding. Do not install the workspace's one-row DBC extraction fixture.
+administrator test controls. It is **not a playable Earthcrawl delve**. The coordinated candidate now supplies world/config bindings, first combat and
+Brann support; retail story and final balance remain outstanding. Optional durable
+coin rewards now have a separate reviewed wallet dependency.
+See SCALING-AND-STARTUP.md for the newer startup/progression/scaling behavior. Do not install the workspace's one-row DBC extraction fixture.
 
 ## Configuration and test controls
 
-The required module directory is `mod-delves`. All enablement is startup-only.
+The required module directory is `mod-delves`. All enablement is startup-only, armed after world data loads. Scripts and
+command tables register inertly before database startup.
 `Delves.Prototype.Enable` defaults to zero. Registration also requires the module's
 characters schema, a non-raid Map.dbc entry for provisional map 890, and nonzero
 objective, count, boss and immutable content revision values. This change neither
@@ -19,15 +21,16 @@ and `.delve leave`. All commands require an actual administrator session, even i
 world command permissions are changed. Entry coordinates must be supplied and
 validated in a separate geometry test; zero defaults are not a verified spawn.
 
-- Entry accepts one living human administrator, level 20-60, tier 1-3, ungrouped,
+- Entry accepts one living human administrator, configured levels 10-80, tier 1-3, ungrouped,
   on an ordinary continent, out of combat, flight, vehicle, transport and transfer.
   A durable origin/tier/level/revision row is read back before teleport begins.
 - Arrival and login admit only the saved character, at the frozen level and
   revision, alone in the actual destination instance. Failed entry retains the
   origin; `.delve leave` returns there. A conflicting instance is never reset.
-- Reconnect loads the same checkpoint and roster. The progression value zero is
-  an **unknown development snapshot**, not verified IP eligibility. Tiers are
-  frozen identifiers here; they do not yet scale encounters. These controls are
+- Reconnect loads the same checkpoint and roster. With scaling enabled, the progression snapshot is verified from rewarded IP
+  quest stages; zero is verified Classic and UINTMAX is unknown. Frozen level,
+  era and tier drive encounter/companion stats and are rechecked on recovery.
+  See SCALING-AND-STARTUP.md for exact eligibility/caps. These controls are
   not the future player admission service or Journal interface.
 - Leaving marks the return durably, attempts terminal abandonment of an active
   owned run, and teleports to the origin. An uncertain abandonment never prevents
@@ -94,3 +97,12 @@ failed teleport, disconnect/restart with an empty or stale core mirror, duplicat
 actors, outsider credit, database failure, frozen recovery, leave and new-instance
 attempts. Brann, retail encounters, era balance and completion rewards need their
 own implementation and validation before claiming a complete pilot.
+
+Completion-intent prerequisite: also install the rewards migration documented in
+[REWARD-OUTBOX.md](REWARD-OUTBOX.md). Confirmed completion now requires its immutable
+outbox rows in the same InnoDB transaction as the journal checkpoint. This records
+intent only; it does not yet deliver coins.
+
+Optional receipt-confirmed coin delivery and its separate wallet dependency are
+documented in [REWARD-DELIVERY.md](REWARD-DELIVERY.md). It defaults to disabled;
+follow the matching schema/configuration and non-Self-Found pilot requirements.

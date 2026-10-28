@@ -17,6 +17,10 @@ Delves.Prototype.TestCommands.EntryX = 0
 Delves.Prototype.TestCommands.EntryY = 0
 Delves.Prototype.TestCommands.EntryZ = 0
 Delves.Prototype.TestCommands.EntryO = 0
+# May restrict the test envelope: 20-60 normally, 10-80 with scaling; tier1-3.
+Delves.Prototype.TestCommands.MinLevel = 20
+Delves.Prototype.TestCommands.MaxLevel = 60
+Delves.Prototype.TestCommands.MaxTier = 3
 
 # First healer-role prototype; requires dedicated, reviewed world templates.
 # Entry must bind npc_evermore_delve_brann and be friendly to its owner.
@@ -29,3 +33,20 @@ Delves.Prototype.Brann.PotionEntry = 0
 Delves.Prototype.Brann.HealSpell = 2061
 # Development balance choice, not a measured retail value. Allowed range 1-30.
 Delves.Prototype.Brann.HealPercent = 20
+
+# First boss combat adaptation. Requires a dedicated persistent creature with
+# boss_evermore_abenar binding. Retail spell IDs are not valid client spell ports.
+# Supply reviewed harmful 3.3.5 spell IDs; zero prevents script registration.
+Delves.Prototype.Encounter.Enable = 0
+Delves.Prototype.Encounter.WebBolt = 0
+Delves.Prototype.Encounter.Agony = 0
+Delves.Prototype.Encounter.Shackles = 0
+
+# Frozen level/IP era + tier scaling. Requires complete IP hidden quest catalog
+# and the separate characters progression migration. Balance is a first test.
+Delves.Prototype.Scaling.Enable = 0
+
+# Durable account-wallet delivery, requires matching reviewed mod-boss-coins API
+# and BossCoins.DelveAwards.Enable=1. Self-Found admission is excluded until its
+# personal reward route exists. One pending award is retried per ten seconds.
+Delves.Prototype.Rewards.Enable = 0

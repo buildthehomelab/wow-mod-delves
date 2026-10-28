@@ -30,10 +30,18 @@ jobs:
           repository: buildthehomelab/wow-azerothcore
           ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
           path: .core
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-mod-boss-coins
+          ref: 472de63ffc3a321c1226bc38c294e6589a89b32c
+          path: .wallet
       - name: Ensure build headers
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libboost-dev libssl-dev
       - name: Compile real core adapter headers
-        run: python3 tools/check_core_headers.py --core .core
+        run: |
+          python3 tools/check_core_headers.py --core .core
+          python3 tools/check_core_headers.py --core .core --wallet .wallet
+          python3 tools/check_pilot_package.py --wallet .wallet
 
   journal-schema:
     runs-on: ubuntu-latest
@@ -50,6 +58,11 @@ jobs:
           --health-interval=10s --health-timeout=5s --health-retries=10
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-mod-boss-coins
+          ref: 472de63ffc3a321c1226bc38c294e6589a89b32c
+          path: .wallet
       - name: Install test database client
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends default-mysql-client
       - name: Apply and reapply schema, check persistence constraints
@@ -58,4 +71,42 @@ jobs:
         run: |
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/LegacyVisit.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/JournalSchema.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_01_delves_rewards.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_01_delves_rewards.sql
+          cmake -S . -B reward-build -DBUILD_TESTING=ON
+          cmake --build reward-build --target delve_reward_tests --parallel 2
+          python3 tools/check_reward_outbox.py --binary reward-build/delve_reward_tests
+          cmake -S .wallet -B wallet-build -DBUILD_TESTING=ON
+          cmake --build wallet-build --target durable_award_tests --parallel 2
+          python3 tools/check_reward_delivery.py --wallet .wallet --reward-binary reward-build/delve_reward_tests --wallet-binary wallet-build/durable_award_tests
+
+  pilot-world-sql:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: delve-ci-only
+          MYSQL_DATABASE: world_delve_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-azerothcore
+          ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
+          path: .core
+      - name: Install database client
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends default-mysql-client
+      - name: Verify isolated world install, collision refusal and transactional rollback
+        env:
+          MYSQL_PWD: delve-ci-only
+        run: python3 tools/check_pilot_world.py --core .core --database world_delve_test

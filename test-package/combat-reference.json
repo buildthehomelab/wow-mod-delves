@@ -1,0 +1,155 @@
+{
+  "scope": "Existing client spell analogues only; not retail spell conversions or game-tested effects",
+  "source_archives": {
+    "Spell.dbc": "patch-z80-spells-and-items.MPQ",
+    "CreatureDisplayInfo.dbc": "patch-z75-retail-looks.MPQ",
+    "GameObjectDisplayInfo.dbc": "patch-z80-spells-and-items.MPQ"
+  },
+  "sha256": {
+    "Spell.dbc": "89e3c7efdb3901d0c06e96ceedd5416e200bfde4f3538f7e921dbed3f378a599",
+    "CreatureDisplayInfo.dbc": "d1182588ace254a179323bf4135eef55736965dbd7639600f112043f1c643274",
+    "GameObjectDisplayInfo.dbc": "aace01c66a35568da0f48d1f4517541a2aab09650e7427b5227ab32ccb9d8bfc"
+  },
+  "spells": [
+    {
+      "id": 339,
+      "name": "Entangling Roots",
+      "cast_time_index": 16,
+      "duration_index": 29,
+      "range_index": 4,
+      "effects": [
+        6,
+        6,
+        0
+      ],
+      "effect_basepoints": [
+        -1,
+        4,
+        0
+      ],
+      "targetsA": [
+        6,
+        6,
+        0
+      ],
+      "targetsB": [
+        0,
+        0,
+        0
+      ],
+      "auras": [
+        26,
+        3,
+        0
+      ],
+      "interrupt_flags": 15,
+      "aura_interrupt_flags": 4718592,
+      "channel_interrupt_flags": 0
+    },
+    {
+      "id": 980,
+      "name": "Curse of Agony",
+      "cast_time_index": 1,
+      "duration_index": 106,
+      "range_index": 4,
+      "effects": [
+        6,
+        0,
+        0
+      ],
+      "effect_basepoints": [
+        6,
+        0,
+        0
+      ],
+      "targetsA": [
+        6,
+        0,
+        0
+      ],
+      "targetsB": [
+        0,
+        0,
+        0
+      ],
+      "auras": [
+        3,
+        0,
+        0
+      ],
+      "interrupt_flags": 8,
+      "aura_interrupt_flags": 0,
+      "channel_interrupt_flags": 0
+    },
+    {
+      "id": 2061,
+      "name": "Flash Heal",
+      "cast_time_index": 16,
+      "duration_index": 0,
+      "range_index": 5,
+      "effects": [
+        10,
+        0,
+        0
+      ],
+      "effect_basepoints": [
+        192,
+        0,
+        0
+      ],
+      "targetsA": [
+        21,
+        0,
+        0
+      ],
+      "targetsB": [
+        0,
+        0,
+        0
+      ],
+      "auras": [
+        0,
+        0,
+        0
+      ],
+      "interrupt_flags": 15,
+      "aura_interrupt_flags": 0,
+      "channel_interrupt_flags": 0
+    },
+    {
+      "id": 20816,
+      "name": "Shadow Bolt",
+      "cast_time_index": 14,
+      "duration_index": 0,
+      "range_index": 5,
+      "effects": [
+        2,
+        0,
+        0
+      ],
+      "effect_basepoints": [
+        83,
+        0,
+        0
+      ],
+      "targetsA": [
+        6,
+        0,
+        0
+      ],
+      "targetsB": [
+        0,
+        0,
+        0
+      ],
+      "auras": [
+        0,
+        0,
+        0
+      ],
+      "interrupt_flags": 15,
+      "aura_interrupt_flags": 0,
+      "channel_interrupt_flags": 0
+    }
+  ]
+}
