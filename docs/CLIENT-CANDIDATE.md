@@ -65,3 +65,10 @@ Unit tests cover exact preservation of old rows/strings, wrapped-root collisions
 input immutability, baseline mismatch, occupied IDs, exploration overflow,
 truncated geometry and malformed DBC records. Prior converter/native geometry
 validation remains a separate prerequisite; this builder does not replace it.
+
+The separate `Delve worldserver link` workflow stages this module in a clean,
+pinned core checkout and compiles/links the complete worldserver with only this
+module and the core's ordinary scripts disabled. It checks that the module loader
+is present in the executable. It never starts the binary or connects to a realm
+database. A passing link is not validation against the deployment's complete
+module set, production pins or runtime data.
