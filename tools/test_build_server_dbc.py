@@ -52,6 +52,20 @@ class ServerDbcTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 build_server_dbc.render(*self.build(folder, cart_rows=2))
 
+    def test_rollback_checks_row_contents_before_deleting(self):
+        with tempfile.TemporaryDirectory() as folder:
+            _, rollback = build_server_dbc.render(*self.build(folder))
+        self.assertIn("CAST(`Directory` AS BINARY) <=> CAST('O''Neil\\\\path' AS BINARY)", rollback)
+        self.assertIn('`MinElevation` <=> CAST(-1.5 AS FLOAT)', rollback)
+        self.assertIn('`ModelID` <=> 149990', rollback)
+        self.assertLess(rollback.index('rows were edited or removed'), rollback.index('DELETE FROM'))
+        self.assertLess(rollback.index('rows are still referenced'), rollback.index('DELETE FROM'))
+        for table in ('creature_template_model', 'instance_template', 'creature', 'gameobject',
+                      'creature_addon', 'creature_template_addon', 'creature_model_info',
+                      'player_totem_model', 'player_shapeshift_model', 'game_event_model_equip'):
+            self.assertIn('EXISTS (SELECT 1 FROM ' + table + ' WHERE', rollback)
+        self.assertIn("'earthcrawl-burning-cart-v1'", rollback)
+
     def test_default_guard_is_isolated_test_database(self):
         with tempfile.TemporaryDirectory() as folder:
             install, _ = build_server_dbc.render(*self.build(folder))

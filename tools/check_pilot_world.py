@@ -11,7 +11,9 @@ from build_cart_world import render as render_cart
 import build_server_dbc
 
 TABLES = ('instance_template', 'creature_template', 'creature_template_model',
-          'gameobject_template', 'gameobject_template_addon', 'creature', 'gameobject')
+          'gameobject_template', 'gameobject_template_addon', 'creature', 'gameobject',
+          'creature_addon', 'creature_template_addon', 'creature_model_info',
+          'player_totem_model', 'player_shapeshift_model', 'game_event_model_equip')
 
 
 def main():
@@ -32,6 +34,7 @@ def main():
     def clean_procedures():
         sql('DROP PROCEDURE IF EXISTS evermore_delve_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_rollback_v1;')
         sql('DROP PROCEDURE IF EXISTS evermore_delve_cart_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_cart_rollback_v1;')
+        sql('DROP PROCEDURE IF EXISTS evermore_delve_server_dbc_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_server_dbc_rollback_v1;')
 
     def empty():
         sql('SET FOREIGN_KEY_CHECKS=0;\n' + '\n'.join('DROP TABLE IF EXISTS ' + t + ';' for t in (*TABLES, 'creature_multispawn', 'mod_delves_world_package')))
@@ -146,9 +149,20 @@ def main():
     with tempfile.TemporaryDirectory() as folder:
         client = Path(folder)
         for (name, records), table in zip(rows.items(), dbc_tables):
-            fields = len(build_server_dbc.columns(args.core, table))
-            body = b''.join(struct.pack('<%dI' % fields, *(record + (0,) * (fields - len(record)))) for record in records)
-            (client / name).write_bytes(struct.pack('<4s4I', b'WDBC', len(records), fields, fields * 4, 1) + body + b'\0')
+            cols = build_server_dbc.columns(args.core, table)
+            fields = len(cols)
+            encoded = []
+            for record in records:
+                values = list(record + (0,) * (fields - len(record)))
+                for index, (column, kind, _) in enumerate(cols):
+                    if kind == 'float':
+                        values[index] = struct.unpack('<I', struct.pack('<f', 0.1))[0]
+                    elif column in ('Directory', 'ModelName'):
+                        values[index] = 1
+                encoded.append(struct.pack('<%dI' % fields, *values))
+            strings = b'\0PilotMap\0'
+            (client / name).write_bytes(struct.pack('<4s4I', b'WDBC', len(records), fields, fields * 4, len(strings)) +
+                                       b''.join(encoded) + strings)
         dbc_install, dbc_rollback = build_server_dbc.render(client, args.core)
     sql(dbc_install)
     assert sql('SELECT COUNT(*) FROM map_dbc WHERE ID=890;') == '1'
@@ -161,7 +175,51 @@ def main():
     sql('DROP PROCEDURE IF EXISTS evermore_delve_server_dbc_rollback_v1;')
     assert sql('SELECT COUNT(*) FROM creaturedisplayinfo_dbc;') == '1'
     sql(rollback)
-    sql(dbc_rollback)
+
+    def refuses_dbc_rollback(change, restore):
+        sql(change)
+        # A refusal must preserve all DBC rows and the receipt, including the
+        # changed/referencing data; the helper runs only in world_delve_test.
+        tables = (*dbc_tables, *TABLES, 'mod_delves_world_package')
+        before = {table: sql('SELECT * FROM ' + table + ' ORDER BY 1;') for table in tables}
+        sql(dbc_rollback, False)
+        clean_procedures()
+        for table, expected in before.items():
+            assert sql('SELECT * FROM ' + table + ' ORDER BY 1;') == expected, table
+        sql(restore)
+
+    refuses_dbc_rollback("UPDATE map_dbc SET Directory='Replacement' WHERE ID=890;",
+                         "UPDATE map_dbc SET Directory='PilotMap' WHERE ID=890;")
+    refuses_dbc_rollback("UPDATE map_dbc SET Directory='pilotmap' WHERE ID=890;",
+                         "UPDATE map_dbc SET Directory='PilotMap' WHERE ID=890;")
+    refuses_dbc_rollback("UPDATE map_dbc SET Directory='PilotMap ' WHERE ID=890;",
+                         "UPDATE map_dbc SET Directory='PilotMap' WHERE ID=890;")
+    refuses_dbc_rollback('UPDATE areatable_dbc SET MinElevation=0.2 WHERE ID=14999;',
+                         'UPDATE areatable_dbc SET MinElevation=CAST(0.1 AS FLOAT) WHERE ID=14999;')
+    refuses_dbc_rollback('UPDATE creaturedisplayinfo_dbc SET ModelID=1 WHERE ID=149990;',
+                         'UPDATE creaturedisplayinfo_dbc SET ModelID=149990 WHERE ID=149990;')
+    area_insert = re.search(r'    INSERT INTO areatable_dbc .*?;\n', dbc_install, re.S).group()
+    refuses_dbc_rollback('DELETE FROM areatable_dbc WHERE ID=14999;', area_insert)
+    for table, insert, remove in (
+            ('creature_template_model', '(CreatureID,Idx,CreatureDisplayID,DisplayScale,Probability) VALUES (1499999,0,149990,1,1)', 'CreatureID=1499999'),
+            ('creature_addon', '(guid,mount) VALUES (14990099,149990)', 'guid=14990099'),
+            ('creature_template_addon', '(entry,mount) VALUES (1499999,149990)', 'entry=1499999'),
+            ('creature_model_info', '(DisplayID) VALUES (149990)', 'DisplayID=149990'),
+            ('creature_model_info', '(DisplayID,DisplayID_Other_Gender) VALUES (149991,149990)', 'DisplayID=149991'),
+            ('player_totem_model', '(TotemID,RaceID,ModelID) VALUES (1,1,149990)', 'TotemID=1 AND RaceID=1'),
+            ('player_shapeshift_model', '(ShapeshiftID,RaceID,CustomizationID,GenderID,ModelID) VALUES (1,1,0,0,149990)', 'ShapeshiftID=1 AND RaceID=1'),
+            ('game_event_model_equip', '(eventEntry,guid,modelid) VALUES (1,14990099,149990)', 'guid=14990099'),
+            ('creaturedisplayinfo_dbc', '(ID,ModelID) VALUES (149991,149990)', 'ID=149991'),
+            ('mapdifficulty_dbc', '(ID,MapID) VALUES (20001,890)', 'ID=20001'),
+            ('areatable_dbc', '(ID,ContinentID) VALUES (15000,890)', 'ID=15000'),
+            ('areatable_dbc', '(ID,ParentAreaID) VALUES (15000,14999)', 'ID=15000'),
+            ('map_dbc', '(ID,AreaTableID) VALUES (891,14999)', 'ID=891'),
+            ('instance_template', "(map,parent,script) VALUES (890,0,'replacement')", 'map=890'),
+            ('creature', "(guid,id,map,Comment) VALUES (14990099,1,890,'replacement')", 'guid=14990099'),
+            ('gameobject', "(guid,id,map,Comment) VALUES (14990099,1,890,'replacement')", 'guid=14990099')):
+        refuses_dbc_rollback('INSERT INTO ' + table + ' ' + insert + ';',
+                             'DELETE FROM ' + table + ' WHERE ' + remove + ';')
+    sql(dbc_rollback)  # Unmodified non-integral FLOAT values must compare successfully.
     for table in dbc_tables:
         assert sql('SELECT COUNT(*) FROM ' + table + ';') == '0', table
     assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '0'
