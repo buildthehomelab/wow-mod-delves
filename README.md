@@ -33,6 +33,10 @@ The offline [client candidate builder](docs/CLIENT-CANDIDATE.md) preserves the f
 preceding DBC tables and assigns isolated WMO root identities. Its output still
 requires matching native extraction and controlled client validation.
 
+An optional [healer companion prototype](docs/BRANN-PROTOTYPE.md) follows the
+admitted solo character and places personal proximity-pickup healing potions.
+It requires dedicated world templates and remains disabled by default.
+
 ## Integration contract
 
 - Allocate a durable, globally unique run ID before admission. Never derive it
@@ -62,7 +66,7 @@ requires matching native extraction and controlled client validation.
 ## Remaining components
 
 Player admission and entry, verified retail objective/encounter
-catalog, creature/gameobject templates and spawn data, Brann AI, difficulty/era
+catalog, creature/gameobject templates and spawn data, complete retail Brann behavior, difficulty/era
 scaling, exactly-once wallet integration, client DBC/map packaging, Journal UI,
 server build/CI, and gameplay validation are not yet implemented here.
 

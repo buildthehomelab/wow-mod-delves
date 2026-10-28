@@ -17,3 +17,15 @@ Delves.Prototype.TestCommands.EntryX = 0
 Delves.Prototype.TestCommands.EntryY = 0
 Delves.Prototype.TestCommands.EntryZ = 0
 Delves.Prototype.TestCommands.EntryO = 0
+
+# First healer-role prototype; requires dedicated, reviewed world templates.
+# Entry must bind npc_evermore_delve_brann and be friendly to its owner.
+# PotionEntry must be GENERIC and bind go_evermore_delve_potion.
+Delves.Prototype.Brann.Enable = 0
+Delves.Prototype.Brann.Entry = 0
+Delves.Prototype.Brann.PotionEntry = 0
+# A loaded HEAL spell supplies combat-log metadata, not spell-power scaling.
+# 2061 is the stock Flash Heal metadata; no cast or mana cost is performed.
+Delves.Prototype.Brann.HealSpell = 2061
+# Development balance choice, not a measured retail value. Allowed range 1-30.
+Delves.Prototype.Brann.HealPercent = 20

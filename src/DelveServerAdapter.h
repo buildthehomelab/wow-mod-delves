@@ -22,6 +22,7 @@ namespace Evermore::Delves
         InstanceRun(Map* map, Definition definition);
         bool Begin(std::uint32_t tier, std::vector<Member> const& members);
         bool Abandon();
+        void EnsureCompanion(Player* player);
         bool CreditKill(Player* player, Creature* creature);
         bool CreditInteraction(Player* player, GameObject* object);
         void Initialize() override;
@@ -37,6 +38,7 @@ namespace Evermore::Delves
         mutable std::recursive_mutex _lock;
         Definition _definition;
         Journal _journal;
+        ObjectGuid _companionGuid;
         std::unique_ptr<ConfirmedRun> _run;
         bool _invalidSave = false;
         std::string _invalidSaveData;

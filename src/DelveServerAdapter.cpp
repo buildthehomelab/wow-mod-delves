@@ -1,4 +1,5 @@
 #include "DelveServerAdapter.h"
+#include "DelveCompanion.h"
 #include "Config.h"
 #include "Creature.h"
 #include "GameObject.h"
@@ -110,6 +111,23 @@ namespace Evermore::Delves
         }
         SaveToDB();
         return true;
+    }
+
+    void InstanceRun::EnsureCompanion(Player* player)
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        if (!IsRealMemberPresent(player) || !_run || Blocked() || _run->Current().Status() != RunStatus::Active ||
+            _run->Current().Members().size() != 1 ||
+            _run->Current().Members()[0].guid != CharacterId(player))
+            return;
+        if (Creature* existing = instance->GetCreature(_companionGuid))
+        {
+            if (existing->IsAlive())
+                return;
+            existing->DespawnOrUnsummon();
+        }
+        if (Creature* companion = SummonCompanion(player, _run->Current().Id()))
+            _companionGuid = companion->GetGUID();
     }
 
     bool InstanceRun::Accept(Event const& event)
@@ -260,4 +278,5 @@ void AddEvermoreDelveScripts()
     new DelvePlayerScript();
     new DelveObjectiveScript();
     AddEvermoreDelveTestControls(revision);
+    AddEvermoreDelveCompanionScripts();
 }
