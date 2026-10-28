@@ -1,4 +1,5 @@
 #include "DelveServerAdapter.h"
+#include "DelveScaling.h"
 #include "Chat.h"
 #include "CommandScript.h"
 #include "Config.h"
@@ -18,6 +19,7 @@ namespace Evermore::Delves
     namespace
     {
         constexpr uint32 TestMap = 890;
+        bool controlsReady = false;
         uint32 contentRevision = 0;
         uint32 minimumLevel = 20;
         uint32 maximumLevel = 60;
@@ -31,6 +33,7 @@ namespace Evermore::Delves
             uint32 level;
             uint32 revision;
             bool returning;
+            uint32 progression;
         };
 
         uint32 CharacterId(Player const* player)
@@ -48,14 +51,14 @@ namespace Evermore::Delves
         std::optional<Visit> ReadVisit(Player const* player)
         {
             auto result = CharacterDatabase.Query("SELECT source_map, source_x, source_y, source_z, source_o, "
-                "tier, level, revision, returning FROM mod_delves_visit WHERE guid = {} AND account = {}",
+                "tier, level, revision, returning, progression FROM mod_delves_visit WHERE guid = {} AND account = {}",
                 CharacterId(player), player->GetSession()->GetAccountId());
             if (!result)
                 return std::nullopt;
             Field* row = result->Fetch();
             return Visit{WorldLocation(row[0].Get<uint32>(), row[1].Get<float>(), row[2].Get<float>(),
                 row[3].Get<float>(), row[4].Get<float>()), row[5].Get<uint32>(), row[6].Get<uint32>(),
-                row[7].Get<uint32>(), row[8].Get<uint8>() != 0};
+                row[7].Get<uint32>(), row[8].Get<uint8>() != 0, row[9].Get<uint32>()};
         }
 
         InstanceRun* FindInstance(Player* player)
@@ -71,7 +74,7 @@ namespace Evermore::Delves
 
         void OnArrival(Player* player)
         {
-            if (!IsHuman(player))
+            if (!controlsReady || !IsHuman(player))
                 return;
             auto visit = ReadVisit(player);
             if (!visit)
@@ -88,16 +91,16 @@ namespace Evermore::Delves
                 return;
             ChatHandler chat(player->GetSession());
             if (visit->revision != contentRevision || visit->level < minimumLevel || visit->level > maximumLevel || visit->tier < 1 || visit->tier > maximumTier || player->GetGroup() ||
-                player->GetLevel() != visit->level || player->GetMap()->GetPlayers().getSize() != 1)
+                player->GetLevel() != visit->level || player->GetMap()->GetPlayers().getSize() != 1 ||
+                (ScalingEnabled() && (ReadDelveProgression(player) != visit->progression ||
+                    !MakeScaleProfile(visit->level, visit->progression, visit->tier))))
             {
                 chat.SendSysMessage("Delve test admission refused. Use .delve leave to return safely.");
                 return;
             }
             if (!instance->CurrentRun())
             {
-                // Stage zero is explicitly an unknown/test snapshot, not a claim
-                // that IP eligibility or encounter scaling has been implemented.
-                if (!instance->Begin(visit->tier, {{CharacterId(player), player->GetSession()->GetAccountId(), visit->level, 0}}))
+                if (!instance->Begin(visit->tier, {{CharacterId(player), player->GetSession()->GetAccountId(), visit->level, ScalingEnabled() ? visit->progression : 0}}))
                 {
                     chat.SendSysMessage("Delve checkpoint could not be confirmed. No run started; use .delve leave.");
                     return;
@@ -108,6 +111,14 @@ namespace Evermore::Delves
                 chat.SendSysMessage("This instance cannot admit this test character. Use .delve leave.");
                 return;
             }
+            auto const admitted = instance->CurrentRun();
+            if (ScalingEnabled() && (admitted->Tier() != visit->tier || admitted->Members()[0].level != visit->level ||
+                admitted->Members()[0].progression != visit->progression))
+            {
+                chat.SendSysMessage("Saved delve scaling inputs differ from this visit. Use .delve leave.");
+                return;
+            }
+            instance->RefreshEncounterScale();
             instance->EnsureCompanion(player);
             chat.SendSysMessage("Delve test checkpoint loaded. Use .delve status for objectives and .delve leave to return. No rewards are enabled.");
         }
@@ -131,6 +142,11 @@ namespace Evermore::Delves
 
         static bool Enter(ChatHandler* handler, uint32 tier)
         {
+            if (!controlsReady)
+            {
+                handler->SendSysMessage("Delve test controls are disabled or startup validation failed.");
+                return true;
+            }
             Player* player = handler->GetSession()->GetPlayer();
             if (!IsHuman(player) || tier < 1 || tier > maximumTier || !player->IsAlive() || player->IsInCombat() ||
                 player->GetGroup() || player->IsInFlight() || player->GetTransport() || player->GetVehicle() ||
@@ -141,6 +157,12 @@ namespace Evermore::Delves
                     minimumLevel, maximumLevel, maximumTier);
                 return true;
             }
+            auto progression = ReadDelveProgression(player);
+            if (ScalingEnabled() && (!progression || !MakeScaleProfile(player->GetLevel(), *progression, tier)))
+            {
+                handler->SendSysMessage("Your level/progression snapshot is not eligible for this delve test.");
+                return true;
+            }
             OnArrival(player); // Clears an acknowledged same-map return after its teleport has finished.
             if (ReadVisit(player))
             {
@@ -148,12 +170,13 @@ namespace Evermore::Delves
                 return true;
             }
             CharacterDatabase.DirectExecute("INSERT IGNORE INTO mod_delves_visit "
-                "(guid, account, source_map, source_x, source_y, source_z, source_o, tier, level, revision) "
-                "VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {})", CharacterId(player),
+                "(guid, account, source_map, source_x, source_y, source_z, source_o, tier, level, revision, progression) "
+                "VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})", CharacterId(player),
                 player->GetSession()->GetAccountId(), player->GetMapId(), player->GetPositionX(), player->GetPositionY(),
-                player->GetPositionZ(), player->GetOrientation(), tier, player->GetLevel(), contentRevision);
+                player->GetPositionZ(), player->GetOrientation(), tier, player->GetLevel(), contentRevision, progression.value_or(4294967295u));
             auto visit = ReadVisit(player);
             if (!visit || visit->returning || visit->tier != tier || visit->level != player->GetLevel() ||
+                (ScalingEnabled() && visit->progression != progression) ||
                 visit->revision != contentRevision || visit->origin.GetMapId() != player->GetMapId() ||
                 player->GetDistance(visit->origin) >= 1.0f)
             {
@@ -169,6 +192,11 @@ namespace Evermore::Delves
 
         static bool Leave(ChatHandler* handler)
         {
+            if (!controlsReady)
+            {
+                handler->SendSysMessage("Delve test controls are disabled or startup validation failed.");
+                return true;
+            }
             Player* player = handler->GetSession()->GetPlayer();
             if (!IsHuman(player) || player->IsBeingTeleported())
                 return true;
@@ -198,6 +226,11 @@ namespace Evermore::Delves
 
         static bool Status(ChatHandler* handler)
         {
+            if (!controlsReady)
+            {
+                handler->SendSysMessage("Delve test controls are disabled or startup validation failed.");
+                return true;
+            }
             Player* player = handler->GetSession()->GetPlayer();
             auto* instance = IsHuman(player) ? FindInstance(player) : nullptr;
             if (!instance || !IsOwner(instance->CurrentRun(), player))
@@ -221,7 +254,7 @@ namespace Evermore::Delves
     };
 }
 
-void AddEvermoreDelveTestControls(uint32 revision)
+void InitializeEvermoreDelveTestControls(uint32 revision)
 {
     using namespace Evermore::Delves;
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.TestCommands.Enable", false) ||
@@ -230,7 +263,7 @@ void AddEvermoreDelveTestControls(uint32 revision)
     minimumLevel = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MinLevel", 20);
     maximumLevel = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MaxLevel", 60);
     maximumTier = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MaxTier", 3);
-    if (minimumLevel < 20 || maximumLevel > 60 || minimumLevel > maximumLevel || !maximumTier || maximumTier > 3)
+    if (minimumLevel < (ScalingEnabled() ? 10u : 20u) || maximumLevel > (ScalingEnabled() ? 80u : 60u) || minimumLevel > maximumLevel || !maximumTier || maximumTier > 3)
         return;
     entrance = WorldLocation(890,
         sConfigMgr->GetOption<float>("Delves.Prototype.TestCommands.EntryX", 0.0f),
@@ -240,6 +273,12 @@ void AddEvermoreDelveTestControls(uint32 revision)
     if (!MapMgr::IsValidMapCoord(entrance))
         return;
     contentRevision = revision;
+    controlsReady = true;
+}
+
+void AddEvermoreDelveTestControls()
+{
+    using namespace Evermore::Delves;
     new DelveTestCommands();
     new DelveTestArrivals();
 }

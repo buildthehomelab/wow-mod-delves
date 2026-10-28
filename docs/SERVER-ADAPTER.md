@@ -1,13 +1,14 @@
 # Development server adapter
 
 This slice adds real AzerothCore hooks, confirmed checkpoints and optional
-administrator test controls. It is **not a playable Earthcrawl delve**. Production
-map/actor registration, encounter content, Brann, era scaling and rewards remain
-outstanding. Do not install the workspace's one-row DBC extraction fixture.
+administrator test controls. It is **not a playable Earthcrawl delve**. The coordinated candidate now supplies world/config bindings, first combat and
+Brann support; retail story, final balance and rewards remain outstanding.
+See SCALING-AND-STARTUP.md for the newer startup/progression/scaling behavior. Do not install the workspace's one-row DBC extraction fixture.
 
 ## Configuration and test controls
 
-The required module directory is `mod-delves`. All enablement is startup-only.
+The required module directory is `mod-delves`. All enablement is startup-only, armed after world data loads. Scripts and
+command tables register inertly before database startup.
 `Delves.Prototype.Enable` defaults to zero. Registration also requires the module's
 characters schema, a non-raid Map.dbc entry for provisional map 890, and nonzero
 objective, count, boss and immutable content revision values. This change neither

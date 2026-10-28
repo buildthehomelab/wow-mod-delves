@@ -58,6 +58,9 @@ jobs:
         run: |
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/LegacyVisit.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/JournalSchema.sql
 
   pilot-world-sql:

@@ -23,6 +23,8 @@ namespace Evermore::Delves
         bool Begin(std::uint32_t tier, std::vector<Member> const& members);
         bool Abandon();
         void EnsureCompanion(Player* player);
+        void RefreshEncounterScale();
+        void OnCreatureCreate(Creature* creature) override;
         bool CreditKill(Player* player, Creature* creature);
         bool CreditInteraction(Player* player, GameObject* object);
         void Initialize() override;
@@ -33,7 +35,9 @@ namespace Evermore::Delves
 
     private:
         bool IsRealMemberPresent(Player const* player) const;
+        bool IsSnapshotMemberPresent(Player const* player) const;
         bool Accept(Event const& event);
+        void ScaleEncounterCreature(Creature* creature);
         // Core saves re-enter GetSaveData while a confirmed mutation holds the lock.
         mutable std::recursive_mutex _lock;
         Definition _definition;

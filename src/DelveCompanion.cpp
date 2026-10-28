@@ -1,5 +1,6 @@
 #include "DelveCompanion.h"
 #include "DelveServerAdapter.h"
+#include "DelveScaling.h"
 #include "Config.h"
 #include "Creature.h"
 #include "CreatureScript.h"
@@ -40,7 +41,9 @@ namespace Evermore::Delves
             auto run = instance ? instance->CurrentRun() : std::nullopt;
             return run && !instance->Blocked() && run->Id() == runId && run->Status() == RunStatus::Active &&
                 run->Members().size() == 1 && run->Members()[0].guid == owner->GetGUID().GetRawValue() &&
-                run->Members()[0].account == owner->GetSession()->GetAccountId();
+                run->Members()[0].account == owner->GetSession()->GetAccountId() &&
+                run->Members()[0].level == owner->GetLevel() &&
+                (!ScalingEnabled() || ReadDelveProgression(owner) == run->Members()[0].progression);
         }
 
         class PotionAI : public GameObjectAI
@@ -214,16 +217,23 @@ namespace Evermore::Delves
                 companion->DespawnOrUnsummon();
             return nullptr;
         }
+        auto* instance = dynamic_cast<InstanceRun*>(owner->GetInstanceScript());
+        auto run = instance ? instance->CurrentRun() : std::nullopt;
+        if (!run || !ApplyDelveScale(companion, run->Members()[0], run->Tier(), true))
+        {
+            companion->DespawnOrUnsummon();
+            return nullptr;
+        }
         ai->Bind(owner, runId);
         return companion;
     }
 }
 
-void AddEvermoreDelveCompanionScripts()
+bool InitializeEvermoreDelveCompanion()
 {
     using namespace Evermore::Delves;
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.Brann.Enable", false))
-        return;
+        return true;
     uint32 const npc = sConfigMgr->GetOption<uint32>("Delves.Prototype.Brann.Entry", 0);
     uint32 const potion = sConfigMgr->GetOption<uint32>("Delves.Prototype.Brann.PotionEntry", 0);
     uint32 const spellId = sConfigMgr->GetOption<uint32>("Delves.Prototype.Brann.HealSpell", 2061);
@@ -236,12 +246,18 @@ void AddEvermoreDelveCompanionScripts()
         object->ScriptId != sObjectMgr->GetScriptId("go_evermore_delve_potion") || !percent || percent > 30)
     {
         LOG_ERROR("module.delves", "Brann prototype not registered: templates, script bindings or heal metadata invalid");
-        return;
+        return false;
     }
     companionEntry = npc;
     potionEntry = potion;
     healSpell = spellId;
     healPercent = percent;
+    return true;
+}
+
+void AddEvermoreDelveCompanionScripts()
+{
+    using namespace Evermore::Delves;
     new CompanionScript();
     new PotionScript();
 }

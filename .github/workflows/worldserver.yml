@@ -50,3 +50,7 @@ jobs:
           assert 'Addmod_delvesScripts()' in symbols, 'delve module loader was not linked'
           print('worldserver linked with the delve module loader; binary was not started')
           PY
+      - name: Check enabled module registration before databases start
+        run: >-
+          python3 tools/check_pre_database_startup.py --core .core
+          --binary core-build/src/server/apps/worldserver

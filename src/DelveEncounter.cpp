@@ -1,4 +1,5 @@
 #include "DelveServerAdapter.h"
+#include "DelveScaling.h"
 #include "Config.h"
 #include "Creature.h"
 #include "CreatureScript.h"
@@ -51,7 +52,13 @@ namespace Evermore::Delves
                     return;
                 }
                 auto* instance = dynamic_cast<InstanceRun*>(me->GetInstanceScript());
-                activeRun = instance->CurrentRun()->Id();
+                auto const run = instance->CurrentRun();
+                if (!run || !ApplyDelveScale(me, run->Members()[0], run->Tier()))
+                {
+                    EnterEvadeMode();
+                    return;
+                }
+                activeRun = run->Id();
                 events.ScheduleEvent(WebBolt, Milliseconds(2200));
                 events.ScheduleEvent(Agony, Milliseconds(6200));
                 events.ScheduleEvent(Shackles, Milliseconds(20200));
@@ -83,11 +90,11 @@ namespace Evermore::Delves
                     switch (event)
                     {
                         case WebBolt:
-                            DoCastVictim(spells[0]);
+                            CastDamage(spells[0], false);
                             events.ScheduleEvent(WebBolt, Milliseconds(6000));
                             break;
                         case Agony:
-                            DoCastVictim(spells[1]);
+                            CastDamage(spells[1], true);
                             events.ScheduleEvent(Agony, Milliseconds(24200));
                             break;
                         case Shackles:
@@ -102,6 +109,20 @@ namespace Evermore::Delves
             }
 
         private:
+            void CastDamage(uint32 spell, bool periodic)
+            {
+                if (!ScalingEnabled())
+                {
+                    DoCastVictim(spell);
+                    return;
+                }
+                auto* instance = dynamic_cast<InstanceRun*>(me->GetInstanceScript());
+                auto run = instance ? instance->CurrentRun() : std::nullopt;
+                auto damage = run ? DelveSpellDamage(me, run->Members()[0], run->Tier(), periodic) : std::nullopt;
+                if (damage)
+                    me->CastCustomSpell(spell, SPELLVALUE_BASE_POINT0, static_cast<int32>(*damage), me->GetVictim(), false);
+            }
+
             bool Eligible(Unit const* target) const
             {
                 Player const* player = target ? target->GetCharmerOrOwnerPlayerOrPlayerItself() : nullptr;
@@ -118,7 +139,8 @@ namespace Evermore::Delves
                     run->Members().size() == 1 &&
                     run->Members()[0].guid == player->GetGUID().GetRawValue() &&
                     run->Members()[0].account == player->GetSession()->GetAccountId() &&
-                    run->Members()[0].level == player->GetLevel();
+                    run->Members()[0].level == player->GetLevel() &&
+                    (!ScalingEnabled() || ReadDelveProgression(player) == run->Members()[0].progression);
             }
 
             EventMap events;
@@ -134,11 +156,11 @@ namespace Evermore::Delves
     }
 }
 
-void AddEvermoreDelveEncounterScripts()
+bool InitializeEvermoreDelveEncounter()
 {
     using namespace Evermore::Delves;
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.Encounter.Enable", false))
-        return;
+        return true;
     bossEntry = sConfigMgr->GetOption<uint32>("Delves.Prototype.BossEntry", 0);
     spells = {sConfigMgr->GetOption<uint32>("Delves.Prototype.Encounter.WebBolt", 0),
         sConfigMgr->GetOption<uint32>("Delves.Prototype.Encounter.Agony", 0),
@@ -149,8 +171,22 @@ void AddEvermoreDelveEncounterScripts()
         if (!spell || spell->IsPositive())
         {
             LOG_ERROR("module.delves", "Earthcrawl encounter not registered: a harmful test spell is missing");
-            return;
+            return false;
         }
     }
+    if (ScalingEnabled() &&
+        (sSpellMgr->GetSpellInfo(spells[0])->Effects[EFFECT_0].Effect != SPELL_EFFECT_SCHOOL_DAMAGE ||
+         sSpellMgr->GetSpellInfo(spells[1])->Effects[EFFECT_0].Effect != SPELL_EFFECT_APPLY_AURA ||
+         sSpellMgr->GetSpellInfo(spells[1])->Effects[EFFECT_0].ApplyAuraName != SPELL_AURA_PERIODIC_DAMAGE))
+    {
+        LOG_ERROR("module.delves", "Scaled Earthcrawl encounter requires direct bolt and periodic agony effect0");
+        return false;
+    }
+    return true;
+}
+
+void AddEvermoreDelveEncounterScripts()
+{
+    using namespace Evermore::Delves;
     new EarthcrawlBossScript();
 }

@@ -17,7 +17,7 @@ Delves.Prototype.TestCommands.EntryX = 0
 Delves.Prototype.TestCommands.EntryY = 0
 Delves.Prototype.TestCommands.EntryZ = 0
 Delves.Prototype.TestCommands.EntryO = 0
-# May restrict the existing 20-60 / tier1-3 test envelope; never widens it.
+# May restrict the test envelope: 20-60 normally, 10-80 with scaling; tier1-3.
 Delves.Prototype.TestCommands.MinLevel = 20
 Delves.Prototype.TestCommands.MaxLevel = 60
 Delves.Prototype.TestCommands.MaxTier = 3
@@ -41,3 +41,7 @@ Delves.Prototype.Encounter.Enable = 0
 Delves.Prototype.Encounter.WebBolt = 0
 Delves.Prototype.Encounter.Agony = 0
 Delves.Prototype.Encounter.Shackles = 0
+
+# Frozen level/IP era + tier scaling. Requires complete IP hidden quest catalog
+# and the separate characters progression migration. Balance is a first test.
+Delves.Prototype.Scaling.Enable = 0

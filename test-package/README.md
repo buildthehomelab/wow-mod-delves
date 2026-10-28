@@ -9,8 +9,9 @@ analogues. It does not replace the retail-faithful Earthcrawl story goal.
 `earthcrawl.json` is the immutable world placement/ID manifest. All IDs are
 provisional and collision-guarded. Positions come from connected Detour ground
 polygons with supporting VMap floors, plus 0.2 units of clearance. They are not
-retail spawn captures or client-validated safe positions. The first candidate
-restricts administrator admission to level30/tier1 while scaling is unfinished.
+retail spawn captures or client-validated safe positions. The scaled candidate
+allows administrator levels10–80 and tiers1–3 within verified progression era
+caps. Balance remains a first test; see `docs/SCALING-AND-STARTUP.md`.
 The default module configuration stays disabled. The separate candidate config
 contains explicit enablement for an eventual approved, isolated test stack.
 
@@ -21,7 +22,8 @@ contains explicit enablement for an eventual approved, isolated test stack.
   After implementation merges, prepare a reviewed wow-server pin to the actual
   resulting commit. A pin is currently blocked by the incomplete gameplay release.
 - Existing characters schema in `data/sql/characters`, applied to an isolated
-  characters database, with its journal/visit tables retained across reconnects.
+  characters database, followed by the progression migration, with journal/visit
+  tables retained across reconnects.
 - Generated world install SQL from this directory's manifest. It only accepts
   a database whose name ends `_delve_test`; use a separately backed-up clone.
 - Complete `client-registered-candidate/DBFilesClient` tables and the matching
@@ -90,7 +92,10 @@ not authorize a live realm stop, database write or restart.
 
 ## Controlled gameplay checks
 
-Use a real level30 administrator, solo, outside combat on an ordinary continent.
+Start with a real level30 Classic administrator, solo, outside combat on an
+ordinary continent. Repeat at levels60/70/80 with matching progression stages
+after the initial route and combat checks; invalid era/level combinations must
+be refused.
 Use ordinary movement and combat; disable GM invulnerability/invisibility for the
 combat portion. Keep a second administrator available to recover the test actor.
 
@@ -143,7 +148,7 @@ or deployment is performed by the package tools.
 
 MySQL install/collision/injected-failure/rollback CI must pass against the pinned
 core schema. Formal review and complete worldserver link are required on the
-final source revision. Finish retail story/encounter mechanics, level/era/tier
-scaling, idempotent Undermine wallet integration and actual test-stack baseline
+final source revision. Finish retail story/encounter mechanics, validate and tune the new scaling,
+complete idempotent Undermine wallet integration and actual test-stack baseline
 checks. The current harness is useful for staged validation but does not satisfy
 the full gameplay goal or establish a morning-test promise.
