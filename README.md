@@ -147,9 +147,15 @@ progression, solo on an ordinary continent, alive and outside combat/transport.
 | Command | What it does |
 | --- | --- |
 | `.delve enter 1` | Enter the tier1 pilot and save the origin. Tiers2–3 are also supported. |
-| `.delve status` | Inspect the admitted run and confirmed objective progress. |
+| `.delve status` | Show the next objective by name, confirmed progress and reward delivery status. |
 | `.delve leave` | Return to the saved origin. Leaving an active run abandons it. |
 | `.wallet` | Check the account's coin balance, provided by Boss Coins. |
+
+Entry and reconnect show the current objective. Each saved interaction or kill
+confirms progress in chat; the fourth marker changes the guidance to Ab'enar.
+`.delve status` repeats the objective and its required count at any time. A blocked
+checkpoint reports that progress cannot be confirmed. Completion points to reward
+status without claiming that coins have already arrived.
 
 Visit all four markers to unlock Ab'enar, then defeat him. Check Brann's potions,
 interrupts/dispels, saved progress after reconnecting and the wallet reward.

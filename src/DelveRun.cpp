@@ -71,6 +71,13 @@ namespace Evermore::Delves
             _definition.objectives[_stage].kind == kind && _definition.objectives[_stage].entry == entry;
     }
 
+    std::optional<Objective> Run::CurrentObjective() const
+    {
+        if (_status != RunStatus::Active || _stage >= _definition.objectives.size())
+            return std::nullopt;
+        return _definition.objectives[_stage];
+    }
+
     bool Run::Credit(Event const& event)
     {
         if (_status != RunStatus::Active || event.map != _definition.map || event.instance != _instance ||
