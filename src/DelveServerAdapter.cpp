@@ -42,7 +42,7 @@ namespace Evermore::Delves
     }
 
     InstanceRun::InstanceRun(Map* map, Definition definition)
-        : InstanceScript(map), _definition(std::move(definition)), _journal(map->GetInstanceId()) { }
+        : InstanceScript(map), _definition(std::move(definition)), _journal(map->GetInstanceId(), _definition) { }
 
     void InstanceRun::Initialize()
     {
@@ -312,9 +312,17 @@ void Evermore::Delves::InitializeDelveRuntime()
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.Enable", false))
         return;
     if (!CharacterDatabase.Query("SELECT COUNT(*) FROM mod_delves_run WHERE 1 = 0") ||
-        !CharacterDatabase.Query("SELECT COUNT(progression) FROM mod_delves_visit WHERE 1 = 0"))
+        !CharacterDatabase.Query("SELECT COUNT(progression) FROM mod_delves_visit WHERE 1 = 0") ||
+        !CharacterDatabase.Query("SELECT COUNT(coins) FROM mod_delves_reward WHERE 1 = 0"))
     {
         LOG_ERROR("module.delves", "Delve prototype not registered: required development journal schema is missing");
+        return;
+    }
+    auto engines = CharacterDatabase.Query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() "
+        "AND table_name IN ('mod_delves_run','mod_delves_reward') AND engine='InnoDB'");
+    if (!engines || engines->Fetch()[0].Get<uint32>() != 2)
+    {
+        LOG_ERROR("module.delves", "Delve startup refused: completion journal and outbox require InnoDB");
         return;
     }
     if (!InitializeDelveScaling())

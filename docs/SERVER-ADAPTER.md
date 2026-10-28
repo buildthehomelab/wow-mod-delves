@@ -95,3 +95,8 @@ failed teleport, disconnect/restart with an empty or stale core mirror, duplicat
 actors, outsider credit, database failure, frozen recovery, leave and new-instance
 attempts. Brann, retail encounters, era balance and completion rewards need their
 own implementation and validation before claiming a complete pilot.
+
+Completion-intent prerequisite: also install the rewards migration documented in
+[REWARD-OUTBOX.md](REWARD-OUTBOX.md). Confirmed completion now requires its immutable
+outbox rows in the same InnoDB transaction as the journal checkpoint. This records
+intent only; it does not yet deliver coins.

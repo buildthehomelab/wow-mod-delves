@@ -62,6 +62,11 @@ jobs:
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_00_delves_progression.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/JournalSchema.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_01_delves_rewards.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_28_01_delves_rewards.sql
+          cmake -S . -B reward-build -DBUILD_TESTING=ON
+          cmake --build reward-build --target delve_reward_tests --parallel 2
+          python3 tools/check_reward_outbox.py --binary reward-build/delve_reward_tests
 
   pilot-world-sql:
     runs-on: ubuntu-latest
