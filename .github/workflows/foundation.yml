@@ -18,3 +18,44 @@ jobs:
         run: cmake --build build --parallel 2
       - name: Check recovery and isolation
         run: ctest --test-dir build --output-on-failure
+      - name: Check client metadata preservation and ID collisions
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+
+  core-headers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-azerothcore
+          ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
+          path: .core
+      - name: Ensure build headers
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libboost-dev libssl-dev
+      - name: Compile real core adapter headers
+        run: python3 tools/check_core_headers.py --core .core
+
+  journal-schema:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: delve-ci-only
+          MYSQL_DATABASE: delve_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install test database client
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends default-mysql-client
+      - name: Apply and reapply schema, check persistence constraints
+        env:
+          MYSQL_PWD: delve-ci-only
+        run: |
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
+          mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/JournalSchema.sql

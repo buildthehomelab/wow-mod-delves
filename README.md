@@ -1,6 +1,6 @@
-# Evermore Delves — run foundation
+# Evermore Delves — development foundation and adapter
 
-**Development only. This is not yet an installable server module or a playable delve.**
+**Development only. The server adapter is disabled by default; there is no playable delve yet.**
 
 The target is a faithful Earthcrawl Mines pilot with Brann, progression-era scaling
 and repeatable Tarnished Undermine Reals. This first component implements the
@@ -19,6 +19,23 @@ Requires CMake 3.16+ and a C++17 compiler. The current Evermore core uses C++20;
 this component uses the compatible C++17 subset and has no external dependencies.
 The tests use synthetic objective entries. They do not reproduce retail encounter
 content, create creatures, allocate a game instance or pay currency.
+
+## Development server adapter
+
+The optional AzerothCore adapter adds instance-save, real-player kill-credit and
+objective-interaction hooks, confirmed run checkpoints and optional administrator
+entry/return controls. It has no production content or rewards.
+See [SERVER-ADAPTER.md](docs/SERVER-ADAPTER.md) for its boundaries and validation.
+Standalone builds compile only the Run component; a core build collects `src/`
+through its normal module loader.
+
+The offline [client candidate builder](docs/CLIENT-CANDIDATE.md) preserves the full
+preceding DBC tables and assigns isolated WMO root identities. Its output still
+requires matching native extraction and controlled client validation.
+
+An optional [healer companion prototype](docs/BRANN-PROTOTYPE.md) follows the
+admitted solo character and places personal proximity-pickup healing potions.
+It requires dedicated world templates and remains disabled by default.
 
 ## Integration contract
 
@@ -48,8 +65,8 @@ content, create creatures, allocate a game instance or pay currency.
 
 ## Remaining components
 
-AzerothCore adapter and persistent storage, verified retail objective/encounter
-catalog, creature/gameobject templates and spawn data, Brann AI, difficulty/era
+Player admission and entry, verified retail objective/encounter
+catalog, creature/gameobject templates and spawn data, complete retail Brann behavior, difficulty/era
 scaling, exactly-once wallet integration, client DBC/map packaging, Journal UI,
 server build/CI, and gameplay validation are not yet implemented here.
 
