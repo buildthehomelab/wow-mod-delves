@@ -39,9 +39,16 @@ def main():
             if not ddl:
                 raise AssertionError('Missing pinned core DDL: ' + table)
             sql(ddl.group())
+        # The base dump still has id1/id2/id3, but the pinned core reads and the realm has creature.id.
+        sql('ALTER TABLE creature CHANGE id1 id INT UNSIGNED NOT NULL DEFAULT 0, DROP COLUMN id2, DROP COLUMN id3;')
 
     install, rollback = render()
     empty()
+    sql(render('some_other_world')[0], False)  # An exact-name package refuses any other database.
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM creature_template;') == '0'
+    sql(render(args.database)[0])
+    sql(render(args.database)[1])
     sql(install)
     assert sql('SELECT COUNT(*) FROM creature_template;') == '2'
     assert sql('SELECT COUNT(*) FROM gameobject;') == '4'
@@ -75,7 +82,7 @@ def main():
 
     # Rollback refuses unknown actors and restores its earlier deletions on failure.
     sql(install)
-    sql("INSERT INTO creature(guid,id1,map,Comment) VALUES (14990001,1499000,890,'unexpected actor');")
+    sql("INSERT INTO creature(guid,id,map,Comment) VALUES (14990001,1499000,890,'unexpected actor');")
     sql(rollback, False)
     clean_procedures()
     assert sql('SELECT COUNT(*) FROM gameobject;') == '4'
