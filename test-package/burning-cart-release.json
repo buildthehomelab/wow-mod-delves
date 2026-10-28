@@ -9,6 +9,6 @@
   "native_manifest_sha256": "6ba42cf5793f69820838e476be0276c356ab989abfedd7b191ba1c332106b366",
   "native_files": 170,
   "world_manifest_sha256": "b7e3be10fe48d4d73ef589209f923d4cbf8f7ada05ee6a501a35923b18a12b2a",
-  "world_install_sha256": "8265ff739d58a17b4254f9abed0933b3d57fab76e60aaee778d8cb4e7ba82884",
-  "world_rollback_sha256": "f6d8dfeca1b019f3d6a59f2bbb3416c3c8ee233fe4112c887b8b3fdd74108d33"
+  "world_install_sha256": "9e0d6b0353a7a733aa938d090e7b032ee0a3643041425ba8e1032ff59b6fd927",
+  "world_rollback_sha256": "e67d9e838833e755a0127e55b86b44228b4dfd28e2b8d2a3b2b2ce5c34dcf59c"
 }

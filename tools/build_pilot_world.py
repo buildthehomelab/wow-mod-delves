@@ -83,12 +83,12 @@ BEGIN
     writes = f'''    INSERT INTO instance_template (map,parent,script,allowMount) VALUES ({map_id},0,'instance_evermore_delves',0);
     INSERT INTO creature_template
         (entry,name,subname,minlevel,maxlevel,faction,`rank`,unit_class,type,BaseAttackTime,RangeAttackTime,HealthModifier,ManaModifier,DamageModifier,ExperienceModifier,ScriptName)
-        VALUES ({boss},'Ab''enar','Earthcrawl combat test',30,30,14,1,2,7,2000,2000,8,5,1.2,0,'boss_evermore_abenar'),
-               ({brann},'Brann Bronzebeard','Delve companion test',30,30,35,0,1,7,2000,2000,20,1,0,0,'npc_evermore_delve_brann');
+        VALUES ({boss},'Web General Ab''enar','',30,30,14,1,2,7,2000,2000,8,5,1.2,0,'boss_evermore_abenar'),
+               ({brann},'Brann Bronzebeard','Delve Companion',30,30,35,0,1,7,2000,2000,20,1,0,0,'npc_evermore_delve_brann');
     INSERT INTO creature_template_model (CreatureID,Idx,CreatureDisplayID,DisplayScale,Probability,VerifiedBuild)
         VALUES ({boss},0,{p['boss_display']},0.35,1,0), ({brann},0,{p['brann_display']},1,1,0);
     INSERT INTO gameobject_template (entry,type,displayId,name,Data3,ScriptName,VerifiedBuild)
-        VALUES ({objective},10,{p['objective_display']},'Earthcrawl rescue test marker',3000,'go_evermore_delve_objective',0),
+        VALUES ({objective},10,{p['objective_display']},'Webbed Cage',3000,'go_evermore_delve_objective',0),
                ({potion},5,{p['potion_display']},'Personal healing potion',0,'go_evermore_delve_potion',0);
     INSERT INTO gameobject_template_addon (entry,faction,flags) VALUES ({objective},0,0),({potion},0,0);
     INSERT INTO creature (guid,id,map,zoneId,areaId,spawnMask,phaseMask,position_x,position_y,position_z,orientation,spawntimesecs,Comment)
