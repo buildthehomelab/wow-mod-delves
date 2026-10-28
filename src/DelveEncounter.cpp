@@ -18,6 +18,8 @@
 #include "SpellMgr.h"
 #include "WorldSession.h"
 #include <array>
+#include <cmath>
+#include <sstream>
 
 namespace Evermore::Delves
 {
@@ -26,9 +28,27 @@ namespace Evermore::Delves
         uint32 bossEntry = 0;
         bool cartEnabled = false;
         uint32 cartEntry = 0, cartImpactSpell = 0, cartVisualSpell = 0;
-        // Validated native rail centers. These remain controlled-test adaptations.
-        std::vector<CartPoint> const cartLane{{-791.20508, -330.61328, 76.4421},
-            {-773.48242, -307.92969, 76.4466}};
+        // Straight lane from Delves.Prototype.Encounter.Cart.Lane (start xyz, end xyz), checked
+        // against the map's native floor with tools/check_cart_lane.cpp. Set once at startup.
+        std::vector<CartPoint> cartLane;
+        // First content revision that has the cart; later layouts keep it.
+        constexpr uint32 CartRevision = 2026102803;
+
+        bool ReadCartLane()
+        {
+            std::istringstream in(sConfigMgr->GetOption<std::string>("Delves.Prototype.Encounter.Cart.Lane", ""));
+            CartPoint start{}, end{};
+            if (!(in >> start.x >> start.y >> start.z >> end.x >> end.y >> end.z) || !(in >> std::ws).eof())
+                return false;
+            for (double v : {start.x, start.y, start.z, end.x, end.y, end.z})
+                if (!std::isfinite(v))
+                    return false;
+            double length = std::hypot(end.x - start.x, end.y - start.y);
+            if (length < 5 || length > 40)
+                return false;
+            cartLane = {start, end};
+            return true;
+        }
         // These are explicitly configured 3.3.5 test adaptations, never retail IDs.
         std::array<uint32, 3> spells{};
         enum Events : uint32 { WebBolt = 1, Agony = 2, Shackles = 3, BurningCart = 4 };
@@ -340,7 +360,12 @@ bool InitializeEvermoreDelveEncounter()
         auto const* visual = sSpellMgr->GetSpellInfo(28330);
         auto const* impact = sSpellMgr->GetSpellInfo(20832);
         auto const* model = sCreatureDisplayInfoStore.LookupEntry(display);
-        if (!ScalingEnabled() || sConfigMgr->GetOption<uint32>("Delves.Prototype.ContentRevision", 0) != 2026102803 ||
+        if (!ReadCartLane())
+        {
+            LOG_ERROR("module.delves", "Burning Cart requires Delves.Prototype.Encounter.Cart.Lane: six finite numbers, 5-40 yards long");
+            return false;
+        }
+        if (!ScalingEnabled() || sConfigMgr->GetOption<uint32>("Delves.Prototype.ContentRevision", 0) < CartRevision ||
             cartEntry != 1499002 || display != 149990 || !creature || creature->Models.size() != 1 ||
             creature->Models[0].CreatureDisplayID != display || !model || model->ModelId != 149990 ||
             !sCreatureModelDataStore.LookupEntry(model->ModelId) || !creature->ScriptID ||

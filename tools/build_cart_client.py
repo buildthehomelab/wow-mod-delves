@@ -32,6 +32,9 @@ def build(client, display, baseline, native, archive, output, verify_only=False)
     root = Path(__file__).resolve().parents[1]
     spec = json.loads((root / 'test-package/earthcrawl.json').read_text())
     release = json.loads((root / 'test-package/burning-cart-release.json').read_text())
+    if 'client_mpq_sha256' not in spec:
+        raise SystemExit('Converted-client tooling: the ' + str(spec.get('layout')) + ' layout uses a stock 3.3.5 WMO and '
+                         'ships no converted client archive (see README, content revision 2026102804).')
     if digest(archive) != spec['client_mpq_sha256']:
         raise ValueError('Wrong base archive identity')
     if digest(client / 'candidate-manifest.json') != release['base_client_manifest_sha256'] or \
@@ -97,7 +100,8 @@ def build(client, display, baseline, native, archive, output, verify_only=False)
     for name in TABLES:
         new_files['DBFilesClient/' + name] = digest(display / name)
     report = {'scope': 'Offline staged cart client; archive readback and gameplay remain required',
-              'content_revision': 2026102803, 'base_archive_sha256': spec['client_mpq_sha256'],
+              'content_revision': json.loads((root / 'test-package/burning-cart.json').read_text())['content_revision'],
+              'base_archive_sha256': spec['client_mpq_sha256'],
               'base_manifest_sha256': digest(client / 'candidate-manifest.json'),
               'native_manifest_sha256': digest(geometry_path), 'native_files_verified': len(seen),
               'unchanged_base_assets': len(files), 'cart_display': receipt, 'files': new_files}

@@ -14,7 +14,7 @@ class CartWorldTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             spec = Path(folder) / 'cart.json'
             for key, value in [('base_manifest_sha256', '0' * 64), ('cart_entry', 42),
-                               ('cart_display', 1), ('content_revision', 2026102802),
+                               ('cart_display', 1), ('content_revision', 2026102804),
                                ('speed', 30), ('lane', [[0, 0, 0], [1, 0, 0]])]:
                 data = dict(original)
                 data[key] = value
@@ -48,8 +48,9 @@ class CartWorldTests(unittest.TestCase):
             return result
         base = config('earthcrawl-test.candidate.conf')
         cart = config('burning-cart-test.candidate.conf')
-        base['Delves.Prototype.ContentRevision'] = '2026102803'
+        base['Delves.Prototype.ContentRevision'] = '2026102805'
         base.update({'Delves.Prototype.Encounter.Cart.Enable': '1',
                      'Delves.Prototype.Encounter.Cart.Entry': '1499002',
-                     'Delves.Prototype.Encounter.Cart.Display': '149990'})
+                     'Delves.Prototype.Encounter.Cart.Display': '149990',
+                     'Delves.Prototype.Encounter.Cart.Lane': '114 -26.39 -8.7425 126 -5.61 -6.5631'})
         self.assertEqual(cart, base)

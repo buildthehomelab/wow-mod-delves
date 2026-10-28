@@ -1,6 +1,8 @@
 name: Delve worldserver link
+# Full core build + link + startup smoke test (~15 min): run by hand from the Actions tab for
+# changes that need it. Pull requests rely on core-headers (every module .cpp compiled with
+# -fsyntax-only -Werror against the pinned core and wallet headers).
 on:
-  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
