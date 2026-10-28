@@ -63,7 +63,9 @@ namespace Evermore::Delves
             auto distance = Travel(_elapsed);
             bool impact = false;
             CartPoint origin{};
-            if (!_hit && previous < _finish && _elapsed >= _warning && victim &&
+            // A warning boundary or zero-duration update contains no movement.
+            // Only sweep once the cart has actually advanced into its lane.
+            if (!_hit && _elapsed > previous && _elapsed > _warning && victim &&
                 victim->run == _run && victim->guid == _guid && victim->account == _account && Finite(victim->point))
             {
                 double from = Travel(previous);
