@@ -55,6 +55,7 @@ namespace Evermore::Delves
 
         bool Credit(Event const& event);
         bool Abandon();
+        bool IsCurrentObjective(EventKind kind, std::uint32_t entry) const;
         std::string Save() const;
         static Run Load(std::string const& saved, Definition const& expected);
 

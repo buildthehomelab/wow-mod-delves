@@ -31,7 +31,7 @@ def main():
     command = [args.compiler, '-std=c++20', '-fsyntax-only', '-Wall', '-Wextra', '-Werror',
                '-Wno-unused-parameter', '-Wno-deprecated-declarations']
     command.extend('-I' + str(path) for path in ordered)
-    command.extend(str(module / 'src' / name) for name in ('DelveServerAdapter.cpp', 'DelveJournal.cpp', 'DelveCompanion.cpp', 'DelveTestControls.cpp', 'mod_delves_loader.cpp'))
+    command.extend(str(module / 'src' / name) for name in ('DelveServerAdapter.cpp', 'DelveJournal.cpp', 'DelveCompanion.cpp', 'DelveEncounter.cpp', 'DelveTestControls.cpp', 'mod_delves_loader.cpp'))
     return subprocess.run(command, check=False).returncode
 
 

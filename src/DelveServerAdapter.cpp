@@ -249,6 +249,7 @@ namespace Evermore::Delves
 }
 
 void AddEvermoreDelveTestControls(uint32 revision);
+void AddEvermoreDelveEncounterScripts();
 
 void AddEvermoreDelveScripts()
 {
@@ -279,4 +280,5 @@ void AddEvermoreDelveScripts()
     new DelveObjectiveScript();
     AddEvermoreDelveTestControls(revision);
     AddEvermoreDelveCompanionScripts();
+    AddEvermoreDelveEncounterScripts();
 }

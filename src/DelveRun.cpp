@@ -65,6 +65,12 @@ namespace Evermore::Delves
         });
     }
 
+    bool Run::IsCurrentObjective(EventKind kind, std::uint32_t entry) const
+    {
+        return _status == RunStatus::Active && _stage < _definition.objectives.size() &&
+            _definition.objectives[_stage].kind == kind && _definition.objectives[_stage].entry == entry;
+    }
+
     bool Run::Credit(Event const& event)
     {
         if (_status != RunStatus::Active || event.map != _definition.map || event.instance != _instance ||

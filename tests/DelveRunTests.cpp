@@ -57,6 +57,23 @@ namespace
         Check(!complete.Credit(first) && !complete.Abandon(), "terminal run changed");
     }
 
+    void EncounterUnlockRecovery()
+    {
+        auto run = Start();
+        Check(!run.IsCurrentObjective(EventKind::Kill, 200), "boss unlocked before objectives");
+        run.Credit({2680, 10, 1, EventKind::Interact, 100, 1000});
+        auto partial = Run::Load(run.Save(), Story());
+        Check(!partial.IsCurrentObjective(EventKind::Kill, 200), "partial rescue unlocked boss");
+        partial.Credit({2680, 10, 1, EventKind::Interact, 100, 1001});
+        auto unlocked = Run::Load(partial.Save(), Story());
+        Check(unlocked.IsCurrentObjective(EventKind::Kill, 200), "recovery lost boss unlock");
+        Check(!unlocked.IsCurrentObjective(EventKind::Kill, 201), "wrong boss unlocked");
+        unlocked.Credit({2680, 10, 1, EventKind::Kill, 200, 2000});
+        Check(!unlocked.IsCurrentObjective(EventKind::Kill, 200), "terminal run allows boss combat");
+        partial.Abandon();
+        Check(!partial.IsCurrentObjective(EventKind::Kill, 200), "abandoned run allows boss combat");
+    }
+
     void Isolation()
     {
         auto run = Start();
@@ -138,6 +155,7 @@ int main()
     {
         RecoveryAndRewards();
         Isolation();
+        EncounterUnlockRecovery();
         Corruption();
         ConfirmedCheckpoints();
         std::cout << "delve run recovery, isolation and corruption checks passed\n";
