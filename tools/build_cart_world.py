@@ -49,7 +49,7 @@ def render(database=None):
     END IF;
     INSERT INTO creature_template
         (entry,name,subname,minlevel,maxlevel,faction,unit_class,type,HealthModifier,DamageModifier,ExperienceModifier,ScriptName)
-        VALUES ({entry},'Burning Cart','Earthcrawl controlled test',30,30,35,1,10,1,0,0,'npc_evermore_burning_cart');
+        VALUES ({entry},'Burning Cart','',30,30,35,1,10,1,0,0,'npc_evermore_burning_cart');
     INSERT INTO creature_template_model (CreatureID,Idx,CreatureDisplayID,DisplayScale,Probability,VerifiedBuild)
         VALUES ({entry},0,{display},1,1,0);
     INSERT INTO mod_delves_world_package (package,manifest_sha256) VALUES ('{name}','{digest}');
@@ -59,7 +59,7 @@ def render(database=None):
     END IF;
     IF {actors}
         OR NOT EXISTS (SELECT 1 FROM creature_template WHERE entry={entry} AND ScriptName='npc_evermore_burning_cart'
-            AND name='Burning Cart' AND subname='Earthcrawl controlled test'
+            AND name='Burning Cart' AND subname=''
             AND minlevel=30 AND maxlevel=30 AND faction=35 AND unit_class=1 AND type=10
             AND HealthModifier=1 AND DamageModifier=0 AND ExperienceModifier=0)
         OR (SELECT COUNT(*) FROM creature_template_model WHERE CreatureID={entry}) <> 1

@@ -28,7 +28,7 @@ class PilotWorldTests(unittest.TestCase):
         digest = hashlib.sha256(SPEC.read_bytes()).hexdigest()
         self.assertIn(digest, install)
         self.assertIn(digest, rollback)
-        self.assertIn("'Ab''enar'", install)
+        self.assertIn("'Web General Ab''enar'", install)
         self.assertIn("RIGHT(DATABASE(), 11) <> '_delve_test'", install)
         self.assertIn('RESIGNAL', install)
         self.assertNotIn('REPLACE INTO', install)
