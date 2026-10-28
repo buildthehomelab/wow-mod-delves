@@ -40,7 +40,7 @@ def check(wallet):
         raise ValueError('Client archive identities differ')
     if subprocess.run(['git', '-C', str(wallet), 'diff', '--quiet', 'HEAD', '--'], check=False).returncode:
         raise ValueError('Wallet has tracked source modifications')
-    extras = subprocess.check_output(['git', '-C', str(wallet), 'ls-files', '--others', '--exclude-standard', '--', 'src', 'conf', 'data/sql'], text=True)
+    extras = subprocess.check_output(['git', '-C', str(wallet), 'ls-files', '--others', '--', 'src', 'conf', 'data/sql'], text=True)
     if extras.strip():
         raise ValueError('Wallet has untracked build/config/schema inputs')
     actual_tree = subprocess.check_output(['git', '-C', str(wallet), 'rev-parse', 'HEAD^{tree}'], text=True).strip()
