@@ -2,6 +2,7 @@
 #define EVERMORE_DELVE_RUN_H
 
 #include <cstdint>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -56,6 +57,8 @@ namespace Evermore::Delves
         bool Credit(Event const& event);
         bool Abandon();
         bool IsCurrentObjective(EventKind kind, std::uint32_t entry) const;
+        std::optional<Objective> CurrentObjective() const;
+        std::uint32_t ObjectiveCount() const { return static_cast<std::uint32_t>(_definition.objectives.size()); }
         std::string Save() const;
         static Run Load(std::string const& saved, Definition const& expected);
 

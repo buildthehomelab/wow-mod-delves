@@ -1,5 +1,7 @@
 #include "DelveServerAdapter.h"
 #include "DelveCompanion.h"
+#include "DelveObjective.h"
+#include "Chat.h"
 #include "DelveScaling.h"
 #include "DelveRewardDelivery.h"
 #include "Config.h"
@@ -62,6 +64,26 @@ namespace Evermore::Delves
     {
         std::lock_guard<std::recursive_mutex> guard(_lock);
         return _invalidSave || (_run && _run->Blocked());
+    }
+
+    std::string InstanceRun::ObjectiveText() const
+    {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
+        if (!_run)
+            return "No confirmed delve objective is available.";
+        auto const& run = _run->Current();
+        std::string targetName;
+        if (auto const objective = run.CurrentObjective())
+        {
+            if (objective->kind == EventKind::Kill)
+            {
+                if (auto const* creature = sObjectMgr->GetCreatureTemplate(objective->entry))
+                    targetName = creature->Name;
+            }
+            else if (auto const* object = sObjectMgr->GetGameObjectTemplate(objective->entry))
+                targetName = object->name;
+        }
+        return DescribeObjective(run, targetName, Blocked());
     }
 
     bool InstanceRun::IsRealMemberPresent(Player const* player) const
@@ -200,21 +222,37 @@ namespace Evermore::Delves
 
     bool InstanceRun::CreditKill(Player* player, Creature* creature)
     {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
         if (!IsSnapshotMemberPresent(player) || !creature || creature->GetMap() != instance ||
             creature->IsAlive() || !creature->GetSpawnId())
             return false;
-        return Accept({instance->GetId(), instance->GetInstanceId(), CharacterId(player), EventKind::Kill,
-            creature->GetEntry(), static_cast<uint64>(creature->GetSpawnId()) << 1});
+        if (!Accept({instance->GetId(), instance->GetInstanceId(), CharacterId(player), EventKind::Kill,
+            creature->GetEntry(), static_cast<uint64>(creature->GetSpawnId()) << 1}))
+        {
+            if (Blocked())
+                ChatHandler(player->GetSession()).SendSysMessage(ObjectiveText());
+            return false;
+        }
+        ChatHandler(player->GetSession()).SendSysMessage("Checkpoint confirmed. " + ObjectiveText());
+        return true;
     }
 
     bool InstanceRun::CreditInteraction(Player* player, GameObject* object)
     {
+        std::lock_guard<std::recursive_mutex> guard(_lock);
         if (!IsSnapshotMemberPresent(player) || !player->IsAlive() || !object || !object->IsInWorld() ||
             object->GetMap() != instance || !object->GetSpawnId() ||
             !player->IsWithinDistInMap(object, INTERACTION_DISTANCE))
             return false;
-        return Accept({instance->GetId(), instance->GetInstanceId(), CharacterId(player), EventKind::Interact,
-            object->GetEntry(), (static_cast<uint64>(object->GetSpawnId()) << 1) | 1});
+        if (!Accept({instance->GetId(), instance->GetInstanceId(), CharacterId(player), EventKind::Interact,
+            object->GetEntry(), (static_cast<uint64>(object->GetSpawnId()) << 1) | 1}))
+        {
+            if (Blocked())
+                ChatHandler(player->GetSession()).SendSysMessage(ObjectiveText());
+            return false;
+        }
+        ChatHandler(player->GetSession()).SendSysMessage("Checkpoint confirmed. " + ObjectiveText());
+        return true;
     }
 
     std::string InstanceRun::GetSaveData()
