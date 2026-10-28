@@ -21,7 +21,7 @@ def main():
                     'CharacterDatabaseInfo': '127.0.0.1;1;delve_no_db;delve_no_db;delve_no_db',
                     'WorldDatabaseInfo': '127.0.0.1;1;delve_no_db;delve_no_db;delve_no_db',
                     'LogsDir': str(root), 'SourceDirectory': str(args.core.resolve()),
-                    'Appender.Console': '1,2,0', 'Logger.server': '2,Console Server'}
+                    'Appender.Console': '1,4,0', 'Logger.server': '4,Console Server'}
         for key, value in settings.items():
             source, count = re.subn(r'^' + re.escape(key) + r'\s*=.*$', key + ' = "' + value + '"', source, flags=re.M)
             if count != 1:
