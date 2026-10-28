@@ -120,10 +120,53 @@ namespace Evermore::Delves
     bool RewardsAdmissionAllowed(Player* player)
     {
 #ifdef EVERMORE_HAS_DURABLE_WALLET
-        return !enabled || (MemberId(player) && !BossCoins::IsSelfFound(MemberId(player)));
+        return !enabled || (MemberId(player) && BossCoins::Wallet::DelveAwardsReady() &&
+            !BossCoins::IsSelfFound(MemberId(player)));
 #else
         return !enabled;
 #endif
+    }
+
+    std::string DescribeReward(Player* player, Run const& run)
+    {
+        if (!enabled)
+            return "Coin delivery is disabled.";
+        uint32 const guid = MemberId(player);
+        if (!guid)
+            return "Coin status is unavailable for this character.";
+        uint32 const account = player->GetSession()->GetAccountId();
+        bool member = false;
+        for (auto const& snapshot : run.Members())
+            if (snapshot.guid == guid && snapshot.account == account)
+                member = true;
+        if (!member)
+            return "This character does not own this reward.";
+        if (run.Status() == RunStatus::Abandoned)
+            return "Abandoned runs do not earn completion coins.";
+        if (run.Status() == RunStatus::Active)
+            return "Completion reward: " + std::to_string(run.Tier()) + " account-wallet coin(s).";
+        auto result = CharacterDatabase.Query("SELECT COUNT(*), COALESCE(MAX(coins),0), COALESCE(MAX(policy),0), "
+            "COALESCE(MAX(delivered),0) FROM mod_delves_reward WHERE run_id={} AND guid={} AND account={}",
+            run.Id(), guid, account);
+        if (!result)
+            return "Coin status could not be read; no reward record was changed.";
+        Field* fields = result->Fetch();
+        if (fields[0].Get<uint64>() != 1)
+            return "No completion reward is recorded for this run.";
+        if (fields[1].Get<uint32>() != run.Tier() || fields[2].Get<uint32>() != 1 || fields[3].Get<uint32>() > 1)
+            return "The reward record needs investigation; do not reset this run.";
+        if (fields[3].Get<uint32>() == 1)
+            return "Delivered " + std::to_string(run.Tier()) + " account-wallet coin(s). Check .wallet.";
+        {
+            std::lock_guard<std::mutex> guard(deliveryLock);
+            if (quarantined.count(guid))
+                return "Coin delivery is stopped for investigation; your reward record is retained.";
+        }
+#ifdef EVERMORE_HAS_DURABLE_WALLET
+        if (!BossCoins::Wallet::DelveAwardsReady())
+            return "Completion coins are queued; the coin wallet is not ready.";
+#endif
+        return "Completion coins are queued for delivery. Check .wallet after the next delivery check.";
     }
 
     void AddDelveRewardDelivery() { new RewardPlayerScript(); }

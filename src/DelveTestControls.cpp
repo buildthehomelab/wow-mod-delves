@@ -1,5 +1,6 @@
 #include "DelveServerAdapter.h"
 #include "DelveScaling.h"
+#include "DelveRewardDelivery.h"
 #include "Chat.h"
 #include "CommandScript.h"
 #include "Config.h"
@@ -120,7 +121,7 @@ namespace Evermore::Delves
             }
             instance->RefreshEncounterScale();
             instance->EnsureCompanion(player);
-            chat.SendSysMessage("Delve test checkpoint loaded. Use .delve status for objectives and .delve leave to return. No rewards are enabled.");
+            chat.SendSysMessage("Delve test checkpoint loaded. Use .delve status for objectives and .delve leave to return.");
         }
     }
 
@@ -155,6 +156,12 @@ namespace Evermore::Delves
             {
                 handler->PSendSysMessage("Test entry requires a solo, living level {}-{} administrator on a continent, out of combat and transport. Tier must be 1-{}.",
                     minimumLevel, maximumLevel, maximumTier);
+                return true;
+            }
+            if (!RewardsAdmissionAllowed(player))
+            {
+                handler->SendSysMessage("Entry refused: the coin wallet is unavailable or this character is Self-Found. "
+                    "Self-Found personal rewards are not supported yet. No return visit was created.");
                 return true;
             }
             auto progression = ReadDelveProgression(player);
@@ -239,8 +246,11 @@ namespace Evermore::Delves
                 return true;
             }
             auto const run = instance->CurrentRun();
-            handler->PSendSysMessage("Delve run {}: status {}, stage {}, progress {}, checkpoint blocked {}. No coin rewards.",
-                run->Id(), static_cast<uint32>(run->Status()), run->Stage(), run->Progress(), instance->Blocked());
+            char const* state = run->Status() == RunStatus::Active ? "active" :
+                run->Status() == RunStatus::Complete ? "complete" : "abandoned";
+            handler->PSendSysMessage("Delve run {}: tier {}, {}, stage {}, progress {}, checkpoint blocked {}.",
+                run->Id(), run->Tier(), state, run->Stage(), run->Progress(), instance->Blocked());
+            handler->SendSysMessage(DescribeReward(player, *run));
             return true;
         }
     };
