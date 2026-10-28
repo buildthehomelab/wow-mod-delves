@@ -169,3 +169,9 @@ personal rewards remain unfinished; this is a controlled combat/economy pilot.
 Run `python3 tools/check_pilot_package.py --wallet /path/to/wow-mod-boss-coins`
 to check candidate config, immutable module dependency and migration hashes.
 Combine its report with the client/native asset checker; neither starts a realm.
+
+The converted filename audit also passed for the local candidate: 1,199 references
+across193 M2s, six ADTs, one WDT and26 WMOs, with no missing files or parse errors.
+See [CLIENT-DEPENDENCIES.md](../docs/CLIENT-DEPENDENCIES.md) and the recorded
+`client-dependencies.candidate.json` inventory digest. This covers the specified
+file references; texture/animation correctness and client rendering remain open.

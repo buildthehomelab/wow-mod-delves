@@ -1,0 +1,19 @@
+{
+  "scope": "Converted file reference audit; not client rendering or complete DBC/effect/sound validation",
+  "content_inventory_sha256": "f93d451728339c2c5e1a305a29c719ffbaf073175ee8bf36d3e274ed1ec62e10",
+  "files": 809,
+  "parsed": {
+    ".m2": 193,
+    ".wdt": 1,
+    ".adt": 6,
+    ".wmo": 26
+  },
+  "edges": 1199,
+  "missing": [],
+  "errors": [],
+  "dynamic_texture_bindings": [],
+  "limits": [
+    "Replaceable texture types need world/DBC binding validation.",
+    "No BLP decoding, M2 track/skin validity, shader, sound, lighting or client execution proof."
+  ]
+}
