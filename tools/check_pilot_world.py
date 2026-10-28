@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import subprocess
 from build_pilot_world import render
+from build_cart_world import render as render_cart
 
 TABLES = ('instance_template', 'creature_template', 'creature_template_model',
           'gameobject_template', 'gameobject_template_addon', 'creature', 'gameobject')
@@ -27,6 +28,7 @@ def main():
 
     def clean_procedures():
         sql('DROP PROCEDURE IF EXISTS evermore_delve_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_rollback_v1;')
+        sql('DROP PROCEDURE IF EXISTS evermore_delve_cart_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_cart_rollback_v1;')
 
     def empty():
         sql('SET FOREIGN_KEY_CHECKS=0;\n' + '\n'.join('DROP TABLE IF EXISTS ' + t + ';' for t in (*TABLES, 'mod_delves_world_package')))
@@ -79,6 +81,47 @@ def main():
     assert sql('SELECT COUNT(*) FROM gameobject;') == '4'
     assert sql('SELECT COUNT(*) FROM creature;') == '2'
     assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '1'
+    # Cart extension must never overwrite an occupied ID or outlive its base.
+    empty()
+    sql(install)
+    cart_install, cart_rollback = render_cart()
+    sql("UPDATE mod_delves_world_package SET manifest_sha256=REPEAT('0',64);")
+    sql(cart_install, False)
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM creature_template WHERE entry=1499002;') == '0'
+    empty()
+    sql(install)
+    sql("INSERT INTO creature_template(entry,name) VALUES (1499002,'cart sentinel');")
+    sql(cart_install, False)
+    clean_procedures()
+    assert sql('SELECT name FROM creature_template WHERE entry=1499002;') == 'cart sentinel'
+    sql('DELETE FROM creature_template WHERE entry=1499002;')
+    sql("CREATE TRIGGER reject_cart_model BEFORE INSERT ON creature_template_model FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='injected cart failure';")
+    sql(cart_install, False)
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM creature_template WHERE entry=1499002;') == '0'
+    assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '1'
+    sql('DROP TRIGGER reject_cart_model;')
+    sql(cart_install)
+    sql(cart_install, False)
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM creature_template;') == '3'
+    assert sql('SELECT COUNT(*) FROM creature;') == '1'  # Cart is summoned only.
+    assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '2'
+    sql(rollback, False)
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM gameobject;') == '4'
+    sql('UPDATE creature_template_model SET DisplayScale=2 WHERE CreatureID=1499002;')
+    sql(cart_rollback, False)
+    clean_procedures()
+    assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '2'
+    sql('UPDATE creature_template_model SET DisplayScale=1 WHERE CreatureID=1499002;')
+    sql(cart_rollback)
+    assert sql('SELECT COUNT(*) FROM creature_template;') == '2'
+    sql(cart_rollback, False)
+    clean_procedures()
+    sql(rollback)
+    assert sql('SELECT COUNT(*) FROM creature_template;') == '0'
     print('World install/collision/failure/rollback checks passed on pinned core DDL')
 
 

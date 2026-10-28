@@ -42,6 +42,15 @@ Delves.Prototype.Encounter.WebBolt = 0
 Delves.Prototype.Encounter.Agony = 0
 Delves.Prototype.Encounter.Shackles = 0
 
+# Moving retail-model cart test adaptation. Requires the matching cart world
+# template and full model/display DBC package, plus scaling and the boss encounter.
+# Entry must bind npc_evermore_burning_cart; display149990 is provisional.
+# Warning2s, speed8yd/s, radius2.5yd, height2yd, damage2xscaledbolt and knockback8/3
+# are controlled-test tuning, not measured retail values. Startup-only.
+Delves.Prototype.Encounter.Cart.Enable = 0
+Delves.Prototype.Encounter.Cart.Entry = 0
+Delves.Prototype.Encounter.Cart.Display = 0
+
 # Frozen level/IP era + tier scaling. Requires complete IP hidden quest catalog
 # and the separate characters progression migration. Balance is a first test.
 Delves.Prototype.Scaling.Enable = 0
