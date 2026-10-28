@@ -36,6 +36,9 @@ def check(wallet):
     for key, expected in required.items():
         if config.get(key) != str(expected):
             raise ValueError('Candidate config/manifest mismatch: ' + key)
+    if 'client_mpq_sha256' not in world:
+        raise SystemExit('Converted-client tooling: the ' + str(world.get('layout')) + ' layout uses a stock 3.3.5 WMO and '
+                         'ships no converted client archive (see README, content revision 2026102804).')
     if manifest['client_mpq_sha256'] != world['client_mpq_sha256']:
         raise ValueError('Client archive identities differ')
     if subprocess.run(['git', '-C', str(wallet), 'diff', '--quiet', 'HEAD', '--'], check=False).returncode:
