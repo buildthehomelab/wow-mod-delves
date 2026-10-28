@@ -2,6 +2,7 @@
 #include "DelveCompanion.h"
 #include "DelveScaling.h"
 #include "DelveRewardDelivery.h"
+#include "Chat.h"
 #include "Config.h"
 #include "Creature.h"
 #include "GameObject.h"
@@ -293,8 +294,18 @@ namespace Evermore::Delves
         DelveObjectiveScript() : GameObjectScript("go_evermore_delve_objective") { }
         bool OnGossipHello(Player* player, GameObject* object) override
         {
-            if (auto* run = FindRun(player))
-                run->CreditInteraction(player, object);
+            auto* run = FindRun(player);
+            if (!run || !run->CreditInteraction(player, object))
+                return true;
+            // A counted rescue: the cage swings open for good and the player sees the progress.
+            object->SetGoState(GO_STATE_ACTIVE);
+            object->SetGameObjectFlag(GO_FLAG_NOT_SELECTABLE);
+            auto current = run->CurrentRun();
+            ChatHandler chat(player->GetSession());
+            if (current && pilotDefinition && current->Stage() == 0)
+                chat.PSendSysMessage("Captive freed ({}/{}).", current->Progress(), pilotDefinition->objectives[0].required);
+            else
+                chat.SendSysMessage("All captives freed. Web General Ab'enar is vulnerable!");
             return true;
         }
     };
