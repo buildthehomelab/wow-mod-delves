@@ -58,3 +58,19 @@ queries are intended for a small controlled pilot; measure before wider rollout.
 Rollback disables both reward flags and follows reviewed module pins. Preserve all
 run/outbox/wallet/receipt/ledger data and backups. No restart or live SQL has been
 performed by this development task.
+
+## Follow-up test feedback
+
+Administrator entry checks wallet readiness and Self-Found eligibility before
+creating a new return visit or attempting teleport. The instance admission check
+still repeats this guard. A disabled reward feature does not require the wallet.
+An unavailable wallet while rewards are enabled refuses a new entry; existing
+completion intent remains durable for recovery.
+
+`.delve status` reports tier and a named run state, followed by a read-only reward
+summary for the exact run/member/account: disabled, potential completion amount,
+abandoned, missing record, queued, stopped for investigation or delivered.
+Delivered describes the durable outbox acknowledgement; `.wallet` shows the
+current spendable account balance. It does not assume the reward remains unspent.
+The status command never grants coins, updates receipts, clears quarantine or
+marks delivery. Failure to read the database produces an unavailable message.
