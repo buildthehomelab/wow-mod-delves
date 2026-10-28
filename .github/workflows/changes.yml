@@ -1,0 +1,46 @@
+name: Classify delve changes
+on:
+  workflow_call:
+    outputs:
+      run_checks:
+        value: ${{ jobs.changes.outputs.run_checks }}
+permissions:
+  contents: read
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      run_checks: ${{ steps.classify.outputs.run_checks }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: classify
+        name: Run full checks unless every changed file is documentation
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 - <<'PYTHON'
+          import os
+          import subprocess
+          from pathlib import Path
+
+          run_checks = True
+          if os.environ['EVENT_NAME'] == 'pull_request':
+              result = subprocess.check_output([
+                  'git', 'diff', '--name-only', '--no-renames', '-z',
+                  os.environ['BASE_SHA'] + '...' + os.environ['HEAD_SHA'],
+              ])
+              paths = [name.decode('utf-8') for name in result.split(b'\0') if name]
+              def documentation(name):
+                  return name == 'README.md' or (name.startswith('docs/') and name.endswith('.md'))
+              run_checks = not paths or not all(documentation(name) for name in paths)
+          value = str(run_checks).lower()
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'run_checks={value}\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Full validation required.\n' if run_checks else
+                            'Documentation only: build and database checks skipped.\n')
+          PYTHON

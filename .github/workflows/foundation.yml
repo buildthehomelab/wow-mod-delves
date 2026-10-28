@@ -5,7 +5,11 @@ on:
 permissions:
   contents: read
 jobs:
+  changes:
+    uses: ./.github/workflows/changes.yml
   test:
+    needs: changes
+    if: needs.changes.outputs.run_checks == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +26,8 @@ jobs:
         run: python3 -m unittest discover -s tools -p 'test_*.py' -v
 
   core-headers:
+    needs: changes
+    if: needs.changes.outputs.run_checks == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,6 +50,8 @@ jobs:
           python3 tools/check_pilot_package.py --wallet .wallet
 
   journal-schema:
+    needs: changes
+    if: needs.changes.outputs.run_checks == 'true'
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -85,6 +93,8 @@ jobs:
           python3 tools/check_reward_delivery.py --wallet .wallet --reward-binary reward-build/delve_reward_tests --wallet-binary wallet-build/durable_award_tests
 
   pilot-world-sql:
+    needs: changes
+    if: needs.changes.outputs.run_checks == 'true'
     runs-on: ubuntu-latest
     services:
       mysql:

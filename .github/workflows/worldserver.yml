@@ -5,7 +5,11 @@ on:
 permissions:
   contents: read
 jobs:
+  changes:
+    uses: ./.github/workflows/changes.yml
   worldserver:
+    needs: changes
+    if: needs.changes.outputs.run_checks == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
