@@ -66,7 +66,7 @@ BEGIN
 '''
     writes = f'''    INSERT INTO instance_template (map,parent,script,allowMount) VALUES ({map_id},0,'instance_evermore_delves',0);
     INSERT INTO creature_template
-        (entry,name,subname,minlevel,maxlevel,faction,rank,unit_class,type,BaseAttackTime,RangeAttackTime,HealthModifier,ManaModifier,DamageModifier,ExperienceModifier,ScriptName)
+        (entry,name,subname,minlevel,maxlevel,faction,`rank`,unit_class,type,BaseAttackTime,RangeAttackTime,HealthModifier,ManaModifier,DamageModifier,ExperienceModifier,ScriptName)
         VALUES ({boss},'Ab''enar','Earthcrawl combat test',30,30,14,1,2,7,2000,2000,8,5,1.2,0,'boss_evermore_abenar'),
                ({brann},'Brann Bronzebeard','Delve companion test',30,30,35,0,1,7,2000,2000,20,1,0,0,'npc_evermore_delve_brann');
     INSERT INTO creature_template_model (CreatureID,Idx,CreatureDisplayID,DisplayScale,Probability,VerifiedBuild)
