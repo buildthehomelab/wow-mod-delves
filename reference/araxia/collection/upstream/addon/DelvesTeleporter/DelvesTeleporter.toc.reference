@@ -1,0 +1,9 @@
+## Interface: 30300
+## Title: Delves Teleporter
+## Notes: Browse delve load screens and teleport (requires server delves-teleporter.lua)
+## Author: Delves Module
+## Version: 1.0
+
+## SavedVariables: DelvesTeleporterDB
+
+DelvesTeleporter.lua
