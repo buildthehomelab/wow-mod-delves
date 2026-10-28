@@ -56,7 +56,7 @@ def render(client, core, database=None):
               ('mapdifficulty_dbc', 'MapDifficulty.dbc', lambda r: r[1] == pilot['map']),
               ('creaturemodeldata_dbc', 'CreatureModelData.dbc', lambda r: r[0] == cart['cart_model']),
               ('creaturedisplayinfo_dbc', 'CreatureDisplayInfo.dbc', lambda r: r[0] == cart['cart_display'])]
-    inserts, ids = [], []
+    inserts, ids, unchanged = [], [], []
     for table, name, match in wanted:
         fields, rows, strings = read_dbc(client / name)
         cols = columns(core, table)
@@ -74,6 +74,20 @@ def render(client, core, database=None):
         inserts.append(f"    INSERT INTO {table} ({','.join('`' + c[0] + '`' for c in cols)})\n"
                        f"        VALUES ({','.join(values)});\n")
         ids.append((table, int(values[0])))
+        comparisons = []
+        for (column, kind, _), literal in zip(cols, values):
+            if kind in ('varchar', 'text', 'char', 'tinytext', 'mediumtext'):
+                # Byte comparison also catches case-only edits and trailing spaces
+                # that the world's case-insensitive collation would otherwise hide.
+                comparisons.append(f"CAST(`{column}` AS BINARY) <=> CAST({literal} AS BINARY)")
+            elif kind in ('float', 'double'):
+                # Compare the stored precision, rather than FLOAT to a DECIMAL
+                # literal; otherwise unchanged non-integral values can mismatch.
+                comparisons.append(f"`{column}` <=> CAST({literal} AS {kind.upper()})")
+            else:
+                comparisons.append(f"`{column}` <=> {literal}")
+        unchanged.append(f"NOT EXISTS (SELECT 1 FROM {table} WHERE " +
+                         " AND ".join(comparisons) + ")")
     digest = hashlib.sha256(''.join(inserts).encode()).hexdigest()
     marker = f"package = '{PACKAGE}' AND manifest_sha256 = '{digest}'"
     occupied = '\n        OR '.join(f'EXISTS (SELECT 1 FROM {t} WHERE ID = {i})' for t, i in ids)
@@ -91,12 +105,32 @@ def render(client, core, database=None):
     END IF;
 """ + ''.join(inserts) + f"""    INSERT INTO mod_delves_world_package (package,manifest_sha256) VALUES ('{PACKAGE}','{digest}');
 """
+    row_edits = '\n        OR '.join(unchanged)
     rollback = engine + f"""    START TRANSACTION;
     IF NOT EXISTS (SELECT 1 FROM mod_delves_world_package WHERE {marker}) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Missing matching server DBC receipt; rollback refused';
     END IF;
-    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package = '{pilot['package']}') THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Roll back the pilot world package before its server DBC rows';
+    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package IN ('{pilot['package']}','{cart['package']}')) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Roll back the pilot and cart world packages before their server DBC rows';
+    END IF;
+    IF {row_edits} THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Server DBC rows were edited or removed; rollback refused';
+    END IF;
+    IF EXISTS (SELECT 1 FROM creature_template_model WHERE CreatureDisplayID = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM creature_addon WHERE mount = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM creature_template_addon WHERE mount = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM creature_model_info WHERE DisplayID = {cart['cart_display']} OR DisplayID_Other_Gender = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM player_totem_model WHERE ModelID = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM player_shapeshift_model WHERE ModelID = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM game_event_model_equip WHERE modelid = {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM creaturedisplayinfo_dbc WHERE ModelID = {cart['cart_model']} AND ID <> {cart['cart_display']})
+        OR EXISTS (SELECT 1 FROM mapdifficulty_dbc WHERE MapID = {pilot['map']} AND ID <> {dict(ids)['mapdifficulty_dbc']})
+        OR EXISTS (SELECT 1 FROM areatable_dbc WHERE (ContinentID = {pilot['map']} OR ParentAreaID = {pilot['area']}) AND ID <> {pilot['area']})
+        OR EXISTS (SELECT 1 FROM map_dbc WHERE AreaTableID = {pilot['area']} AND ID <> {pilot['map']})
+        OR EXISTS (SELECT 1 FROM instance_template WHERE map = {pilot['map']})
+        OR EXISTS (SELECT 1 FROM creature WHERE map = {pilot['map']})
+        OR EXISTS (SELECT 1 FROM gameobject WHERE map = {pilot['map']}) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Server DBC rows are still referenced; rollback refused';
     END IF;
 """ + ''.join(f'    DELETE FROM {t} WHERE ID = {i};\n' for t, i in ids) + f"""    DELETE FROM mod_delves_world_package WHERE {marker};
 """

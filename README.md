@@ -111,6 +111,21 @@ while the pilot world package is still installed.
 The [coordinated package guide](test-package/README.md) describes collision checks,
 installer error handling and the full installation sequence.
 
+
+### Server DBC rollback protection
+
+Stop the worldserver before applying the generated install or rollback SQL. Remove
+cart and base world packages before removing their server DBC rows. The DBC
+rollback checks every installed field, including byte-exact names and stored float
+precision, and refuses missing or changed rows. It also refuses remaining world
+spawns, instance bindings and map/area/model/display references covered by the
+installer, including addon mounts, totems, shapeshift models and event overrides.
+These checks cover the explicit references listed in `build_server_dbc.py`; they
+cannot discover arbitrary module/script references or every world map route. Review
+any later reuse of these reserved IDs before uninstalling. A refusal leaves the DBC
+rows and receipt intact for investigation; do not clear the receipt or overwrite
+edited rows to force an uninstall.
+
 ### Client patch and server map data
 
 Get the **matching converted Earthcrawl client and native-data bundle** from the
