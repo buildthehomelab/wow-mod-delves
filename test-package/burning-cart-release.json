@@ -1,0 +1,14 @@
+{
+  "scope": "Unreviewed coordinated candidate inputs; offline evidence only, not installation or gameplay proof",
+  "content_revision": 2026102803,
+  "client_archive_sha256": "65f376304f9892c19bbcd7b00d7f2e514fa6152b800254a7e9f728dea46cbf8d",
+  "client_files": 810,
+  "base_client_archive_sha256": "ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4",
+  "base_client_manifest_sha256": "61636f8803159bfdb7d068e197be34e43d55268c16235efb875d363dce3b081e",
+  "cart_display_manifest_sha256": "43f20002c3de59a39f468e85c0393e1c5081588a33930eda8a5a6cc303b8897a",
+  "native_manifest_sha256": "6ba42cf5793f69820838e476be0276c356ab989abfedd7b191ba1c332106b366",
+  "native_files": 170,
+  "world_manifest_sha256": "64a2ad5697746a48676d4e1076b5ff9ef9dd5ce23c536d840d0029f74f9f8448",
+  "world_install_sha256": "3fe0e490b53660c1772ce5bbb4b405b60ef996780a3027047a01bf6a2b6e987c",
+  "world_rollback_sha256": "19098893ec47180a9c5aa6bb136515e4cdeccf1154bae7f9d17057a049057918"
+}

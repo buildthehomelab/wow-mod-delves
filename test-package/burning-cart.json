@@ -1,0 +1,34 @@
+{
+  "package": "earthcrawl-burning-cart-v1",
+  "status": "unreviewed development candidate; not approved for installation",
+  "base_package": "earthcrawl-combat-pilot-v1",
+  "base_manifest_sha256": "97a32bb1470f60f2e07ea6a13178c9275cb5572c7782fd49e9eefd728e0c8ce5",
+  "content_revision": 2026102803,
+  "map": 890,
+  "cart_entry": 1499002,
+  "cart_display": 149990,
+  "cart_model": 149990,
+  "impact_spell": 20832,
+  "visual_spell": 28330,
+  "lane": [
+    [
+      -791.20508,
+      -330.61328,
+      76.4421
+    ],
+    [
+      -773.48242,
+      -307.92969,
+      76.4466
+    ]
+  ],
+  "warning_ms": 2000,
+  "speed": 8,
+  "radius": 2.5,
+  "vertical_tolerance": 2,
+  "damage_bolt_multiplier": 2,
+  "knockback": [
+    8,
+    3
+  ]
+}

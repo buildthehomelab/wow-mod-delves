@@ -106,6 +106,9 @@ BEGIN
 ''' + engine_guard + f'''    IF NOT EXISTS (SELECT 1 FROM mod_delves_world_package WHERE {marker}) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Missing matching delve package receipt; rollback refused';
     END IF;
+    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package='earthcrawl-burning-cart-v1') THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Roll back the cart extension before the base pilot';
+    END IF;
     DELETE FROM gameobject WHERE id = {objective} AND guid IN ({guids}) AND map = {map_id} AND Comment = '{name}';
     DELETE FROM creature WHERE id1 = {boss} AND guid = {spawn} AND map = {map_id} AND Comment = '{name}';
     IF EXISTS (SELECT 1 FROM creature WHERE id1 IN ({boss},{brann}) OR id2 IN ({boss},{brann}) OR id3 IN ({boss},{brann}))
