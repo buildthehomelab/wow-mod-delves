@@ -3,9 +3,12 @@
 import argparse
 from pathlib import Path
 import re
+import struct
 import subprocess
+import tempfile
 from build_pilot_world import render
 from build_cart_world import render as render_cart
+import build_server_dbc
 
 TABLES = ('instance_template', 'creature_template', 'creature_template_model',
           'gameobject_template', 'gameobject_template_addon', 'creature', 'gameobject')
@@ -31,7 +34,7 @@ def main():
         sql('DROP PROCEDURE IF EXISTS evermore_delve_cart_install_v1; DROP PROCEDURE IF EXISTS evermore_delve_cart_rollback_v1;')
 
     def empty():
-        sql('SET FOREIGN_KEY_CHECKS=0;\n' + '\n'.join('DROP TABLE IF EXISTS ' + t + ';' for t in (*TABLES, 'mod_delves_world_package')))
+        sql('SET FOREIGN_KEY_CHECKS=0;\n' + '\n'.join('DROP TABLE IF EXISTS ' + t + ';' for t in (*TABLES, 'creature_multispawn', 'mod_delves_world_package')))
         clean_procedures()
         for table in TABLES:
             dump = (args.core / 'data/sql/base/db_world' / (table + '.sql')).read_text()
@@ -39,8 +42,9 @@ def main():
             if not ddl:
                 raise AssertionError('Missing pinned core DDL: ' + table)
             sql(ddl.group())
-        # The base dump still has id1/id2/id3, but the pinned core reads and the realm has creature.id.
-        sql('ALTER TABLE creature CHANGE id1 id INT UNSIGNED NOT NULL DEFAULT 0, DROP COLUMN id2, DROP COLUMN id3;')
+        # The base dump still has creature.id1/id2/id3; this pinned-core update renames id1 to id and
+        # moves id2/id3 into creature_multispawn, which is what the core reads and live realms have.
+        sql((args.core / 'data/sql/updates/db_world/2026_06_16_00.sql').read_text())
 
     install, rollback = render()
     empty()
@@ -129,6 +133,38 @@ def main():
     clean_procedures()
     sql(rollback)
     assert sql('SELECT COUNT(*) FROM creature_template;') == '0'
+
+    # Server *_dbc rows: synthetic package DBCs sized from the core DDL, installed and rolled back
+    # around the pilot package.
+    dbc_tables = ('map_dbc', 'areatable_dbc', 'mapdifficulty_dbc', 'creaturemodeldata_dbc', 'creaturedisplayinfo_dbc')
+    sql('\n'.join('DROP TABLE IF EXISTS ' + t + ';' for t in dbc_tables))
+    for table in dbc_tables:
+        dump = (args.core / 'data/sql/base/db_world' / (table + '.sql')).read_text()
+        sql(re.search(r'CREATE TABLE `' + table + r'` \(.*?\) ENGINE=.*?;', dump, re.S).group())
+    rows = {'Map.dbc': [(1,), (890,)], 'AreaTable.dbc': [(14999,)], 'MapDifficulty.dbc': [(1, 1), (20000, 890)],
+            'CreatureModelData.dbc': [(149990,)], 'CreatureDisplayInfo.dbc': [(149990, 149990)]}
+    with tempfile.TemporaryDirectory() as folder:
+        client = Path(folder)
+        for (name, records), table in zip(rows.items(), dbc_tables):
+            fields = len(build_server_dbc.columns(args.core, table))
+            body = b''.join(struct.pack('<%dI' % fields, *(record + (0,) * (fields - len(record)))) for record in records)
+            (client / name).write_bytes(struct.pack('<4s4I', b'WDBC', len(records), fields, fields * 4, 1) + body + b'\0')
+        dbc_install, dbc_rollback = build_server_dbc.render(client, args.core)
+    sql(dbc_install)
+    assert sql('SELECT COUNT(*) FROM map_dbc WHERE ID=890;') == '1'
+    assert sql('SELECT MapID FROM mapdifficulty_dbc WHERE ID=20000;') == '890'
+    sql(dbc_install, False)  # Already installed: nothing replaced.
+    clean_procedures()
+    sql('DROP PROCEDURE IF EXISTS evermore_delve_server_dbc_install_v1;')
+    sql(install)
+    sql(dbc_rollback, False)  # Pilot still installed.
+    sql('DROP PROCEDURE IF EXISTS evermore_delve_server_dbc_rollback_v1;')
+    assert sql('SELECT COUNT(*) FROM creaturedisplayinfo_dbc;') == '1'
+    sql(rollback)
+    sql(dbc_rollback)
+    for table in dbc_tables:
+        assert sql('SELECT COUNT(*) FROM ' + table + ';') == '0', table
+    assert sql('SELECT COUNT(*) FROM mod_delves_world_package;') == '0'
     print('World install/collision/failure/rollback checks passed on pinned core DDL')
 
 

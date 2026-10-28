@@ -29,8 +29,9 @@ def render(database=None):
     digest = hashlib.sha256(raw).hexdigest()
     marker = f"package='{name}' AND manifest_sha256='{digest}'"
     guard = database_guard(database) + f"""    IF (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE()
-        AND table_name IN ('creature','creature_template','creature_template_model','mod_delves_world_package')
-        AND engine='InnoDB') <> 4 THEN
+        AND table_name IN ('creature','creature_multispawn','creature_template','creature_template_model',
+            'mod_delves_world_package')
+        AND engine='InnoDB') <> 5 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Cart extension requires complete InnoDB world tables';
     END IF;
     START TRANSACTION;
@@ -39,7 +40,8 @@ def render(database=None):
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Matching installed base pilot receipt required';
     END IF;
 """
-    actors = f"""EXISTS (SELECT 1 FROM creature WHERE id={entry})"""
+    actors = f"""EXISTS (SELECT 1 FROM creature WHERE id={entry})
+        OR EXISTS (SELECT 1 FROM creature_multispawn WHERE entry={entry})"""
     install = guard + f"""    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package='{name}')
         OR {actors}
         OR EXISTS (SELECT 1 FROM creature_template WHERE entry={entry})
@@ -74,7 +76,8 @@ def render(database=None):
 
     def wrap(body, operation):
         procedure = 'evermore_delve_cart_' + operation + '_v1'
-        return f"""-- Generated offline. Stop the isolated test world before applying.
+        stop = 'the isolated test world' if database is None else database
+        return f"""-- Generated offline. Stop {stop} before applying.
 DELIMITER //
 CREATE PROCEDURE {procedure}()
 BEGIN

@@ -62,14 +62,16 @@ BEGIN
 '''
     engine_guard = '''    IF (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()
         AND table_name IN ('instance_template','creature','creature_template','creature_template_model',
-            'gameobject','gameobject_template','gameobject_template_addon','mod_delves_world_package')
-        AND engine = 'InnoDB') <> 8 THEN
+            'gameobject','gameobject_template','gameobject_template_addon','creature_multispawn',
+            'mod_delves_world_package')
+        AND engine = 'InnoDB') <> 9 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Delve pilot requires complete InnoDB world tables';
     END IF;
 '''
     guard = engine_guard + f'''    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package = '{name}')
         OR EXISTS (SELECT 1 FROM instance_template WHERE map = {map_id})
         OR EXISTS (SELECT 1 FROM creature WHERE map = {map_id} OR guid = {spawn} OR id IN ({boss},{brann}))
+        OR EXISTS (SELECT 1 FROM creature_multispawn WHERE entry IN ({boss},{brann}))
         OR EXISTS (SELECT 1 FROM gameobject WHERE map = {map_id} OR guid IN ({guids}) OR id IN ({objective},{potion}))
         OR EXISTS (SELECT 1 FROM creature_template WHERE entry IN ({boss},{brann}))
         OR EXISTS (SELECT 1 FROM creature_template_model WHERE CreatureID IN ({boss},{brann}))
@@ -123,6 +125,7 @@ BEGIN
     DELETE FROM gameobject WHERE id = {objective} AND guid IN ({guids}) AND map = {map_id} AND Comment = '{name}';
     DELETE FROM creature WHERE id = {boss} AND guid = {spawn} AND map = {map_id} AND Comment = '{name}';
     IF EXISTS (SELECT 1 FROM creature WHERE id IN ({boss},{brann}))
+        OR EXISTS (SELECT 1 FROM creature_multispawn WHERE entry IN ({boss},{brann}))
         OR EXISTS (SELECT 1 FROM gameobject WHERE id IN ({objective},{potion})) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Unexpected delve actors; rollback refused';
     END IF;

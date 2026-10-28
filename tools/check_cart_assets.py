@@ -29,10 +29,12 @@ def check(args):
         raise ValueError('Missing matching full archive readback receipt')
     if digest(SPEC) != release['world_manifest_sha256']:
         raise ValueError('Cart world specification differs')
-    for operation, text in zip(('install', 'rollback'), render()):
+    # The release records the default (*_delve_test) SQL; SQL for a named database must still come
+    # from that same specification, so it has to match what the generator renders for that name.
+    for operation, default, text in zip(('install', 'rollback'), render(), render(args.database)):
         expected = release['world_' + operation + '_sha256']
-        if hashlib.sha256(text.encode()).hexdigest() != expected or \
-                digest(args.world / ('world.' + operation + '.sql')) != expected:
+        if hashlib.sha256(default.encode()).hexdigest() != expected or \
+                digest(args.world / ('world.' + operation + '.sql')) != hashlib.sha256(text.encode()).hexdigest():
             raise ValueError('Generated cart world SQL differs: ' + operation)
     spells = Dbc((args.combat / 'Spell.dbc').read_bytes(), 234)
     for spell, effects, targets in ((20832, [2, 0, 0], [6, 0, 0]), (28330, [6, 0, 0], [1, 0, 0])):
@@ -52,6 +54,7 @@ def main():
     for name in ('base-client', 'client', 'display', 'baseline', 'combat', 'native',
                  'base-archive', 'archive', 'archive-receipt', 'world'):
         parser.add_argument('--' + name, type=Path, required=True)
+    parser.add_argument('--database', help='exact database the --world SQL was generated for')
     print(json.dumps(check(parser.parse_args()), indent=2))
 
 
