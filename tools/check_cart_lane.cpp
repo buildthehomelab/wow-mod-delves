@@ -64,9 +64,9 @@ int main(int argc, char** argv)
         dtQueryFilter diagnosticFilter;
         diagnosticFilter.setIncludeFlags(NAV_GROUND | NAV_GROUND_STEEP);
         diagnosticFilter.setExcludeFlags(NAV_MAGMA | NAV_SLIME | NAV_WATER);
-        // Native model centers395->435->437; float map-origin correction applied.
-        std::array<float, 2> start{-791.20508f, -330.61328f};
-        std::array<float, 2> end{-773.48242f, -307.92969f};
+        // Spider Mine boss chamber lane (test-package/burning-cart.json); floor around z -6.5.
+        std::array<float, 2> start{114.0f, -26.39f};
+        std::array<float, 2> end{126.0f, -5.61f};
         unsigned failed = 0;
         dtPolyRef previous = 0;
         std::array<float, 3> previousPoint{};
@@ -77,13 +77,13 @@ int main(int argc, char** argv)
             float length = std::hypot(dx, dy);
             float x = start[0] + t * dx - offset * dy / length;
             float y = start[1] + t * dy + offset * dx / length;
-            auto internal = VMAP::VMapMgr2::convertPositionToInternalRep(x, y, 80.0f);
+            auto internal = VMAP::VMapMgr2::convertPositionToInternalRep(x, y, 0.0f);
             float floor = collision.getHeight(internal, 15.0f);
             std::array<float, 3> point{y, floor, x}, nearest{};
             float extents[3]{1, 2, 1};
             dtPolyRef polygon = 0;
             auto status = query->findNearestPoly(point.data(), extents, &filter, &polygon, nearest.data());
-            bool good = (profile || !offset || from) && std::isfinite(floor) && floor > 70 && floor < 80 && !dtStatusFailed(status) && polygon &&
+            bool good = (profile || !offset || from) && std::isfinite(floor) && floor > -10 && floor < -3 && !dtStatusFailed(status) && polygon &&
                 std::hypot(nearest[0] - y, nearest[2] - x) < 0.75f && std::abs(nearest[1] - floor) < 1.5f;
             if (good && from)
             {
@@ -120,7 +120,7 @@ int main(int argc, char** argv)
             if (profile)
             {
                 float centerX = start[0] + t * dx, centerY = start[1] + t * dy;
-                auto center = VMAP::VMapMgr2::convertPositionToInternalRep(centerX, centerY, 80);
+                auto center = VMAP::VMapMgr2::convertPositionToInternalRep(centerX, centerY, 0);
                 float centerFloor = collision.getHeight(center, 15);
                 for (float height : {0.5f, 1.5f})
                 {

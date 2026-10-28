@@ -1,3 +1,8 @@
+> **Superseded layout (2026-10-28):** the lane coordinates, native rail landmarks and content
+> revision 2026102803 below describe the converted Earthcrawl geometry. Since revision 2026102805
+> the lane is `Delves.Prototype.Encounter.Cart.Lane` on the stock Spider Mine layout
+> (`test-package/burning-cart.json`); the controller, impact and cleanup rules are unchanged.
+
 # Burning Cart work in progress
 
 The installed pilot does not yet implement Burning Cart. This worktree now wires

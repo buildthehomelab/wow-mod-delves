@@ -1,6 +1,6 @@
 {
-  "scope": "Unreviewed coordinated candidate inputs; offline evidence only, not installation or gameplay proof",
-  "content_revision": 2026102803,
+  "scope": "Spider Mine layout (content 2026102805). World SQL hashes current; client/native fields describe the earlier Earthcrawl conversion and are superseded by the Evermore delve patch.",
+  "content_revision": 2026102805,
   "client_archive_sha256": "65f376304f9892c19bbcd7b00d7f2e514fa6152b800254a7e9f728dea46cbf8d",
   "client_files": 810,
   "base_client_archive_sha256": "ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4",
@@ -8,7 +8,7 @@
   "cart_display_manifest_sha256": "43f20002c3de59a39f468e85c0393e1c5081588a33930eda8a5a6cc303b8897a",
   "native_manifest_sha256": "6ba42cf5793f69820838e476be0276c356ab989abfedd7b191ba1c332106b366",
   "native_files": 170,
-  "world_manifest_sha256": "64a2ad5697746a48676d4e1076b5ff9ef9dd5ce23c536d840d0029f74f9f8448",
-  "world_install_sha256": "868fd0554ea75028763353d12409128d1b2c0e993d0906dedce7515094fabbcd",
-  "world_rollback_sha256": "aab1b5dfed6d8e5848eacaa070aad90faf1358d6f3ebec0acd8198fa5dd5320e"
+  "world_manifest_sha256": "b7e3be10fe48d4d73ef589209f923d4cbf8f7ada05ee6a501a35923b18a12b2a",
+  "world_install_sha256": "8265ff739d58a17b4254f9abed0933b3d57fab76e60aaee778d8cb4e7ba82884",
+  "world_rollback_sha256": "f6d8dfeca1b019f3d6a59f2bbb3416c3c8ee233fe4112c887b8b3fdd74108d33"
 }

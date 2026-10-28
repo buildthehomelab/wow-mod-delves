@@ -95,6 +95,12 @@ name instead: `--database acore_world`. The generated SQL then refuses every oth
 database. `tools/build_cart_world.py` takes the same option.
 
 The pilot uses provisional map 890, area 14999 and actor entries 1499000–1499001.
+Since content revision 2026102804 (`test-package/earthcrawl.json`, `layout: spider-mine-v1`)
+map 890 is the stock 3.3.5 `MD_Spidermine_nokobolds` WMO on a WMO-only WDT, not the converted
+retail Earthcrawl geometry: it renders with the client's own shaders. World coordinates of a
+WDT's global WMO are (-WMO x, -WMO y, z). The Burning Cart lane is configuration
+(`Delves.Prototype.Encounter.Cart.Lane`, start xyz then end xyz) checked with
+`tools/check_cart_lane.cpp` against the map's native floor.
 Check these and the remaining manifest IDs against your test stack before installing.
 
 The server also needs the map, area, difficulty and cart model/display rows. Rather

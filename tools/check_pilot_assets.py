@@ -46,6 +46,9 @@ def check(client, combat, native, archive):
         displays.row(p[field])
     for field in ('objective_display', 'potion_display'):
         objects.row(p[field])
+    if 'client_mpq_sha256' not in p:
+        raise SystemExit('Converted-client tooling: the ' + str(p.get('layout')) + ' layout uses a stock 3.3.5 WMO and '
+                         'ships no converted client archive (see README, content revision 2026102804).')
     expected_hash = p['client_mpq_sha256']
     if sha256(archive) != expected_hash:
         raise ValueError('Wrong client archive (old geometry is incompatible)')
