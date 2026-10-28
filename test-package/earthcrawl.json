@@ -1,7 +1,7 @@
 {
   "package": "earthcrawl-combat-pilot-v1",
   "status": "development candidate; not approved for installation",
-  "content_revision": 2026102802,
+  "content_revision": 2026102804,
   "map": 890,
   "area": 14999,
   "boss_entry": 1499000,
@@ -9,20 +9,48 @@
   "objective_entry": 1499000,
   "potion_entry": 1499001,
   "boss_spawn": 14990000,
-  "objective_spawns": [14990000, 14990001, 14990002, 14990003],
+  "objective_spawns": [
+    14990000,
+    14990001,
+    14990002,
+    14990003
+  ],
   "boss_display": 27856,
   "brann_display": 26353,
   "objective_display": 1787,
   "potion_display": 8537,
-  "entry_xyz": [-736.0, -266.667, 76.5202],
-  "boss_xyz": [-783.84, -315.36, 76.3743],
-  "objective_xyz": [
-    [-715.644, -256.356, 76.6562],
-    [-759.378, -249.956, 76.1821],
-    [-756.8, -297.067, 76.7299],
-    [-693.778, -269.689, 76.551]
+  "entry_xyz": [
+    -4.0,
+    4.0,
+    -3.5049
   ],
-  "native_route_samples": [22, 18, 17, 24, 11],
-  "geometry_provenance": "VMap-supported floors +0.2; complete Detour paths from entry probe. Not client-tested or retail spawn data.",
-  "client_mpq_sha256": "ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4"
+  "boss_xyz": [
+    126.0,
+    -16.0,
+    -6.0086
+  ],
+  "objective_xyz": [
+    [
+      41.0,
+      17.0,
+      -3.1434
+    ],
+    [
+      61.0,
+      24.0,
+      -0.4016
+    ],
+    [
+      91.0,
+      32.0,
+      -3.8697
+    ],
+    [
+      118.0,
+      18.0,
+      -7.22
+    ]
+  ],
+  "geometry_provenance": "Stock 3.3.5 MD_Spidermine_nokobolds on a WMO-only WDT (map 890, dir EvermoreDelve). Points: collision floor +0.2, chosen by walking distance along one 161-yard route; complete Detour paths from the entry.",
+  "layout": "spider-mine-v1"
 }

@@ -18,10 +18,9 @@ def render(database=None):
     base = json.loads(BASE.read_bytes())
     expected = {'package': 'earthcrawl-burning-cart-v1', 'base_package': base['package'],
                 'base_manifest_sha256': hashlib.sha256(BASE.read_bytes()).hexdigest(),
-                'content_revision': 2026102803, 'map': 890, 'cart_entry': 1499002,
+                'content_revision': 2026102805, 'map': 890, 'cart_entry': 1499002,
                 'cart_display': 149990, 'cart_model': 149990, 'impact_spell': 20832,
-                'visual_spell': 28330, 'lane': [[-791.20508, -330.61328, 76.4421],
-                    [-773.48242, -307.92969, 76.4466]], 'warning_ms': 2000, 'speed': 8,
+                'visual_spell': 28330, 'lane': [[114.0, -26.39, -8.7425], [126.0, -5.61, -6.5631]], 'warning_ms': 2000, 'speed': 8,
                 'radius': 2.5, 'vertical_tolerance': 2, 'damage_bolt_multiplier': 2, 'knockback': [8, 3]}
     if any(spec.get(key) != value for key, value in expected.items()):
         raise ValueError('Cart identity or required base package differs')

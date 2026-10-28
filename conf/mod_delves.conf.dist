@@ -50,6 +50,9 @@ Delves.Prototype.Encounter.Shackles = 0
 Delves.Prototype.Encounter.Cart.Enable = 0
 Delves.Prototype.Encounter.Cart.Entry = 0
 Delves.Prototype.Encounter.Cart.Display = 0
+# Straight cart lane: start x y z, end x y z (5-40 yards), checked against the map's
+# native floor (tools/check_cart_lane.cpp). Required when the cart is enabled.
+Delves.Prototype.Encounter.Cart.Lane = ""
 
 # Frozen level/IP era + tier scaling. Requires complete IP hidden quest catalog
 # and the separate characters progression migration. Balance is a first test.
