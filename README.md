@@ -90,8 +90,24 @@ world clone whose database name ends **`_delve_test`**, for example
 pre-existing pilot IDs. Use a MySQL client that stops on errors; never use `--force`.
 Keep the generated `world.rollback.sql` with this exact installation.
 
+To install on a realm without a separate test stack, pass the exact world database
+name instead: `--database acore_world`. The generated SQL then refuses every other
+database. `tools/build_cart_world.py` takes the same option.
+
 The pilot uses provisional map 890, area 14999 and actor entries 1499000–1499001.
 Check these and the remaining manifest IDs against your test stack before installing.
+
+The server also needs the map, area, difficulty and cart model/display rows. Rather
+than replacing the server's DBC files, write them into the world's `*_dbc` tables,
+which the core loads alongside the files:
+
+```bash
+python3 tools/build_server_dbc.py --client /path/to/package/DBFilesClient \
+  --core /path/to/azerothcore --output /tmp/earthcrawl-server-dbc --database acore_world
+```
+
+Apply `server-dbc.install.sql` before starting the worldserver. Its rollback refuses
+while the pilot world package is still installed.
 The [coordinated package guide](test-package/README.md) describes collision checks,
 installer error handling and the full installation sequence.
 
@@ -106,8 +122,12 @@ provided, obtain it before enabling the module.
   approved patch slot/order. Its SHA256 is
   `ba874d4c974b68493b55a6ebb3b1f413d460c4dead6b2b188dc5d22701be9ac4`.
   Do not choose a patch filename independently of the realm's shared DBC patches.
-- Stage its matching complete `Map.dbc`, `AreaTable.dbc`, `MapDifficulty.dbc` and
-  `WMOAreaTable.dbc` in the server's DBC directory. These must agree with the client.
+- Give the server the same map, area and difficulty rows: either stage the matching
+  complete DBC files in the server's DBC directory, or use `tools/build_server_dbc.py`
+  (above) to put them in the world's `*_dbc` tables. Either way they must agree with
+  the client. A DBC replaced by the patch must carry every row of the last earlier
+  patch that ships it (Reforged patch-M's AreaTable, for example), or that patch's
+  rows disappear for whoever loads this one.
 - Merge the matching `maps`, `vmaps` and `mmaps` files into the server's configured
   data directories. Preserve the existing directories and back up overwritten files.
 - Never install one-row extractor fixtures or native data generated from an older

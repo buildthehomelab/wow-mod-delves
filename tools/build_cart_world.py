@@ -5,12 +5,14 @@ import hashlib
 import json
 from pathlib import Path
 
+from build_pilot_world import database_guard
+
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = ROOT / 'test-package/burning-cart.json'
 BASE = ROOT / 'test-package/earthcrawl.json'
 
 
-def render():
+def render(database=None):
     raw = SPEC.read_bytes()
     spec = json.loads(raw)
     base = json.loads(BASE.read_bytes())
@@ -26,12 +28,10 @@ def render():
     name, entry, display = spec['package'], spec['cart_entry'], spec['cart_display']
     digest = hashlib.sha256(raw).hexdigest()
     marker = f"package='{name}' AND manifest_sha256='{digest}'"
-    guard = f"""    IF RIGHT(DATABASE(),11) <> '_delve_test' THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Use an isolated database ending in _delve_test';
-    END IF;
-    IF (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE()
-        AND table_name IN ('creature','creature_template','creature_template_model','mod_delves_world_package')
-        AND engine='InnoDB') <> 4 THEN
+    guard = database_guard(database) + f"""    IF (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE()
+        AND table_name IN ('creature','creature_multispawn','creature_template','creature_template_model',
+            'mod_delves_world_package')
+        AND engine='InnoDB') <> 5 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Cart extension requires complete InnoDB world tables';
     END IF;
     START TRANSACTION;
@@ -40,7 +40,8 @@ def render():
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Matching installed base pilot receipt required';
     END IF;
 """
-    actors = f"""EXISTS (SELECT 1 FROM creature WHERE id1={entry} OR id2={entry} OR id3={entry})"""
+    actors = f"""EXISTS (SELECT 1 FROM creature WHERE id={entry})
+        OR EXISTS (SELECT 1 FROM creature_multispawn WHERE entry={entry})"""
     install = guard + f"""    IF EXISTS (SELECT 1 FROM mod_delves_world_package WHERE package='{name}')
         OR {actors}
         OR EXISTS (SELECT 1 FROM creature_template WHERE entry={entry})
@@ -75,7 +76,8 @@ def render():
 
     def wrap(body, operation):
         procedure = 'evermore_delve_cart_' + operation + '_v1'
-        return f"""-- Generated offline. Stop the isolated test world before applying.
+        stop = 'the isolated test world' if database is None else database
+        return f"""-- Generated offline. Stop {stop} before applying.
 DELIMITER //
 CREATE PROCEDURE {procedure}()
 BEGIN
@@ -96,10 +98,11 @@ DROP PROCEDURE {procedure};
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--database', help='exact world database name to allow instead of *_delve_test')
     args = parser.parse_args()
     if args.output.exists():
         parser.error('Output must be a new directory')
-    install, rollback = render()
+    install, rollback = render(args.database)
     args.output.mkdir(parents=True)
     (args.output / 'world.install.sql').write_text(install)
     (args.output / 'world.rollback.sql').write_text(rollback)
