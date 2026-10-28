@@ -26,10 +26,11 @@ def main():
             source, count = re.subn(r'^' + re.escape(key) + r'\s*=.*$', key + ' = "' + value + '"', source, flags=re.M)
             if count != 1:
                 raise ValueError('Missing/duplicate core config key: ' + key)
-        source += '\nDelves.Prototype.Enable = 1\nDelves.Prototype.Scaling.Enable = 1\n'
+        source += '\nDelves.Prototype.Enable = 1\nDelves.Prototype.Scaling.Enable = 1\nDelves.Prototype.Rewards.Enable = 1\nBossCoins.DelveAwards.Enable = 1\n'
         config = root / 'worldserver.conf'
         config.write_text(source)
         env = dict(os.environ, AC_DELVES_PROTOTYPE_ENABLE='1', AC_DELVES_PROTOTYPE_SCALING_ENABLE='1',
+                   AC_DELVES_PROTOTYPE_REWARDS_ENABLE='1', AC_BOSSCOINS_DELVEAWARDS_ENABLE='1',
                    AC_DATABASE_RECONNECT_ATTEMPTS='0', AC_UPDATES_AUTO_SETUP='0')
         result = subprocess.run([str(binary), '-c', str(config)], cwd=root, env=env,
                                 text=True, capture_output=True, timeout=30)

@@ -1,6 +1,7 @@
 #include "DelveServerAdapter.h"
 #include "DelveCompanion.h"
 #include "DelveScaling.h"
+#include "DelveRewardDelivery.h"
 #include "Config.h"
 #include "Creature.h"
 #include "GameObject.h"
@@ -96,7 +97,7 @@ namespace Evermore::Delves
             for (auto const& reference : instance->GetPlayers())
             {
                 Player* player = reference.GetSource();
-                if (IsRealMemberPresent(player) && CharacterId(player) == member.guid &&
+                if (IsRealMemberPresent(player) && RewardsAdmissionAllowed(player) && CharacterId(player) == member.guid &&
                     player->GetSession()->GetAccountId() == member.account && player->GetLevel() == member.level &&
                     (!ScalingEnabled() || ReadDelveProgression(player) == member.progression))
                 {
@@ -352,6 +353,8 @@ void Evermore::Delves::InitializeDelveRuntime()
     }
     if (!InitializeEvermoreDelveCompanion() || !InitializeEvermoreDelveEncounter())
         return;
+    if (!InitializeDelveRewards())
+        return;
     pilotDefinition = Definition{revision, PilotMapId, {{EventKind::Interact, objective, count}, {EventKind::Kill, boss, 1}}};
     InitializeEvermoreDelveTestControls(revision);
     LOG_INFO("module.delves", "Delve prototype initialized after world data; revision {}", revision);
@@ -362,6 +365,7 @@ void AddEvermoreDelveScripts()
     using namespace Evermore::Delves;
     // ScriptMgr registers modules before StartDB. Register inert scripts only;
     // database/DBC/template validation runs in the loaded-world startup hook.
+    AddDelveRewardDelivery();
     new DelveStartup();
     new DelveInstanceScript();
     new DelvePlayerScript();

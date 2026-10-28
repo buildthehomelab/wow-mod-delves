@@ -26,6 +26,13 @@ namespace Evermore::Delves
         return result;
     }
 
+    inline std::string CompletionAwardAcknowledge(CompletionAward const& award)
+    {
+        return "UPDATE mod_delves_reward SET delivered=1 WHERE run_id=" + std::to_string(award.run) +
+            " AND guid=" + std::to_string(award.guid) + " AND account=" + std::to_string(award.account) +
+            " AND coins=" + std::to_string(award.coins) + " AND policy=1 AND delivered=0";
+    }
+
     // checkpoint is the database-escaped bounded server serialization. Both the
     // CAS update and this insert execute in one InnoDB transaction. A stale CAS
     // cannot insert intent unless the identical completed state already exists.

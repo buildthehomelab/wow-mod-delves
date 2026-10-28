@@ -9,6 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--core', type=Path, required=True)
     parser.add_argument('--boost', type=Path)
+    parser.add_argument('--wallet', type=Path)
     parser.add_argument('--openssl-include', type=Path)
     parser.add_argument('--compiler', default='clang++')
     args = parser.parse_args()
@@ -31,7 +32,9 @@ def main():
     command = [args.compiler, '-std=c++20', '-fsyntax-only', '-Wall', '-Wextra', '-Werror',
                '-Wno-unused-parameter', '-Wno-deprecated-declarations']
     command.extend('-I' + str(path) for path in ordered)
-    command.extend(str(module / 'src' / name) for name in ('DelveServerAdapter.cpp', 'DelveJournal.cpp', 'DelveCompanion.cpp', 'DelveEncounter.cpp', 'DelveScaling.cpp', 'DelveTestControls.cpp', 'mod_delves_loader.cpp'))
+    if args.wallet:
+        command.append('-I' + str(args.wallet.resolve() / 'src'))
+    command.extend(str(module / 'src' / name) for name in ('DelveServerAdapter.cpp', 'DelveJournal.cpp', 'DelveCompanion.cpp', 'DelveEncounter.cpp', 'DelveScaling.cpp', 'DelveRewardDelivery.cpp', 'DelveTestControls.cpp', 'mod_delves_loader.cpp'))
     return subprocess.run(command, check=False).returncode
 
 

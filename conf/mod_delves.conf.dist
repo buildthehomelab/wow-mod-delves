@@ -45,3 +45,8 @@ Delves.Prototype.Encounter.Shackles = 0
 # Frozen level/IP era + tier scaling. Requires complete IP hidden quest catalog
 # and the separate characters progression migration. Balance is a first test.
 Delves.Prototype.Scaling.Enable = 0
+
+# Durable account-wallet delivery, requires matching reviewed mod-boss-coins API
+# and BossCoins.DelveAwards.Enable=1. Self-Found admission is excluded until its
+# personal reward route exists. One pending award is retried per ten seconds.
+Delves.Prototype.Rewards.Enable = 0

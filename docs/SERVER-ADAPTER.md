@@ -100,3 +100,7 @@ Completion-intent prerequisite: also install the rewards migration documented in
 [REWARD-OUTBOX.md](REWARD-OUTBOX.md). Confirmed completion now requires its immutable
 outbox rows in the same InnoDB transaction as the journal checkpoint. This records
 intent only; it does not yet deliver coins.
+
+Optional receipt-confirmed coin delivery and its separate wallet dependency are
+documented in [REWARD-DELIVERY.md](REWARD-DELIVERY.md). It defaults to disabled;
+follow the matching schema/configuration and non-Self-Found pilot requirements.

@@ -1,8 +1,8 @@
 # Completion reward outbox
 
-This prerequisite records immutable completion intent. It does not pay currency.
-The separate wallet API is proposed in wow-mod-boss-coins PR #22; a reviewed
-delivery caller and combined-module build remain required before enabling rewards.
+This journal records immutable completion intent. Optional delivery through the
+wallet API is documented in [REWARD-DELIVERY.md](REWARD-DELIVERY.md); it defaults
+to disabled until the matching reviewed modules, schema and configuration are ready.
 
 Apply `data/sql/characters/2026_10_28_01_delves_rewards.sql` to the isolated
 characters database alongside the journal and progression migrations, only with
