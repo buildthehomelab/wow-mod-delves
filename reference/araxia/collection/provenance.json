@@ -1,0 +1,391 @@
+{
+  "repository": "https://github.com/araxiaonline/Delves",
+  "commit": "aaea411c6ea1831e19e284ed4e4445f83f796272",
+  "license": "MIT; upstream/LICENSE.reference",
+  "files": [
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/AreaTable.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/AreaTable.csv.reference",
+      "bytes": 2785,
+      "sha256": "8f68a2c1945019e10b2dd23cf2e43e31ec7e6d8e55b181033526a26117cbc07e"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/CreatureDisplayInfo.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/CreatureDisplayInfo.csv.reference",
+      "bytes": 922,
+      "sha256": "688365c99d6aeb0c9522de6166f0bb057e3dcac72ba6c06bfbce33f22f8b2a50"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/CreatureModelData.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/CreatureModelData.csv.reference",
+      "bytes": 2301,
+      "sha256": "2bbaaaad2debebccd986d0f7d40776f3c088db299675cab36a376a35c0897617"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/LoadingScreens.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/LoadingScreens.csv.reference",
+      "bytes": 1095,
+      "sha256": "e559770fbb64fc90714f838b162d5ba198c22c0209d068488874a60cbbd9447a"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/Map.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/Map.csv.reference",
+      "bytes": 4981,
+      "sha256": "420c1eb48bdf79146735281d91c0581ac92ef448754c8561df40c68fa420ed1e"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/MapDifficulty.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/MapDifficulty.csv.reference",
+      "bytes": 1919,
+      "sha256": "cba665fba7aebf69177d8b1aafc73a446412263e0f2a089d7f9e19ef83d5bead"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/SoundEntries.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/SoundEntries.csv.reference",
+      "bytes": 2227,
+      "sha256": "350ed4f966daa9153fcb442eca0f9d81f8cc7c71a3d2cf0b9f7988cac04166bc"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/WorldSafelocs.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/WorldSafelocs.csv.reference",
+      "bytes": 1913,
+      "sha256": "a87f21c797493d4c707c5e5960705dc19ecebcc0cac8c1d1f1c6d215899bef86"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/ZoneMusic.csv",
+      "local_path": "upstream/DBC_CSV/DBFilesClient/ZoneMusic.csv.reference",
+      "bytes": 1017,
+      "sha256": "84bb51a95f13bc9a9233e4996f557b4dfc86b17031ac108605f98c94dffcd482"
+    },
+    {
+      "upstream_path": "LICENSE",
+      "local_path": "upstream/LICENSE.reference",
+      "bytes": 1068,
+      "sha256": "203a620948410283b0ca6c696133983ebd4050f1f258c5a66bfcb7f943190d5b"
+    },
+    {
+      "upstream_path": "README.md",
+      "local_path": "upstream/README.md.reference",
+      "bytes": 22867,
+      "sha256": "ecdf4be4623b22e822b7fb6007c0cec3d37a4771c06e9d5f5ad3b03287beb26a"
+    },
+    {
+      "upstream_path": "addon/DelvesTeleporter/DelvesTeleporter.lua",
+      "local_path": "upstream/addon/DelvesTeleporter/DelvesTeleporter.lua.reference",
+      "bytes": 14684,
+      "sha256": "d9064b54098bd83a00862c4ddd6c0155ec4e2ccc748d143659f94b99e93e46f4"
+    },
+    {
+      "upstream_path": "addon/DelvesTeleporter/DelvesTeleporter.toc",
+      "local_path": "upstream/addon/DelvesTeleporter/DelvesTeleporter.toc.reference",
+      "bytes": 239,
+      "sha256": "b7f113f9bcb7d9bef3fc72488c66104c38dc2c7e20939c2e105bc7de8a7275fc"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/1_delves_creature_model_info_insert.sql",
+      "local_path": "upstream/data/sql/db-world/base/1_delves_creature_model_info_insert.sql.reference",
+      "bytes": 1304,
+      "sha256": "075ebaf5d6701809318ed3d60f971849cc10f3d994595e6819900cc06636856a"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/2_delves_game_graveyard.sql",
+      "local_path": "upstream/data/sql/db-world/base/2_delves_game_graveyard.sql.reference",
+      "bytes": 858,
+      "sha256": "04d6e355ffcb304089de023d0492ad2b93bb95f9b5986da10f1029d1ee27e6d2"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/3_delves_game_tele.sql",
+      "local_path": "upstream/data/sql/db-world/base/3_delves_game_tele.sql.reference",
+      "bytes": 907,
+      "sha256": "2299dcbbaed72b038cf023b55a2146f57c64ffd56c6db7438544ef9d74f69f82"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/4_delves_graveyard_zone.sql",
+      "local_path": "upstream/data/sql/db-world/base/4_delves_graveyard_zone.sql.reference",
+      "bytes": 577,
+      "sha256": "df013e3312a50ef3dee1268e081549fc8e4ec86d32fcd415a041a16a4315b7f7"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/5_delves_instance_template.sql",
+      "local_path": "upstream/data/sql/db-world/base/5_delves_instance_template.sql.reference",
+      "bytes": 274,
+      "sha256": "5971f8372338c3a35d3ee003e162fe40478132187de048627b422a9a9a6fc348"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/6_delves_reference_loot_table.sql",
+      "local_path": "upstream/data/sql/db-world/base/6_delves_reference_loot_table.sql.reference",
+      "bytes": 643,
+      "sha256": "9e9110b60bb5104b9a6ef27f2389e5f21e897a7fc7ada4c20574ac9738a9aa68"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+      "local_path": "upstream/data/sql/db-world/base/7_delves_spirit_healers_spawn.sql.reference",
+      "bytes": 2389,
+      "sha256": "77ea36c860253ed16c1e6ce1d2e24bdcbbe09af582abee751bfb465e7b13bc60"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/8_delves_Chest(130000).sql",
+      "local_path": "upstream/data/sql/db-world/base/8_delves_Chest(130000).sql.reference",
+      "bytes": 3298,
+      "sha256": "9dfe4f0a0a26f84521fae702875993fdbcdec254ab9bf45f1982b3bda24bdd3e"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Altar of Storms.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Altar of Storms.sql.reference",
+      "bytes": 34488,
+      "sha256": "7354e32a503a20b119c8169b0194a9fe5e379b38f34d1db172675c9ed5c33850"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Arathi Farmland Highlands.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Arathi Farmland Highlands.sql.reference",
+      "bytes": 57265,
+      "sha256": "62df4a2d8f6e5402613e3e45f8cd4aec05416507a6af16c86a9933caa903c117"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Blackchar Cave.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Blackchar Cave.sql.reference",
+      "bytes": 25688,
+      "sha256": "eeb787114ef31d235534dd4a96d5bb2d8ccaa9c4dc2a6be97770884cc913f904"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Demon Hunter Cove (WIP).sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Demon Hunter Cove (WIP).sql.reference",
+      "bytes": 22034,
+      "sha256": "5665dbe7028b6727da314a6f95350a24b89f4e854841feb4dc891d88b4af7253"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Elwynn Falls.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Elwynn Falls.sql.reference",
+      "bytes": 31980,
+      "sha256": "60eb43733515955a682c60bf3255930efe7e44c2c6a37275f64915c3161abbf9"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Forgotten Gnome Camp.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Forgotten Gnome Camp.sql.reference",
+      "bytes": 37812,
+      "sha256": "6ee1fdf0d43c9a8b72dcf5660b026ad062f6361961ee8b13e90f86c9174266c4"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Gameobjects.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Gameobjects.sql.reference",
+      "bytes": 15086,
+      "sha256": "f189bd9f3e4a458549a56d77fc3365f59f616280d5cb89432f16a3bb6b0199c9"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Mustafar.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Mustafar.sql.reference",
+      "bytes": 18198,
+      "sha256": "cee890a1934b556b2a7772f486a98c67762de756477d8c067f267f4f860c74b9"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Newmans Landing.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Newmans Landing.sql.reference",
+      "bytes": 25467,
+      "sha256": "a7d57452e1140dd50f106e895149de529d90d7b2b1b94fb20db420eca542da19"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_OldIronforge.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_OldIronforge.sql.reference",
+      "bytes": 46018,
+      "sha256": "26fea4c30a174fb38408eb18eb90a6581ebeb8ff7f06daa1cbb7c03b6965826d"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Quelthalas Island.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Quelthalas Island.sql.reference",
+      "bytes": 24721,
+      "sha256": "d4cb0c3544ef318c600ef23f1ab6da251cc442a6cbe2bc712be34ebfed11e9c7"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Sandfury Delve.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Sandfury Delve.sql.reference",
+      "bytes": 70846,
+      "sha256": "504c3cb9c7e5962845ce28070dd29a63512f80f9ca584014bf4225a0c9ef1865"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Stonetalon Logging Camp.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Stonetalon Logging Camp.sql.reference",
+      "bytes": 46882,
+      "sha256": "d46ac93f47e82181ac65ce5c7ef5e145757412cc1541fba269f0669008d1b00f"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Stonetalon Ruins.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_Stonetalon Ruins.sql.reference",
+      "bytes": 15458,
+      "sha256": "2e8a2cb0dc667ee911ce5188bc65b608ef7cf6ed8a43a8b701e31a266021e98b"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_creature_template_resistance.sql",
+      "local_path": "upstream/data/sql/db-world/base/delves_creature_template_resistance.sql.reference",
+      "bytes": 806,
+      "sha256": "d2e2b043233126a3beb4318289948197f38df6b04885b6320c3f564349a4e00f"
+    },
+    {
+      "upstream_path": "lua_scripts/Aquaspawn.lua",
+      "local_path": "upstream/lua_scripts/Aquaspawn.lua.reference",
+      "bytes": 4488,
+      "sha256": "d5231b603e7e57fa68f4f7cac02081f2376843b5b1bc1353ff5479400013433b"
+    },
+    {
+      "upstream_path": "lua_scripts/BobaFett.lua",
+      "local_path": "upstream/lua_scripts/BobaFett.lua.reference",
+      "bytes": 15316,
+      "sha256": "c3ea6fce44558155dc567597969c10c440b919cb8926226f5491afbb7fde0162"
+    },
+    {
+      "upstream_path": "lua_scripts/ChiefRunetusk.lua",
+      "local_path": "upstream/lua_scripts/ChiefRunetusk.lua.reference",
+      "bytes": 7477,
+      "sha256": "b112d1290694f80f1dd351d7075a0dafe20ef4dd51c06519d6f2056d9d197224"
+    },
+    {
+      "upstream_path": "lua_scripts/ChieftanColdpaw.lua",
+      "local_path": "upstream/lua_scripts/ChieftanColdpaw.lua.reference",
+      "bytes": 5807,
+      "sha256": "a2d7d60ba4dc929a6123c9e037aa3a0a1f0eb525d38a05c73f95c40526da4dff"
+    },
+    {
+      "upstream_path": "lua_scripts/FavargairOgreKeeper.lua",
+      "local_path": "upstream/lua_scripts/FavargairOgreKeeper.lua.reference",
+      "bytes": 5468,
+      "sha256": "b994873599573a04400c124824e1dfa757d58994659afce7c42d7f0de1bad36d"
+    },
+    {
+      "upstream_path": "lua_scripts/FleetMasterSkaldron.lua",
+      "local_path": "upstream/lua_scripts/FleetMasterSkaldron.lua.reference",
+      "bytes": 4960,
+      "sha256": "d0b9ae0fc9e48eb052f59f8740947c905c2110436d04898a85723e713675a3a6"
+    },
+    {
+      "upstream_path": "lua_scripts/ForemanGlitzbolt.lua",
+      "local_path": "upstream/lua_scripts/ForemanGlitzbolt.lua.reference",
+      "bytes": 12202,
+      "sha256": "7cce2e49c3a1f3e7fc307ee64cbaccc0c87b98275e17a3563d45a32100b02301"
+    },
+    {
+      "upstream_path": "lua_scripts/Ghubo.lua",
+      "local_path": "upstream/lua_scripts/Ghubo.lua.reference",
+      "bytes": 5913,
+      "sha256": "bfd72bb5b5db435dd87b13f692c0dee59ead0ef1bfb74aa1fed5fc3e874132b2"
+    },
+    {
+      "upstream_path": "lua_scripts/Grurvuch.lua",
+      "local_path": "upstream/lua_scripts/Grurvuch.lua.reference",
+      "bytes": 5919,
+      "sha256": "c355b7bf265bf54495828fc9ae735a304fdddcdb97091b5b7712d8249fd7ed4a"
+    },
+    {
+      "upstream_path": "lua_scripts/Gurgles.lua",
+      "local_path": "upstream/lua_scripts/Gurgles.lua.reference",
+      "bytes": 4518,
+      "sha256": "3d9d3e247376167efbcf8a83e64aa6c537b93d61bdde6573bcc7880dda21fc33"
+    },
+    {
+      "upstream_path": "lua_scripts/KyloRen.lua",
+      "local_path": "upstream/lua_scripts/KyloRen.lua.reference",
+      "bytes": 10966,
+      "sha256": "d340789559a4d5ae08a7a69fadbda2acd8d3b8f7604377129e0137f3a1877c7d"
+    },
+    {
+      "upstream_path": "lua_scripts/Lithianawan.lua",
+      "local_path": "upstream/lua_scripts/Lithianawan.lua.reference",
+      "bytes": 4823,
+      "sha256": "39a9d1fb13bc72590daf1e2be4d74db18a240936de519eb2afd650a654ac1a4b"
+    },
+    {
+      "upstream_path": "lua_scripts/LordMwargadon.lua",
+      "local_path": "upstream/lua_scripts/LordMwargadon.lua.reference",
+      "bytes": 4693,
+      "sha256": "76c379df50baa31f7aba22079e8217f67fb1164937242f2e8d8c88d1f4efdab6"
+    },
+    {
+      "upstream_path": "lua_scripts/LordZuletekk.lua",
+      "local_path": "upstream/lua_scripts/LordZuletekk.lua.reference",
+      "bytes": 6869,
+      "sha256": "68bce4bcf4b83f12ff2c5e92b712ac8048f1cb14a3b7357141cfa366fd385e5c"
+    },
+    {
+      "upstream_path": "lua_scripts/NarulFlameseeker.lua",
+      "local_path": "upstream/lua_scripts/NarulFlameseeker.lua.reference",
+      "bytes": 14117,
+      "sha256": "ba3da4996fc70ed08063f9264aa62b809101016df51517f8ca2e4e9c726792d7"
+    },
+    {
+      "upstream_path": "lua_scripts/Nessie.lua",
+      "local_path": "upstream/lua_scripts/Nessie.lua.reference",
+      "bytes": 11593,
+      "sha256": "a9056b2fc92d8d786c359311770a0f3b9b38584c4687a5ad597673dd8610ed46"
+    },
+    {
+      "upstream_path": "lua_scripts/OverlordMoosh.lua",
+      "local_path": "upstream/lua_scripts/OverlordMoosh.lua.reference",
+      "bytes": 7616,
+      "sha256": "10966ddf48c3c66b861c91fcdede0a88672b4d74526aea5a89dae658d67ffac3"
+    },
+    {
+      "upstream_path": "lua_scripts/OverlordRigto.lua",
+      "local_path": "upstream/lua_scripts/OverlordRigto.lua.reference",
+      "bytes": 5847,
+      "sha256": "dd24a9256634b2bc6fafc73a439d8383c92afbf62a10238f0e025f36bbf172d9"
+    },
+    {
+      "upstream_path": "lua_scripts/OverlordSnivey.lua",
+      "local_path": "upstream/lua_scripts/OverlordSnivey.lua.reference",
+      "bytes": 7142,
+      "sha256": "1fdad3b86e4d7b3112894d89f4f038f00cdfeb1fa91ec109471043d50bb4cb1d"
+    },
+    {
+      "upstream_path": "lua_scripts/RhulkTheDiseased.lua",
+      "local_path": "upstream/lua_scripts/RhulkTheDiseased.lua.reference",
+      "bytes": 6219,
+      "sha256": "e17945ecf9a1ab25b02918d87b5264d41203c90c3c7914574dfae8cd106644f5"
+    },
+    {
+      "upstream_path": "lua_scripts/RugoldtTheCorrupt.lua",
+      "local_path": "upstream/lua_scripts/RugoldtTheCorrupt.lua.reference",
+      "bytes": 6029,
+      "sha256": "382a6f3fdbc3bfe9ccdf32cec9f8f6c81243c29ef02560223594ee69044b7503"
+    },
+    {
+      "upstream_path": "lua_scripts/RuinSmasher.lua",
+      "local_path": "upstream/lua_scripts/RuinSmasher.lua.reference",
+      "bytes": 9744,
+      "sha256": "6781c87db5c3f52067453cfdfabd972de649732405d10b5b6eb30c715be81ab2"
+    },
+    {
+      "upstream_path": "lua_scripts/Savathun.lua",
+      "local_path": "upstream/lua_scripts/Savathun.lua.reference",
+      "bytes": 6915,
+      "sha256": "d4bdbb97a8df7a849818301440c778aadc5ba2a6b7f9ff8d0fb4a04c25998951"
+    },
+    {
+      "upstream_path": "lua_scripts/Scervig.lua",
+      "local_path": "upstream/lua_scripts/Scervig.lua.reference",
+      "bytes": 5585,
+      "sha256": "89f11487750727645e2b036d1a38403b5805cf0f422c471adae2d6830120eccc"
+    },
+    {
+      "upstream_path": "lua_scripts/SouseSanRhazo.lua",
+      "local_path": "upstream/lua_scripts/SouseSanRhazo.lua.reference",
+      "bytes": 5798,
+      "sha256": "a7e1937fc9b7fa443155d3d0c7c86f7f01d431c9e3524973f9fbbec2ef3b4b42"
+    },
+    {
+      "upstream_path": "lua_scripts/Vader.lua",
+      "local_path": "upstream/lua_scripts/Vader.lua.reference",
+      "bytes": 14318,
+      "sha256": "109d0989833156c1110403d03310c7367f52b5cdcda896fa65a3768ba34f349c"
+    },
+    {
+      "upstream_path": "lua_scripts/Xantosh.lua",
+      "local_path": "upstream/lua_scripts/Xantosh.lua.reference",
+      "bytes": 6829,
+      "sha256": "61ec63788b5fb18fac50541e69aad80d31345a05bb8a42e04a3e33a4f10d3913"
+    },
+    {
+      "upstream_path": "lua_scripts/delves-teleporter.lua",
+      "local_path": "upstream/lua_scripts/delves-teleporter.lua.reference",
+      "bytes": 5739,
+      "sha256": "e0e6d074f709ac9138912ca6074150a8671a95740efd9be13b6714749a568abc"
+    }
+  ]
+}

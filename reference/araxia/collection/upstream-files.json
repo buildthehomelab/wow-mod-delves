@@ -1,0 +1,2913 @@
+{
+  "repository": "https://github.com/araxiaonline/Delves",
+  "commit": "aaea411c6ea1831e19e284ed4e4445f83f796272",
+  "scope": "Complete pinned upstream files; not compatible/install-ready merely because hashes match",
+  "files": [
+    {
+      "path": "DBC_CSV/DBFilesClient/AreaTable.csv",
+      "bytes": 2785,
+      "sha256": "8f68a2c1945019e10b2dd23cf2e43e31ec7e6d8e55b181033526a26117cbc07e"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/CreatureDisplayInfo.csv",
+      "bytes": 922,
+      "sha256": "688365c99d6aeb0c9522de6166f0bb057e3dcac72ba6c06bfbce33f22f8b2a50"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/CreatureModelData.csv",
+      "bytes": 2301,
+      "sha256": "2bbaaaad2debebccd986d0f7d40776f3c088db299675cab36a376a35c0897617"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/LoadingScreens.csv",
+      "bytes": 1095,
+      "sha256": "e559770fbb64fc90714f838b162d5ba198c22c0209d068488874a60cbbd9447a"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/Map.csv",
+      "bytes": 4981,
+      "sha256": "420c1eb48bdf79146735281d91c0581ac92ef448754c8561df40c68fa420ed1e"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/MapDifficulty.csv",
+      "bytes": 1919,
+      "sha256": "cba665fba7aebf69177d8b1aafc73a446412263e0f2a089d7f9e19ef83d5bead"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/SoundEntries.csv",
+      "bytes": 2227,
+      "sha256": "350ed4f966daa9153fcb442eca0f9d81f8cc7c71a3d2cf0b9f7988cac04166bc"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/WorldSafelocs.csv",
+      "bytes": 1913,
+      "sha256": "a87f21c797493d4c707c5e5960705dc19ecebcc0cac8c1d1f1c6d215899bef86"
+    },
+    {
+      "path": "DBC_CSV/DBFilesClient/ZoneMusic.csv",
+      "bytes": 1017,
+      "sha256": "84bb51a95f13bc9a9233e4996f557b4dfc86b17031ac108605f98c94dffcd482"
+    },
+    {
+      "path": "JustForLooks/LoadScreenAltarofStorms.png",
+      "bytes": 880878,
+      "sha256": "18a17ec26876e672527077da68daebe81c562115af3c5195616318d5d410bd03"
+    },
+    {
+      "path": "JustForLooks/LoadScreenArathiFarm.png",
+      "bytes": 873587,
+      "sha256": "ca816d92833b2b317461971807d04b68a3a01cc249f95f964df48e89264ccf7c"
+    },
+    {
+      "path": "JustForLooks/LoadScreenBlackcharCave.png",
+      "bytes": 788245,
+      "sha256": "5ca96bb34b66a15fb783345cea70b4ecdff2e7dc4e7eca74bc74c5a3ff6d61e2"
+    },
+    {
+      "path": "JustForLooks/LoadScreenDemonhunterCove.png",
+      "bytes": 830538,
+      "sha256": "d628c56469c7a4b3f918c75dfec7af55ea7292d5ca2dc51d20545b6d6b65e4a7"
+    },
+    {
+      "path": "JustForLooks/LoadScreenElwynnFalls.png",
+      "bytes": 1310656,
+      "sha256": "65fa2061024c16b69edb9cc3917b283d3fdad45abcfd1cad7818d3b735d30ff0"
+    },
+    {
+      "path": "JustForLooks/LoadScreenForgottenGnomeCamp.png",
+      "bytes": 943290,
+      "sha256": "1b692f42651bec37081d8812fd16413b158a75dbf8d6d8a74fbdd848e1449ce1"
+    },
+    {
+      "path": "JustForLooks/LoadScreenMustafar.png",
+      "bytes": 2954436,
+      "sha256": "c7197177c083e6e35daf47f4fb181908fe858f04d88cdf5745a231c99872a3bb"
+    },
+    {
+      "path": "JustForLooks/LoadScreenNewmansLanding.png",
+      "bytes": 1069858,
+      "sha256": "8868639f911843fca36435553b4990c2f3268ed21b7860d9f20ff1047e99ce25"
+    },
+    {
+      "path": "JustForLooks/LoadScreenQuelthalasIsland.png",
+      "bytes": 788568,
+      "sha256": "cc7f2aaea80d91aadb854c973394e26ea9913e8b99cc827bc76176b4d885ecb5"
+    },
+    {
+      "path": "JustForLooks/LoadScreenSandfury.png",
+      "bytes": 1090472,
+      "sha256": "84944a5d4f669b2496d01b66a07590969be33d26adf522f57face19e134b62f3"
+    },
+    {
+      "path": "JustForLooks/LoadScreenStonetalonLoggingCamp.png",
+      "bytes": 963753,
+      "sha256": "92bd5e797630260581f21f5a0c207fa492b24526b111db0b0c0ce8390b7875be"
+    },
+    {
+      "path": "JustForLooks/LoadScreenStonetalonRuins.png",
+      "bytes": 825884,
+      "sha256": "888c12cd6f7dc27ac169e75511c002f3835320238ecde81f198582eae3438afa"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1068,
+      "sha256": "203a620948410283b0ca6c696133983ebd4050f1f258c5a66bfcb7f943190d5b"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenAltarofStorms.blp",
+      "bytes": 1399316,
+      "sha256": "b42728b2a6a1785deb35644bc27d2f8196b9fe847d4429ef251f6560838747b9"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenArathiFarm.blp",
+      "bytes": 1399316,
+      "sha256": "928dab9becc5f68b43901366c1371a330465035f2192d112941c0a429ca9867f"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenBlackcharCave.blp",
+      "bytes": 1399316,
+      "sha256": "d1b5b1235c784858f1d13bf1707800bcfd0864f08ccc81841c97a6b0a0c304f2"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenDemonhunterCove.blp",
+      "bytes": 1399316,
+      "sha256": "5466bcef4fb4f92317d039379cc0991e5c0a9d69e26eb09fa55b3ab0fcf6489b"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenElwynnFalls.blp",
+      "bytes": 1399316,
+      "sha256": "ac2715e0f512167c6ed38c8bbc49ef3e12fbc186d106fe53d2abdbcebc858bc2"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenForgottenGnomeCamp.blp",
+      "bytes": 1399316,
+      "sha256": "65432efc5ef195848d3cf205cedeaa0b5fe88df86c664a09793339e0b97c9bb9"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenMustafar.blp",
+      "bytes": 5593620,
+      "sha256": "4d21ee83b3a82f09d12f14365bb75354f2ec18956415a7123a08709f209c32dc"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenNewmansLanding.blp",
+      "bytes": 1399316,
+      "sha256": "b1360cac30279bc9b6f5b43ce3257fc4bbf4dcbccfdb5eb5f9def433958a6fbf"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenQuelthalasIsland.blp",
+      "bytes": 1399316,
+      "sha256": "ebfc9e5dc600ad3d7b10f2cea9770e6d78b5706abccb8e378a2c557bd103ad61"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenSandfury.blp",
+      "bytes": 1399316,
+      "sha256": "88d8e13b78e6f411280e2c32fc0ac2bb7f80fadb748eddd1d77a0a0e9212aff8"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenStonetalonLoggingCamp.blp",
+      "bytes": 1399316,
+      "sha256": "7e4022576e97e8fe0b0ac6097e69bb0d5c9192487b55cb3fcc69cbc2022ba0f3"
+    },
+    {
+      "path": "MPQ/Interface/Glues/LoadingScreens/LoadScreenStonetalonRuins.blp",
+      "bytes": 1399316,
+      "sha256": "e0410f607914bc25517ae20bb210be9cd880503967e6aa7c2a2e90e2b230dfaa"
+    },
+    {
+      "path": "MPQ/Sound/Delves/AFarmlands.mp3",
+      "bytes": 12938057,
+      "sha256": "26a67cc7904e58979f8bd03131469f9c00d261c89efc2a1e0fa87eada6f80cd9"
+    },
+    {
+      "path": "MPQ/Sound/Delves/Blackchar.mp3",
+      "bytes": 9115119,
+      "sha256": "046c323578524d76b06e02176692ec3ea16c141bc72f6c5b1770634bada3aac9"
+    },
+    {
+      "path": "MPQ/Sound/Delves/DemonhunterCove.mp3",
+      "bytes": 8146697,
+      "sha256": "0a6fdcbd8e51eecd22ef9b3ea29bd3856828b2bd863123f1085c85e89af9ee64"
+    },
+    {
+      "path": "MPQ/Sound/Delves/ElwynnFalls.mp3",
+      "bytes": 8758064,
+      "sha256": "b3284436e05229ed91d3766200e1381cecfd6994676e0f19fbaeb5d06e46c786"
+    },
+    {
+      "path": "MPQ/Sound/Delves/ForgottenGnomeCamp.mp3",
+      "bytes": 26157832,
+      "sha256": "b9fe2bf73970108ecaf0acb08320ce3e840d3ead725ae08201a90159e482e39f"
+    },
+    {
+      "path": "MPQ/Sound/Delves/Mustafar.mp3",
+      "bytes": 19634605,
+      "sha256": "577de05301b800e47dcd177c3067fe614166400ea2a7b0de502de3fd83b0ad2b"
+    },
+    {
+      "path": "MPQ/Sound/Delves/NewmansLanding.mp3",
+      "bytes": 9802937,
+      "sha256": "9ea7c23e473c243f67d25d47321cd24632ae6b11ee52b924ac303a780f22ce83"
+    },
+    {
+      "path": "MPQ/Sound/Delves/OldIronforge.mp3",
+      "bytes": 13676342,
+      "sha256": "1c1d09131975ae557f9b28efb04ca1889d6f3f4be1cbcee1d106d41486d5f049"
+    },
+    {
+      "path": "MPQ/Sound/Delves/QuelthalasIsle.mp3",
+      "bytes": 12547689,
+      "sha256": "180e88625e8654796f1095ae6d5d34a3a96dca500b678a55861c3e06ddecb591"
+    },
+    {
+      "path": "MPQ/Sound/Delves/Sandfury.mp3",
+      "bytes": 14015789,
+      "sha256": "99442f1f69af22d9f13f34a42e3b7878c8b84f390ff1170b44601584d854a733"
+    },
+    {
+      "path": "MPQ/Sound/Delves/StonetalonLoggingCamp.mp3",
+      "bytes": 7954281,
+      "sha256": "3b0068bb77c842f44960c543a9b01a4e4b53e69e8b5a6935676946e18d341805"
+    },
+    {
+      "path": "MPQ/Sound/Delves/StonetalonRuins.mp3",
+      "bytes": 8854176,
+      "sha256": "73d6df0f787219e7b6d7686135e846631ac2a0fcbd62d1c71776548fc153902c"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/bobafett.m2",
+      "bytes": 2526480,
+      "sha256": "ee7f32f2f69496cb986a0077692a42277a852d26f56f797111daff2b9e107b4c"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/bobafett00.skin",
+      "bytes": 29088,
+      "sha256": "476069a8e263b517770c5c2edf359969cc4c153b98fb31436a77330c6b0434c9"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/textures/boba_body.blp",
+      "bytes": 350716,
+      "sha256": "c1c519c7dd996d66a4065a84bca1ed8bbe17fc09159c459afa2cc988a9cf7f78"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/textures/boba_hands.blp",
+      "bytes": 44876,
+      "sha256": "d492d7f02f7d167fad5ef89215e3d2fcf0a8d8cb34eaa71697be4b4130e6b299"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/textures/boba_head_revised.blp",
+      "bytes": 350716,
+      "sha256": "f220a422ed4cb285fd322bde0a15e7e05d71e984638bf2d36768586c037d8bc4"
+    },
+    {
+      "path": "MPQ/starwars/fetts/bobafett/textures/boba_jetpack.blp",
+      "bytes": 175948,
+      "sha256": "94002ad4a0cc4c4c7b77940ed5ddc725d8dc449db4b38c0b54785e7ffca3c171"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/jangofett.m2",
+      "bytes": 2526544,
+      "sha256": "5c49890035fd4ee43a3c17f679c656447531f354025a9e5b4128f94eb95648a3"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/jangofett00.skin",
+      "bytes": 29088,
+      "sha256": "476069a8e263b517770c5c2edf359969cc4c153b98fb31436a77330c6b0434c9"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/textures/jango_body.blp",
+      "bytes": 350716,
+      "sha256": "ab238011509d375937ea5b4cf7a2e42d8d55e43e9172d31d4324472f5f980c03"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/textures/jango_hands.blp",
+      "bytes": 44876,
+      "sha256": "d492d7f02f7d167fad5ef89215e3d2fcf0a8d8cb34eaa71697be4b4130e6b299"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/textures/jango_head_revised.blp",
+      "bytes": 350716,
+      "sha256": "5b771f1b185595409de39d10f54a4cb8bda5ba8b91a6e805124f8769b1e09521"
+    },
+    {
+      "path": "MPQ/starwars/fetts/jangofett/textures/jango_jetpack.blp",
+      "bytes": 175948,
+      "sha256": "7c1ae71e0c4d03b46cf24d6bd10c4339d36fab52f984ad6d6734aca7456961d6"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/arms.blp",
+      "bytes": 175948,
+      "sha256": "2573466c05e4eb0d9f3462f53c51bb25eb900d78f1bc3c2908b8862b2be228da"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/body.blp",
+      "bytes": 2797388,
+      "sha256": "fb914161c0986b44d8e20543b89aa0661c435689abb80923c9d3046c53a7b005"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/boots.blp",
+      "bytes": 175948,
+      "sha256": "7daf217a6f97245200b4c423afcde425200a07e4024edd8516a401adb891344a"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/cape.blp",
+      "bytes": 175948,
+      "sha256": "cfa1fc53e042837705792b10636cc55e1760ca627492d20b3c8ebe535079929a"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/cloth.blp",
+      "bytes": 700236,
+      "sha256": "ae548e8947ff7288ae2a6d8fb9d1420887ff599bbb68f5db207b9f701f5981b3"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/diff.blp",
+      "bytes": 2797388,
+      "sha256": "44a275c47c90f5f5cb46205270add0768191b6214fbea3ea86c49ff176448377"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/haireye.blp",
+      "bytes": 700236,
+      "sha256": "0ec5a049d288613d991a44debbe0678ac13ad8dbb52380a4ebc3f8820b91b14d"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/head_face.blp",
+      "bytes": 700236,
+      "sha256": "d5aa062b8a8b3196757a5f6fba2af00e7c0ca84178ad115414aeb19a3da5246c"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/hood.blp",
+      "bytes": 700236,
+      "sha256": "79d694f0c69615841bd984a66e65d1e563ba8eaf8ce8c597a67808d80263a11a"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/hoods.blp",
+      "bytes": 175948,
+      "sha256": "fe5832a050da3f2696c07762195d72f8c327a72851bf41a9a1c17452a7532817"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/kyloren.m2",
+      "bytes": 2610624,
+      "sha256": "5ee80fa4aeeb75fb23252b1bba4e3e53980d6c62e493c829e125542b800faf60"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/kyloren00.skin",
+      "bytes": 61312,
+      "sha256": "37217eeaec2dc3f465fd951dac43fc137733e621d6d6c25779cbc7a5fe6e9cda"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/kylorenunmasked.m2",
+      "bytes": 2609904,
+      "sha256": "5f4b681ff399b2c3fbaa267a3f086f413d6a4352e525f1ca2be751a511c41b0b"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/kylorenunmasked00.skin",
+      "bytes": 60432,
+      "sha256": "1117ab1d57bd6e69888487baca46c79eff90296dd4c63a1c3a52415c7a91c633"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/lightsaber.blp",
+      "bytes": 700236,
+      "sha256": "b67d8cf19edcce4900dae17dc5a3f0117d807f89f862ce1e99e0bb3758b52208"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/mask2.blp",
+      "bytes": 175948,
+      "sha256": "d0dcfeca62ab12c83938e4d072fcf3d295fb0b4273ab5a5549f4a3dbc1b2282b"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/revan_diffuse2.blp",
+      "bytes": 700236,
+      "sha256": "a9966c0f4469b9da8fe8a95744e43dd586522d19dc9d2156aaf68f67d9785054"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/saber.blp",
+      "bytes": 700236,
+      "sha256": "8807f9367e8c36c8bf3a3c169eeabd53f5ee6b1b2a7f1341215988faacafdb42"
+    },
+    {
+      "path": "MPQ/starwars/kyloren/torso.blp",
+      "bytes": 350716,
+      "sha256": "bf530f144dd09ec873d535853102550a9975603fb8c25b6dcdd14edb5baa34d7"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase.wmo",
+      "bytes": 1160,
+      "sha256": "2a44e538267a4815e4ec05136ed12c881417355157bca267fe92b1fd74929334"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase_000.wmo",
+      "bytes": 5280,
+      "sha256": "c35baf13c29b8477e62ea093c768ae38935321a5811acc24d48bb05a6d22c4d3"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase_001.wmo",
+      "bytes": 404,
+      "sha256": "aa5d716e40afd4547c02bf524546d68973825d4d61a9d12b58e6e3f5728bccab"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase_002.wmo",
+      "bytes": 3372,
+      "sha256": "bac378e35e769ab51fe26adf6b71c88dcdc8bf16cec04590b6efff4364b3be35"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase_003.wmo",
+      "bytes": 41744,
+      "sha256": "e3537cb209a67270b1ecdb39231d6704b4668a4d46ddcff5d88ce4628e2c2a78"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/lap/lapbase_004.wmo",
+      "bytes": 404,
+      "sha256": "22fa13bcf5f6930521c36cf98986bde0b1ae8ed1ebfde991dcccf7a93e7c97b3"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar.wmo",
+      "bytes": 8708,
+      "sha256": "b9b0d8d11dff6cbfadc2f66b8d8acc50f165c648352e4e30a747fde1b2521796"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_000.wmo",
+      "bytes": 40896,
+      "sha256": "fef3dccdf32748a75acc183611eeb33ff7f58ce2d6c58a9f12d321980d523f70"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_001.wmo",
+      "bytes": 238724,
+      "sha256": "462e26b2b2e50ac7b0c06f92530ee567319be1bc493a127d9186db42b7a5b813"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_002.wmo",
+      "bytes": 1464,
+      "sha256": "8279b06185cf42af3c3c60d028499e4395bbe06e964dba7735db209cf7a99d17"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_003.wmo",
+      "bytes": 3796,
+      "sha256": "4c371fd890121f7a221918fb16ce92dc917676df8bd5ca40b809b87c72bf9281"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_004.wmo",
+      "bytes": 29448,
+      "sha256": "98ae00421095e9008b658953fcc39ced7d326a3f06fea751485f30ca25a4bc20"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_005.wmo",
+      "bytes": 6658,
+      "sha256": "a3528edaeae704ab5ccc15d028c7bcbd9bd5c36a1cdc53fafdd2b3b45333085e"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_006.wmo",
+      "bytes": 11534,
+      "sha256": "870b508223dfae6da49f388f2c2ebcc4a4d212340e492ecf2f7d4bbcaba2c81c"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_007.wmo",
+      "bytes": 7188,
+      "sha256": "994f51d2f2266aeefee5c7a0ef231cc3482fcf7a93340dd342785ff8f785b2b8"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_008.wmo",
+      "bytes": 4856,
+      "sha256": "bc52fdf411fc874166651b4b66a59da48cd29f69578b2a42253ff75db53200b9"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_009.wmo",
+      "bytes": 616,
+      "sha256": "e50f357087037e58e3a10436e2866754b888bdfd5ba0a77ad21271f3b06314cd"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_010.wmo",
+      "bytes": 9732,
+      "sha256": "1f8b898cce26e50b7682b72c0a7a522e01a1bd61f4c840fcdceea315fa455e4e"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_011.wmo",
+      "bytes": 8884,
+      "sha256": "066a4ac2223e881ea7da644fbfeff5c0ee667b39607fe4e13f4607acaea7e7a8"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_012.wmo",
+      "bytes": 4432,
+      "sha256": "e982e515819fabad6e2cb253d7f48e18bc3bda64623eb436fa673fdc2f5c1213"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_013.wmo",
+      "bytes": 3160,
+      "sha256": "7a2cf3d2864dac25798d15f75ba8bb0579fa8aeedc056783e9814f9b9aa7501a"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_014.wmo",
+      "bytes": 828,
+      "sha256": "17ec466e58c72284caa5e188f7c2b944dd9cdfb67640c467c5db68a9d7252e23"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_015.wmo",
+      "bytes": 37080,
+      "sha256": "d77e2b2fd0cad6fb53b52ae196a22542695ec4062c31b1d83db4cd028b6cd3d9"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_016.wmo",
+      "bytes": 106616,
+      "sha256": "42008c268f9b64745a8490e104191301fe136071990db6ea61b6e6db89ea2e80"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_017.wmo",
+      "bytes": 348364,
+      "sha256": "6146b7f03ebab14fe9a9ecad9e5a76faf7f8a1d3654a6163563f4b2d6360afb7"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_018.wmo",
+      "bytes": 1040,
+      "sha256": "69142ea37de58e1c7b63d80641cb94b5df2377e507bfd68c895c9164a70a854f"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_019.wmo",
+      "bytes": 173678,
+      "sha256": "f77ed011865ef2defac2455a6b374afa3678a0feb6ac23680055a72b0ad64c83"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_020.wmo",
+      "bytes": 11534,
+      "sha256": "9dcc23bbad480ba954fc40393aa6d05a18ed091cbc25a7f655d9c5ace4f13e42"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_021.wmo",
+      "bytes": 2100,
+      "sha256": "b81e5342b3fb847de322fe82a20e377eb2e1ccde7856d2ca5d461e91c7842177"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_022.wmo",
+      "bytes": 3796,
+      "sha256": "cfcd113c9f1b682c69958bda45892c3dce10901a02096ff4106efb7255a792a5"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_023.wmo",
+      "bytes": 130996,
+      "sha256": "3d0084df21c9472c5f87ac4c8c18f608e9ab99af222ffdbdcdbd5aecb98d61e5"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_024.wmo",
+      "bytes": 16516,
+      "sha256": "b49c0bafb9e0f11f4f6a992165955da7f67b63daed5319a5b312c7129c86a15b"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_025.wmo",
+      "bytes": 3690,
+      "sha256": "78a81ff3e78b5b7efecb405f1cd9c664857fd25807471c901074a435fe4f1106"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_026.wmo",
+      "bytes": 616,
+      "sha256": "c18fdd1d5e059372db317ab6a1dc7cc9511a8b3d6911863f4b4ec0bd60c8ce46"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_027.wmo",
+      "bytes": 3690,
+      "sha256": "a2bcac12f0cb460b5ab674bf1d9f3a782f7401b6cf11c486529a547d2b8365c0"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_028.wmo",
+      "bytes": 42380,
+      "sha256": "975e8699fa54714e3515b02ad0df4ced28917673f36ecd7f7b28732069244b6b"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_029.wmo",
+      "bytes": 41638,
+      "sha256": "94fc5a399384afc904e213bf107d6104f9fd55ae01b2c407edaf5577e3c7f811"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_030.wmo",
+      "bytes": 1676,
+      "sha256": "b669249f692013cb6cacd23e76a4b96734df747c55d72ada9bb11570e7e87d61"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_031.wmo",
+      "bytes": 1994,
+      "sha256": "6f17be689a4b7cee3a763e39004fc750b0105356373af7c677916e7e15cc63dd"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_032.wmo",
+      "bytes": 539040,
+      "sha256": "95c196963abecf97991ddec200888eca0a2a989d015f66551dbc8e2126a4b188"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_033.wmo",
+      "bytes": 6022,
+      "sha256": "a15247215759c34e138a1d59643d146d1a0e2d5b79444aea6225d24460af9b77"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_034.wmo",
+      "bytes": 662296,
+      "sha256": "133b6c24423b33621b0a2906b36c8b59c29f644e2a23f8e89ace439f5c37d63b"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_035.wmo",
+      "bytes": 1252,
+      "sha256": "c0e0b2d3dcacdb68930de2f3078d6de97d14d49956545bf78237c678847de41f"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_036.wmo",
+      "bytes": 2524,
+      "sha256": "e7e37a08ac054c87608bd9da00d9b8b0b379fef3354ad5da276a6a299354a3e3"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_037.wmo",
+      "bytes": 1040,
+      "sha256": "7a8a79fc6adefd3c8a0484e6d49d066a3c7f3376639c20fa4a43236d78c183f2"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_038.wmo",
+      "bytes": 4432,
+      "sha256": "3e01e1074d7b120f6872e10e4714dea964288ffc1f844a02f4e56156f2b21d20"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_039.wmo",
+      "bytes": 4856,
+      "sha256": "d3ccba1b3be52c5273e477e1f4b602ecd6dd64ce67acb35893f10a9938423e4d"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_040.wmo",
+      "bytes": 2312,
+      "sha256": "3db2bc2fb011649114c77853b29406f611ce67b6694340d7881e0294d42b37d8"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_041.wmo",
+      "bytes": 404,
+      "sha256": "7398cc55b6ffb41916b29da1a21844aa71f667511f2b00bb77312913bd5d2a51"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_042.wmo",
+      "bytes": 29554,
+      "sha256": "9311a2b052d1de272c4c0f28d3a4a765cbc2786a946cb674c6e4caa055585727"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_043.wmo",
+      "bytes": 89444,
+      "sha256": "be278e9d8cef225e9455cbae4803ac3379f8fd95cbf20905aa6f3578c663ad3e"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_044.wmo",
+      "bytes": 616,
+      "sha256": "aed4b4811b16e13446afc1fe700db0bf324fd6569cfd5cf735aa64c49686d4da"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_045.wmo",
+      "bytes": 32098,
+      "sha256": "548ebdd71752a51f302f6d64d51ec0bbbf16160126c37c7b88830d9aa5fae40c"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_046.wmo",
+      "bytes": 10368,
+      "sha256": "2854b3e2c582b13f29b4cdd933ac6ea7f6bc95d013d70c9a8492cf73abd401ef"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_047.wmo",
+      "bytes": 23194,
+      "sha256": "0bea78ce2ab36dcf1b749bb1070781370b823e5fae14713f950bf319473f7d3c"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/mustafar_048.wmo",
+      "bytes": 23936,
+      "sha256": "6c0acab88c824e61ba94251390313c997399686fe6f44c46ec3539e94d0cc7b0"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/base_interior.blp",
+      "bytes": 175948,
+      "sha256": "4104c028c3804e9b3ec4a2d431a6f72f516400cb9131decd7131e8c3d03e64ae"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basefloor1.blp",
+      "bytes": 175948,
+      "sha256": "bc96e374ab3b837f55d7d98ef27cee3754de6fef7b105948b9e9806ded65e0b4"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basemetal1.blp",
+      "bytes": 175948,
+      "sha256": "971a5bc12396aa0d6e060b6830c99fdbd9174c6523a335d4ea34517a236033e6"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basemetal3.blp",
+      "bytes": 175948,
+      "sha256": "2327d443c97f93d8c07666dcb821e60b52b348c9e18f0540a45a602b042ef34f"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basemetal4.blp",
+      "bytes": 175948,
+      "sha256": "81d395de82ca0a47383c88e33bc0e95505af14daf846df5d44b4f1dd9c8aaec3"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basemetal5.blp",
+      "bytes": 175948,
+      "sha256": "a552e427f2372a65dbd487ba4890883eff9c9ce2371247785a83fdf7ea94daef"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basic_metal.blp",
+      "bytes": 175948,
+      "sha256": "45a448211e311df4f5c6196ed27b1403946d1f9625796eb1d8a932feace08af2"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/basic_silver.blp",
+      "bytes": 175948,
+      "sha256": "cc84700f1645044c2cb988bc5bb78e067bfb7085aef5389368de16dc3097e7b6"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/beam_plain.blp",
+      "bytes": 175948,
+      "sha256": "f266579ee7bc06275d37bc51c7c8ba72faf35f4b953d8ff94a9bf369aead6268"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/blastshield.blp",
+      "bytes": 175948,
+      "sha256": "4a0f0ba3514ba360ef170d3b7d8a23c0fe406af58c9f304ed7633e2c0ca46ea4"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/ceilingsupport.blp",
+      "bytes": 175948,
+      "sha256": "974a7996561bfef2728e4404f005deefaaca63a5bfa1f72fc3dc5d31711576d8"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/control_floor_1.blp",
+      "bytes": 350716,
+      "sha256": "358d011308aa141d78b5ae6eebd0d24e2caec3a883163e52bef4b22a616f091f"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/control_floor_2.blp",
+      "bytes": 175948,
+      "sha256": "222b12d007d3c75f9574349e71282d6fd51215adb51cb43f40ffcc389293c972"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/crate_panels.blp",
+      "bytes": 700236,
+      "sha256": "d8de6555fe7eaa826ea05dc4b8da6c305dd1588bc3893b1b557c80f0017120ae"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/door_frame.blp",
+      "bytes": 88572,
+      "sha256": "0aa4a9fadb2cb02fea0e15a29f977ca5490da296a04d41aa26ab420e3848bae4"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/floor2.blp",
+      "bytes": 175948,
+      "sha256": "5ac1b697d74855b4a3014bf84f2193c8c7d64121946ca6032cd508572d66cb38"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/floor3.blp",
+      "bytes": 175948,
+      "sha256": "dfc14db0fbd17e51cc6875c8ee8339ca4d52e2ee6cd98a256493e1b2655bf568"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/floor3_mask.blp",
+      "bytes": 350724,
+      "sha256": "0604d35cf7c42cfa85d29f7cadb60ccdff58a3af137c0d7f40bd5e6989dc9b27"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/floor4.blp",
+      "bytes": 175948,
+      "sha256": "5c5cb4670c2b4fa9432a53aca008401dd2a83c4dba65a969dcb860239165afc3"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/hangar_ceiling.blp",
+      "bytes": 175948,
+      "sha256": "27c7eb527410c214fafcd9b1b1acfff34974d57d9ced362004ba4704b85c62f4"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/holo_table.blp",
+      "bytes": 175948,
+      "sha256": "740ad78febd51c8afbac09f1791161aa1395f41a9e7b07a4f39061bfc4cdd373"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/lava_pass_1.blp",
+      "bytes": 350724,
+      "sha256": "b66b873f99423a6fae1ce584f97ba41233505ba28a6aef62414c76037ba4b022"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/lava_pools.blp",
+      "bytes": 350724,
+      "sha256": "026966c6e769733163b585e102b92f96ef19be400ff6c37105b7a9865c1252e6"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/light_blue.blp",
+      "bytes": 3916,
+      "sha256": "e897262fecd26dd87744b25bd40fd7fbc74d4387b3305f85e4f745c50cf53a5e"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/light_ceiling.blp",
+      "bytes": 175948,
+      "sha256": "d1e5fb87586e50b1f1371ec2e13542a0a06f4c7a8d5a0bdb276eb07806238b1a"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/light_white.blp",
+      "bytes": 3916,
+      "sha256": "b0004af70b8dbbdeafea09e4452a680a742d0d836ac7daa0fe2117ebe9ccdbde"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/mountain.blp",
+      "bytes": 175948,
+      "sha256": "c2e7f61d9ccf6e25e3730f469b9f81ebf36b762bade0368ee69a90e194b8bba4"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/mp_r_trimlight.blp",
+      "bytes": 44876,
+      "sha256": "a075945465a143fc6ee9e53abfc921ada250b693d3d542dd9a944d0a61356539"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/mustafar_door.blp",
+      "bytes": 88572,
+      "sha256": "f872f5cc2465d0120c3037810076421c68cf17c9453edd5b6fe6cc36cc94aca6"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/newwall.blp",
+      "bytes": 175948,
+      "sha256": "15f893442cf5c4e51528dd0dc4bcce0d18cd60007a3e369409ee1a7536f30441"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/pillerc.blp",
+      "bytes": 88572,
+      "sha256": "04fffdf77c1dc8c18f74304dc8108eacb0a84c5bef7c05217c088ea60ea039a1"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/ramp2.blp",
+      "bytes": 175948,
+      "sha256": "5a598076ba0f26310ff8cb859310ed8a8c49558ab12fd5004edc804b9bcf82d9"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/river_trim.blp",
+      "bytes": 700236,
+      "sha256": "49e8463255a490af947a6989d66e532fed92cc5ac6be9e8b036843e309d0681f"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/s_light_vjuny.blp",
+      "bytes": 44892,
+      "sha256": "0aed19ab29d192785f2f1a1fdcb40e92459aa059c2bc9e6cdc4d1e83907b66a1"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/screen_readout2.blp",
+      "bytes": 175948,
+      "sha256": "b88a5dfede9a8732a850b9a8b1faf3b78eeeaeb6dc5f4105817bff3a5f47844c"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/screen_readout3.blp",
+      "bytes": 175948,
+      "sha256": "edc763430a16b03e273a69c94e7839d3f571eec20094d9868e720405f2ef0536"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/screen_readout4.blp",
+      "bytes": 175948,
+      "sha256": "f4072f48a00fa5ab342d8a0d61dbd24ecbf5f3d56043ced4e5d056b1bc1ae80c"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/security_glass.blp",
+      "bytes": 88580,
+      "sha256": "1afa374d5c6de58b4304909f8ccbddaf540aa0c300e15cb6be3d7d0c9e7514ff"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/trim.blp",
+      "bytes": 44892,
+      "sha256": "5157648447c2b085e482508baf1da7f9cbc19d4093e2379131e358f43bf58d5b"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/vader_floor.blp",
+      "bytes": 700236,
+      "sha256": "fb07a46c848d0ff2ce25a0242a8982bab271a270ab1ec67e1f8711826c2fbf29"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/vader_floor2_mask.blp",
+      "bytes": 1399300,
+      "sha256": "ba989be925782d5313d215e0d88fd6f183150219225533b135d689088bada618"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/vader_floor3.blp",
+      "bytes": 175948,
+      "sha256": "9765e31f756ea2bcfa2740e6772bf19ef7bc86b70a71ffc41494493bc6adb5ee"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/vader_trim2_mask.blp",
+      "bytes": 175972,
+      "sha256": "9b8f4330042ee546d294d1ca62e0292f6b32e102199f34441352ae1577c63d46"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/vslot2a.blp",
+      "bytes": 88572,
+      "sha256": "2d9652c5031c1cdeaccb954fd7ae07b34932d022dcb308785f366d8502eb675e"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/walk_ceiling_mask.blp",
+      "bytes": 88580,
+      "sha256": "9a0865b3fa6fb013e0d5b5318eba1a11053e7fcccae9fa87df2724d84eca2721"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/walkway.blp",
+      "bytes": 175948,
+      "sha256": "e9860c62659e01fa28036dac33038f50767b09e76def43b299c32818b66fc484"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/wall_6.blp",
+      "bytes": 88572,
+      "sha256": "907ccfb5940ccee90352e1e45a91d6c8484cb520759f6be3823fab2c2fc05a9a"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/textures/wall_clean1.blp",
+      "bytes": 175948,
+      "sha256": "f2c9df75524e94a94d70fadc03d3a6d564d49e03220a9589c710aeb665714364"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/villa/villa.wmo",
+      "bytes": 744,
+      "sha256": "9beae59af6ec4d2fb0b7cbbf14afa1b5f0e0851c8bda004e3ac2e7f4a871bba7"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/villa/villa_000.wmo",
+      "bytes": 4008,
+      "sha256": "2e5ee77660ad4377820c48e27a9789523aa7e21b3a3834ba3cda03fc7edf2d71"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/villa/villa_001.wmo",
+      "bytes": 85946,
+      "sha256": "14f8882e1749c25d24f0159c2333f5e74458683c7be2fa279b6405f7c2dea09d"
+    },
+    {
+      "path": "MPQ/starwars/mustafar/villa/villa_002.wmo",
+      "bytes": 404,
+      "sha256": "1277b2c1a485608845953111a185a876aea1f9c7960245f815cc9bca646fdae4"
+    },
+    {
+      "path": "MPQ/starwars/pipe/pipe.wmo",
+      "bytes": 672,
+      "sha256": "3676cfbf6954d643c8d45d0fd9a000ee6ee21f01b9d6e2a15ac2ded6002bdd6d"
+    },
+    {
+      "path": "MPQ/starwars/pipe/pipe_000.wmo",
+      "bytes": 46008,
+      "sha256": "8c36539cd4508b765ce5e7e56a13f36629b2744a7ebc974f45ced2e261226a86"
+    },
+    {
+      "path": "MPQ/starwars/stormtrooper/stormtrooper.blp",
+      "bytes": 175948,
+      "sha256": "a19bbc080f5c62ab955920366b3496f622ce813bec4d3fb1c5e7d1bb2749a58c"
+    },
+    {
+      "path": "MPQ/starwars/stormtrooper/stormtrooper.m2",
+      "bytes": 2611216,
+      "sha256": "4bf98088567c1e7ea6a3b93e1f3230a551caf56164d319abc11d24f0d6dfcb5d"
+    },
+    {
+      "path": "MPQ/starwars/stormtrooper/stormtrooper00.skin",
+      "bytes": 60464,
+      "sha256": "0413a3766682816fe266978c79c9bcf3c1adaf1710b5d517e9573df7eacfe165"
+    },
+    {
+      "path": "MPQ/starwars/vader/body.blp",
+      "bytes": 700236,
+      "sha256": "94c9e0f35f7f410efece1b00101f6e43f411badce8fdd1a5ce22392b35bcb4e3"
+    },
+    {
+      "path": "MPQ/starwars/vader/cape.blp",
+      "bytes": 700236,
+      "sha256": "0d2350705ab9c26306133aef09cd05f60ac5066da53c70aad36311f40304ca21"
+    },
+    {
+      "path": "MPQ/starwars/vader/controls.blp",
+      "bytes": 175948,
+      "sha256": "004b641430a9952edf29682698d12c2e282a66a2fd76b32084b6a31cdb8b7737"
+    },
+    {
+      "path": "MPQ/starwars/vader/head2.blp",
+      "bytes": 700236,
+      "sha256": "3763a9c2b227ef11e5d1c6149c1a69da067deb8e67dd639bd4ff80e829eff089"
+    },
+    {
+      "path": "MPQ/starwars/vader/helmet.blp",
+      "bytes": 700236,
+      "sha256": "75afa63e60b2ba36c6bd97fd5e0a0060ab2cff2991d6335def887ca3c2b8c6ec"
+    },
+    {
+      "path": "MPQ/starwars/vader/mask.blp",
+      "bytes": 700236,
+      "sha256": "b2e23a5049302ee0d87a8f86a019b0d0837e8d5f4d493d8bb0d6b34cab5a1752"
+    },
+    {
+      "path": "MPQ/starwars/vader/vader.m2",
+      "bytes": 1303072,
+      "sha256": "af99f67adb612a9dfb334e882211b974a502ae639bda6a16d27c3c2ad61132af"
+    },
+    {
+      "path": "MPQ/starwars/vader/vader00.skin",
+      "bytes": 46928,
+      "sha256": "f15759cb722bc3fb886c2a615299d7468c9d66e3615e8aaba72fda9a86669b59"
+    },
+    {
+      "path": "MPQ/starwars/vader/vader_unhelm.m2",
+      "bytes": 1302912,
+      "sha256": "13f33e50783ba30df0628df6410670f560157cf252701d52782eca40a5fb93d5"
+    },
+    {
+      "path": "MPQ/starwars/vader/vader_unhelm00.skin",
+      "bytes": 51104,
+      "sha256": "be066fb1088b6d0f12512000976ab44149cb390ff6a0f2096cbad3ce193b4a2c"
+    },
+    {
+      "path": "MPQ/textures/minimap/AFarmlands_39_34.blp",
+      "bytes": 350740,
+      "sha256": "d3398494ff716d0ccd601eba7d327b9b139fda00c2e4328d7d413f175901c724"
+    },
+    {
+      "path": "MPQ/textures/minimap/AFarmlands_39_35.blp",
+      "bytes": 350740,
+      "sha256": "fd715757c2d814627d553b8c267c11b00d1fc47e5ef79c44dae11dcc90862473"
+    },
+    {
+      "path": "MPQ/textures/minimap/AFarmlands_40_34.blp",
+      "bytes": 350740,
+      "sha256": "f8723b3dcef0d52dd994ee6e67869a8fbb754a6bafd4e1206744d8cfb5f4aaf0"
+    },
+    {
+      "path": "MPQ/textures/minimap/AFarmlands_40_35.blp",
+      "bytes": 350740,
+      "sha256": "7cabee53d4e7ad5f819485548ac209ee74d8234de65caa5e2e1173117305080a"
+    },
+    {
+      "path": "MPQ/textures/minimap/Demoncove_31_13.blp",
+      "bytes": 350740,
+      "sha256": "42331ae00d4657e7f13c7f0cac2f913f3ab0d4c85d568c99b63c8f1fabe2b12e"
+    },
+    {
+      "path": "MPQ/textures/minimap/Demoncove_32_13.blp",
+      "bytes": 350740,
+      "sha256": "f5bb67f8ebf747d5127928410e1e9abd58d6a923e59e754053f15da8d6dec649"
+    },
+    {
+      "path": "MPQ/textures/minimap/Newman_33_43.blp",
+      "bytes": 350740,
+      "sha256": "e60d8bff97e031b02f4fdbc79a4e7a2d328cfe9a14d6c2144819541e40e5fc47"
+    },
+    {
+      "path": "MPQ/textures/minimap/SandFury_34_55.blp",
+      "bytes": 350740,
+      "sha256": "1b57d73dd3d1f7b76b298c7e4e7670f0b45dbf942df4d67ee82b4e3357cb86cd"
+    },
+    {
+      "path": "MPQ/textures/minimap/SandFury_34_56.blp",
+      "bytes": 350740,
+      "sha256": "0bf6df35f748236a6a2bdc1b0f253b80c94df9f3db6108b5f6da35a98ae7aa47"
+    },
+    {
+      "path": "MPQ/textures/minimap/StoneLog_28_28.blp",
+      "bytes": 350740,
+      "sha256": "792e58876987967c81b9c754bc6f6f09884aa07066b10fb4d81696291aabd492"
+    },
+    {
+      "path": "MPQ/textures/minimap/StoneLog_29_28.blp",
+      "bytes": 350740,
+      "sha256": "11320e13d663c3f95642897cd295cb808f4a48c1f336c70cde8250873ce59dc9"
+    },
+    {
+      "path": "MPQ/textures/minimap/StoneLog_30_28.blp",
+      "bytes": 350740,
+      "sha256": "33933318f3e8dfe59f727be745cbc30d51447f0a20b20feb72f2dd34bfe2bfbc"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_36_53.blp",
+      "bytes": 350740,
+      "sha256": "794768bc603b7c50e01f99b03c8dc5d272fee2dcafeed92864ad7d659f993ba5"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_36_54.blp",
+      "bytes": 350740,
+      "sha256": "3113f77db42b634ade3e255b99782bd1371f5846d5f5baa0f347707566f61aa5"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_36_55.blp",
+      "bytes": 350740,
+      "sha256": "3a28d71f8ac5d432b58cbd74021f7b65264f950577ebd7a49d7cc2a1774f9b0e"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_37_53.blp",
+      "bytes": 350740,
+      "sha256": "caed7a62d4674120879c0876e5ca50370bb75a167988eb6a7a19eb1781141a01"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_37_54.blp",
+      "bytes": 350740,
+      "sha256": "9a931f4b2cf148cb0ad676ac79dc001c9e73954b70df030783316c0d88ea497b"
+    },
+    {
+      "path": "MPQ/textures/minimap/altarstorms_37_55.blp",
+      "bytes": 350740,
+      "sha256": "cc2d98953ef3a2933f727c53de31794842ccebe46c9e23ec9694c2b98d856e85"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_000_00_00.blp",
+      "bytes": 17556,
+      "sha256": "51fecc2c310a412e81bc32da9cbf3e1b1c14da7ab370a7ff510df27eefeaffee"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_001_00_00.blp",
+      "bytes": 33940,
+      "sha256": "7fc4d9f192dc451d5d62b3e1acc1c324eef5ac3792549b0ad76c5909b9a160a4"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_001_00_01.blp",
+      "bytes": 33940,
+      "sha256": "299deec52d20bdccd96c490b67642d48f22429b13a709ffde86c4ed7bb22d9b6"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_001_01_00.blp",
+      "bytes": 33940,
+      "sha256": "613c3bd27658e1fdfeb2eeef727604a89e2cbefd761706daf5062674c0b04493"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_001_01_01.blp",
+      "bytes": 33940,
+      "sha256": "e78d9117f4f86fca956a7b2c57b32dac4340b16b0693056f50a12c13ea04f4b2"
+    },
+    {
+      "path": "MPQ/textures/minimap/az_worgenmine_002_00_00.blp",
+      "bytes": 33940,
+      "sha256": "9fc4a71cf8216c96d0b5316217dcacd90e863bd730afa9cc165ef0da5c56625c"
+    },
+    {
+      "path": "MPQ/textures/minimap/blackcharcave_27_27.blp",
+      "bytes": 350740,
+      "sha256": "93fc4b2c3ac687f4f5708accc72780389883261c62ff0bb6c597d323dada5dd6"
+    },
+    {
+      "path": "MPQ/textures/minimap/elwynn_32_47.blp",
+      "bytes": 350740,
+      "sha256": "bc740df0a206c432607863925e3f7dfcc1eb64763b955e215cfabf26c4ee028d"
+    },
+    {
+      "path": "MPQ/textures/minimap/elwynn_32_48.blp",
+      "bytes": 350740,
+      "sha256": "056ca0fc5c9fb46be9a17809a86e6c05c5feff6031991f3e6d8c5854ebce4c8b"
+    },
+    {
+      "path": "MPQ/textures/minimap/elwynn_33_47.blp",
+      "bytes": 350740,
+      "sha256": "5bc2343e16d573255b561dbde93d2b1f84f9980698b4e4ba028cc7ff47d8082b"
+    },
+    {
+      "path": "MPQ/textures/minimap/elwynn_33_48.blp",
+      "bytes": 350740,
+      "sha256": "2a12e13962bb4c3cfd65d2eb6f96a0642b379340452703030b31e9963facea0a"
+    },
+    {
+      "path": "MPQ/textures/minimap/gnomecamp_30_42.blp",
+      "bytes": 350740,
+      "sha256": "287af8e795fb98408d47cee8d05bb4a749ee885c751f44e70d7b59f5ccbf1098"
+    },
+    {
+      "path": "MPQ/textures/minimap/gnomecamp_30_43.blp",
+      "bytes": 350740,
+      "sha256": "4db79dea596358866e404f98fcfe431497646f0b6e68b9565b0c8189c147f720"
+    },
+    {
+      "path": "MPQ/textures/minimap/gnomecamp_31_42.blp",
+      "bytes": 350740,
+      "sha256": "81a7ed049056d0dfa6876b1e3ac0ebf76ad351443c6ef29df4d8222d755e2940"
+    },
+    {
+      "path": "MPQ/textures/minimap/gnomecamp_31_43.blp",
+      "bytes": 350740,
+      "sha256": "d788112e75694f22c3b0e941b642654ac3242eabefc0ecdae11d860e96b8b90c"
+    },
+    {
+      "path": "MPQ/textures/minimap/md5translate.trs",
+      "bytes": 1561724,
+      "sha256": "940afe14bd96634a2721268d4f05dd8923d6985f0be8d9252ce21b4b719be41d"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_2_6.blp",
+      "bytes": 175948,
+      "sha256": "4960c39ec092d7df099e26857065958ebb3751c52f8443b5a5ab9d241ca03a29"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_2_7.blp",
+      "bytes": 350724,
+      "sha256": "deecb70378642a91c17731e04a942fe6f2ad0420177ab2b46c94e94cb5ad4b13"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_2_8.blp",
+      "bytes": 350724,
+      "sha256": "0b1ce24cecdc405d5c48c3eb8322cf30a7eab9239bbf4f7c5e56ac9cdfc45364"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_2_9.blp",
+      "bytes": 350724,
+      "sha256": "c4ff91bfc650f569a0b16d29a11b9f6d3b3e2bda0ed892b5762d8b449f0c36a4"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_3_6.blp",
+      "bytes": 350724,
+      "sha256": "c03ee980f23e233a5e2d67e06e86f803f1ef82e38f188535b167a01dd0eecaa2"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_3_7.blp",
+      "bytes": 350724,
+      "sha256": "30d9a35663e45cdaf7c7392994545f0e4c3a5b36328bf435ccc4c44dad12f4b3"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_3_8.blp",
+      "bytes": 350724,
+      "sha256": "3016cbda716aa1617842a9c5c18b0c19581704515bd92e1ea3999321d888a832"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_3_9.blp",
+      "bytes": 350724,
+      "sha256": "11b6558ac6df9ab05f938ab67417aeda7653d76ee55dcc17d21f4ad106cc31d3"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_4_6.blp",
+      "bytes": 350724,
+      "sha256": "51e25f093e0751bb825c3b63fbe2659dac019eb133579bb2f0909bb086e1e173"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_4_7.blp",
+      "bytes": 350724,
+      "sha256": "76d0c4bbe221a3e2b8043b49104619e4f5407c502fe4d11015e58164c45954b8"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_4_8.blp",
+      "bytes": 350724,
+      "sha256": "acef1f7c24fc5763092c9c63ded16c38b9754252d19b9c7935ea1ba7a24e0010"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_4_9.blp",
+      "bytes": 350724,
+      "sha256": "f45b0c819b592ecd68c09713719f83ccac8eda496bb50899ec6785bbe9bb4b94"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_5_6.blp",
+      "bytes": 350724,
+      "sha256": "0bdf9635026e96ce1f68d1520a3dd89005bad18c8660cac9fe370ff2fb4b90fa"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_5_7.blp",
+      "bytes": 350724,
+      "sha256": "919bf3522d738e44d0da187ef4ddb19de2a0ca6e57cac5c6a1828aa5c2648c4a"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_5_8.blp",
+      "bytes": 350724,
+      "sha256": "13315319f1ce4b68b4fead0f5d2441ec15c22ffdedd322066d34c3df10ce3b56"
+    },
+    {
+      "path": "MPQ/textures/minimap/mustafar_5_9.blp",
+      "bytes": 350724,
+      "sha256": "67e9945a4a726913723a808e8204db03a5e4396e9804ed8efddf19be332923bd"
+    },
+    {
+      "path": "MPQ/textures/minimap/oldironforge_26_26.blp",
+      "bytes": 350740,
+      "sha256": "044ac596e055f048329a77c8299f8f2b8cb2eed4ce1c1e885c8a07889065aa3a"
+    },
+    {
+      "path": "MPQ/textures/minimap/oldironforge_26_27.blp",
+      "bytes": 350740,
+      "sha256": "3161020427269b9e4626cdca66871de7693f72e77930e3baad365e926519ff7e"
+    },
+    {
+      "path": "MPQ/textures/minimap/oldironforge_27_26.blp",
+      "bytes": 350740,
+      "sha256": "c8a0c371d831e27537ad6e248f00ac40396c5466b5de912844fc5eab88957083"
+    },
+    {
+      "path": "MPQ/textures/minimap/oldironforge_27_27.blp",
+      "bytes": 350740,
+      "sha256": "4bb2c462b145040344522f56eff8040fb860af7fae5d7354e4dc76bc8b41404c"
+    },
+    {
+      "path": "MPQ/textures/minimap/qualisland_36_23.blp",
+      "bytes": 350740,
+      "sha256": "bd7eddfd9421ebd978deaf6b460d674436dbcdf385eadc975d863b23ba823f28"
+    },
+    {
+      "path": "MPQ/textures/minimap/qualisland_36_24.blp",
+      "bytes": 350740,
+      "sha256": "c76a040cab7a3e9296afe18ea23265cf09592572442ad0a465013e56e8cc5485"
+    },
+    {
+      "path": "MPQ/textures/minimap/qualisland_37_23.blp",
+      "bytes": 350740,
+      "sha256": "f417575138df53b93ba338e304ee764e6a0ecbc8790c1b1de132d89d7ac68df1"
+    },
+    {
+      "path": "MPQ/textures/minimap/qualisland_37_24.blp",
+      "bytes": 350740,
+      "sha256": "265e1e04281aad6f7230afd47fbb2d92a1ad9d82d11454cff534bee32c986622"
+    },
+    {
+      "path": "MPQ/textures/minimap/stonerun_27_26.blp",
+      "bytes": 350740,
+      "sha256": "8cc21d46dee67c933592a2a838c057b9a0bf49886888a16bf50d5551e0799ecb"
+    },
+    {
+      "path": "MPQ/textures/minimap/stonerun_28_26.blp",
+      "bytes": 350740,
+      "sha256": "96bad26a24573089f1e4ebf0db267572f686fb9706dd3607141c6eaa26bd9e28"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands.wdl",
+      "bytes": 21108,
+      "sha256": "2b1de39202608d55caa60fa2c015f4f5c991b5ba1ac8dc218d09ad6e6712eb0c"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands.wdt",
+      "bytes": 32828,
+      "sha256": "d34c144a6e2fc2de61d1cf80b24b78c94ccc78c9e9a582ea7ff1b426a70c3548"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands_39_34.adt",
+      "bytes": 999077,
+      "sha256": "452f5953af3f83404db9b6770d33c2c425455e520b205ab3e00b912d4b9cc7b0"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands_39_35.adt",
+      "bytes": 1108453,
+      "sha256": "8fb4aabb5f49f55cdae2a7cba64941e3b0085d964a93dd4df96822d35f2be1a1"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands_40_34.adt",
+      "bytes": 651109,
+      "sha256": "d66e14ff8eea8e401678c3b266644a616c756b693565fa6219223a3cee9a0d0f"
+    },
+    {
+      "path": "MPQ/world/maps/afarmlands/afarmlands_40_35.adt",
+      "bytes": 480226,
+      "sha256": "08a0e8820635d93a23bf7fdae1b99473b75cdc3ca3703c745df1035170ce0488"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms.wdl",
+      "bytes": 23448,
+      "sha256": "7e8d30ffd958a59f949e4faa1507ec09a7b9cf8086e8fe97c62e72d6090f6396"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms.wdt",
+      "bytes": 32828,
+      "sha256": "b7cfa4e4bc04d01b6049b094ccd520884a5476e326858636932fc12a239f82e3"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_36_53.adt",
+      "bytes": 1195698,
+      "sha256": "26451ebdb7647e6552f129274e7f125941e9570258599943fa07cf2709a716ed"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_36_54.adt",
+      "bytes": 1456712,
+      "sha256": "6bcc9e77b5fc3ab8317c1eb444efe4b2b3779b25b701c33bd61d454c4bbf364c"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_36_55.adt",
+      "bytes": 787781,
+      "sha256": "dd3c310f3c07259aa90c6a7777f6a8e79f7ff53e04af0bbd5c667488c1d9f55e"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_37_53.adt",
+      "bytes": 1844979,
+      "sha256": "a7dd2d78f310011646055f8fa59bd1364e78cc495f4558c62ae0281800795e83"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_37_54.adt",
+      "bytes": 1444184,
+      "sha256": "6352985646edd7be8454cd11560bcc31ef411eed9d8b0573750fe4e82e944c33"
+    },
+    {
+      "path": "MPQ/world/maps/altarstorms/altarstorms_37_55.adt",
+      "bytes": 964330,
+      "sha256": "f4cac4017b9447781bde0b568501c594f7ac2e7bba57cf458040def202c6d72d"
+    },
+    {
+      "path": "MPQ/world/maps/blackcharcave/blackcharcave.wdl",
+      "bytes": 17598,
+      "sha256": "035476606d536678afe38e648da7f4aa74ab60473a346e932b6c88a2bd94df7b"
+    },
+    {
+      "path": "MPQ/world/maps/blackcharcave/blackcharcave.wdt",
+      "bytes": 32828,
+      "sha256": "24d70fa5b3e5a748c6fce179b8490b92de217c27a3fc09eb7d9d207238aa0c65"
+    },
+    {
+      "path": "MPQ/world/maps/blackcharcave/blackcharcave_27_27.adt",
+      "bytes": 352608,
+      "sha256": "9e42707dc96735f783c53691bcf2521e3000f01b6360cae32669208683640fae"
+    },
+    {
+      "path": "MPQ/world/maps/demoncove/Demoncove.wdl",
+      "bytes": 18768,
+      "sha256": "3f2a98c55d71072f320ee6816de176f3c22bf28d8fbd7effa411571d6d2c15b5"
+    },
+    {
+      "path": "MPQ/world/maps/demoncove/Demoncove.wdt",
+      "bytes": 32828,
+      "sha256": "78b3cd497d361ad99ed321df3572277e38b64e94b97a01f948a0bb331b73ccd8"
+    },
+    {
+      "path": "MPQ/world/maps/demoncove/Demoncove_31_13.adt",
+      "bytes": 1594634,
+      "sha256": "bb12ad03573663a60fcb0da797e0a69bc51566448f41d4030e57645f6cab7005"
+    },
+    {
+      "path": "MPQ/world/maps/demoncove/Demoncove_32_13.adt",
+      "bytes": 1441814,
+      "sha256": "84cb93b13e527ca3cc089120f2bf75549d5b44375ba475221c41b93295c943e9"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn.wdl",
+      "bytes": 21108,
+      "sha256": "4a8e58960c5f17869673e1a807ba8c6b54942bc02cbca48eb9de31018debd102"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn.wdt",
+      "bytes": 32828,
+      "sha256": "c6bd6353284e9adbf8b70a769284be4e87a1f195b5865899f6e48d428590cf02"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn_32_47.adt",
+      "bytes": 2607575,
+      "sha256": "f7ec9dbe994d6024d81a6a9f46958ded52cb50eafd68dec5775f2f0fade8bf97"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn_32_48.adt",
+      "bytes": 3103739,
+      "sha256": "7a4007a2954ef763784461ec31e1317ecc51e2bfa0166a88ef61c43f73920b6e"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn_33_47.adt",
+      "bytes": 2588494,
+      "sha256": "2efae1af3a76c951856ba6a7331ea638940c4219c17cbd7ab26c1065a6f1f349"
+    },
+    {
+      "path": "MPQ/world/maps/elwynn/elwynn_33_48.adt",
+      "bytes": 2836782,
+      "sha256": "f13a6f4e35bf4272055ec3ebbe4b8a679eaa58fc98107afa20ddaee8da040de9"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp.wdl",
+      "bytes": 21108,
+      "sha256": "a391a3e51dbada44f20f4b2aa837101831ea48002d8d57c0dbed8022e15798bf"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp.wdt",
+      "bytes": 32828,
+      "sha256": "537d8b9b7e0f666389e67b1677c9719bad6069ad871347809a92bcb360ed5db2"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp_30_42.adt",
+      "bytes": 2341628,
+      "sha256": "99b6afeb0e75f09533e6a7805256e93749d0f8c03cb0d4be9fe1cf722d08ed3e"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp_30_43.adt",
+      "bytes": 2226830,
+      "sha256": "e8220620727d7ff8cfdb2a399fd758391f883d05151c92808f91235d64fe5db5"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp_31_42.adt",
+      "bytes": 2714310,
+      "sha256": "21276f82236938acfc686b78d514e169c02135c15bff1b7bfc582bf05c8f83fe"
+    },
+    {
+      "path": "MPQ/world/maps/gnomecamp/gnomecamp_31_43.adt",
+      "bytes": 2602147,
+      "sha256": "abe3e555fa61d0c2001a0835bb1b32a795a20075acaccf9d56ffbf56a2ab0b9b"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar.wdl",
+      "bytes": 35148,
+      "sha256": "7eb8ccc351d70b8a746d654ad56dfa5b790968a078c5e85e37ba6c7163bdfefd"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar.wdt",
+      "bytes": 32828,
+      "sha256": "84253b1f96d7b5ed15f14f77dcfeeb7e989b99ee132584b549937bcba68d9119"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_2_6.adt",
+      "bytes": 648398,
+      "sha256": "ea5ffac334e6c96a973c4fb4c03941c0469ddd7d6dc22fc3d7baf84414a4afce"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_2_7.adt",
+      "bytes": 708298,
+      "sha256": "80b696807e1bc6dac72226bd9bb73a17624d2a0ce6afe1c99ab7f009116cfc21"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_2_8.adt",
+      "bytes": 811530,
+      "sha256": "1ec4cae95b569e036b55228f0afbfc4370cab0fa11d70f37b3f23c163d0d7b50"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_2_9.adt",
+      "bytes": 659922,
+      "sha256": "7535762352425a7635d1422c40c6a9edbd9d9d65ee0f961a307697f58ee12bac"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_3_6.adt",
+      "bytes": 648398,
+      "sha256": "3c180262ed55bebe1b500cdd1ef92c557cb5df8c11edd9bccd7b47f30cdf9dfb"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_3_7.adt",
+      "bytes": 891038,
+      "sha256": "75a0b58016053e36039e2096f3a3a14c79ce876c177c801a7146005677e56ccf"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_3_8.adt",
+      "bytes": 1216790,
+      "sha256": "f0769478aace71e827d89c39eaaabd726466984b802a2e57a81cf197defb5a22"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_3_9.adt",
+      "bytes": 918842,
+      "sha256": "2d25b2e32ab99b338b2622961e90db9e5cd2fa520271947eba438176d71cd7ef"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_4_6.adt",
+      "bytes": 641030,
+      "sha256": "1b161efa3f000f3e1d85f24b5ed3ceababa7c0b259a1f0cb435c67119add4bb2"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_4_7.adt",
+      "bytes": 1058989,
+      "sha256": "786c1a7435c894fe604b1f6b5b5b2c43efc2fd056faeff7dc34954c1d9dd02d3"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_4_8.adt",
+      "bytes": 1176081,
+      "sha256": "42381f3e1bec6845f853a4684ccdc9b36d2a331c7ea862df16348f0c02012c8b"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_4_9.adt",
+      "bytes": 881698,
+      "sha256": "6ca93a27541a6a3d1a0bb760bb38f29c2957880b2c9d0affa4f8e8337892aadf"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_5_6.adt",
+      "bytes": 648398,
+      "sha256": "cb160ea73ddd128fcc3f47b99dbc89c5df63936b9269545ad8edebdd5690471c"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_5_7.adt",
+      "bytes": 664954,
+      "sha256": "9db134b252462c6e08cafe8e37c881774371add77dc42942be90afc1bb9d79d1"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_5_8.adt",
+      "bytes": 733066,
+      "sha256": "3e1fc865e35a6feff50b21e9a529055bb41b2bcccd07e8ffe4ef2c81f887bcc3"
+    },
+    {
+      "path": "MPQ/world/maps/mustafar/mustafar_5_9.adt",
+      "bytes": 648334,
+      "sha256": "68dc06b3881ac9e83ceacbd5637c991a7a590b84ebd3a92e1a8f97f1b4bc9b5d"
+    },
+    {
+      "path": "MPQ/world/maps/newman/newman.wdl",
+      "bytes": 17598,
+      "sha256": "8e7a0f9357597cbe2ff9fd9776acad3936941c9d61313b4af3c7a590af260957"
+    },
+    {
+      "path": "MPQ/world/maps/newman/newman.wdt",
+      "bytes": 32828,
+      "sha256": "f9da32bf1f07b684396391f3254457e1377f6c4acb4268f748a5fa9d7bdf93b7"
+    },
+    {
+      "path": "MPQ/world/maps/newman/newman_33_43.adt",
+      "bytes": 1561204,
+      "sha256": "27342a529128c470723024871e4dca44fdc4e4e9684e5885c217df08757d1abf"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge.wdl",
+      "bytes": 21108,
+      "sha256": "ea3b5a2fa5bc48f05a769b9d61f8e95ccd260a55f78ff0eb5720a2050fb74ebc"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge.wdt",
+      "bytes": 32828,
+      "sha256": "db2061cb955ffa53b6b897235ec6ea356fc9882bcaf1543b7822a50936aecbf6"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge_26_26.adt",
+      "bytes": 315075,
+      "sha256": "cf5e5664cafc26d83b7fadcad059a432f1dedde1eb82225d17b1e8a71f45ea72"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge_26_27.adt",
+      "bytes": 315075,
+      "sha256": "bf6cdd6a1916c6b4c7690e53155f886fd5064fd60fec5007b7ed7b144ff9ed5a"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge_27_26.adt",
+      "bytes": 314995,
+      "sha256": "5a7c3f0a96133d7e45906adef53ad4e825952d85d9fb0da1a505ceee14f86eb5"
+    },
+    {
+      "path": "MPQ/world/maps/oldironforge/oldironforge_27_27.adt",
+      "bytes": 314995,
+      "sha256": "9225d57bfcd117aee715ea81e5e6b3025ce63878b2be0e2a20f7cb410e74a027"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland.wdl",
+      "bytes": 21108,
+      "sha256": "709116a92d176ae822e8f1e7b14a0f0c20ae1f910ef56fc6bfb90df442945ddf"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland.wdt",
+      "bytes": 32828,
+      "sha256": "e039cb3c1fc366c5426cc97b385a1a386cac24eb0f470ba3cbe86d6124d8cb8f"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland_36_23.adt",
+      "bytes": 410481,
+      "sha256": "08b2176cd5cf73bb4a524efd6b1eb05754546292f2ab8fab7090cefc235e0e4f"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland_36_24.adt",
+      "bytes": 1810783,
+      "sha256": "5afa70542cb40ae138bf0c1c5939416e4f4d6f504fb5e7da43136fe00032af77"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland_37_23.adt",
+      "bytes": 1620972,
+      "sha256": "02fc99008ba2fa64efc20e623d4c61f35d36bb87b2392809b6a9abd95657e71c"
+    },
+    {
+      "path": "MPQ/world/maps/qualisland/qualisland_37_24.adt",
+      "bytes": 3044980,
+      "sha256": "b20b47452a5c2c1e505361f9ffbdead389c9569f797690da1191c389c5caf99e"
+    },
+    {
+      "path": "MPQ/world/maps/sandfury/sandfury.wdl",
+      "bytes": 18768,
+      "sha256": "557a69da67c19df2e0586dd2763fcb3291c269dd08f2d576b9ea800dc7e7e4ed"
+    },
+    {
+      "path": "MPQ/world/maps/sandfury/sandfury.wdt",
+      "bytes": 32828,
+      "sha256": "69b7eb2beee14f330f7a05978bb9233ce09f35c3a4684e66734213bfa08388f0"
+    },
+    {
+      "path": "MPQ/world/maps/sandfury/sandfury_34_55.adt",
+      "bytes": 1518845,
+      "sha256": "afeb71fa4ea15ca8b15198d6887d4de271e4a8859e0d13a2ae869b26903e0b02"
+    },
+    {
+      "path": "MPQ/world/maps/sandfury/sandfury_34_56.adt",
+      "bytes": 1049204,
+      "sha256": "3699f10c13da45f9db89178536795afdc1bd2cb985f841c40c46ec9669fd9808"
+    },
+    {
+      "path": "MPQ/world/maps/stonelog/StoneLog.wdt",
+      "bytes": 32828,
+      "sha256": "639b70ffece83feb00979cf63ace18fa6d64fc8217a303146dbf8334f49f80f1"
+    },
+    {
+      "path": "MPQ/world/maps/stonelog/stonelog.wdl",
+      "bytes": 19938,
+      "sha256": "0de9ae14a5c4131003992296d1db56e056267ccd4cf21b975a67996e5f31652b"
+    },
+    {
+      "path": "MPQ/world/maps/stonelog/stonelog_28_28.adt",
+      "bytes": 817595,
+      "sha256": "15a7f292e487f0909fcf0d64e54dd3b464797997bef867e3ac80f5e50ba9de96"
+    },
+    {
+      "path": "MPQ/world/maps/stonelog/stonelog_29_28.adt",
+      "bytes": 1551931,
+      "sha256": "ddf53bbfa726d0a55b8bcb2c7ca4a917b47761f468b92fb8a870e432304c2d36"
+    },
+    {
+      "path": "MPQ/world/maps/stonelog/stonelog_30_28.adt",
+      "bytes": 1634892,
+      "sha256": "65a1ce06fb80d339007dd577659ce849c96c6ace36c2f29c2b56b0e5798490b5"
+    },
+    {
+      "path": "MPQ/world/maps/stonerun/stonerun.wdl",
+      "bytes": 18768,
+      "sha256": "27f1a7a47dc74404adbd064ef971d1e2ea2850517f4d45e6aa82b950dc10d244"
+    },
+    {
+      "path": "MPQ/world/maps/stonerun/stonerun.wdt",
+      "bytes": 32828,
+      "sha256": "6dee443b75bd35913fe2c278d51aab7f845c47ee4f943e8a3db753533f7e973e"
+    },
+    {
+      "path": "MPQ/world/maps/stonerun/stonerun_27_26.adt",
+      "bytes": 1558912,
+      "sha256": "6aa66e3ac32aae3c3336731ea20eb14aa2d5769ae642208439f77407cb4b9d01"
+    },
+    {
+      "path": "MPQ/world/maps/stonerun/stonerun_28_26.adt",
+      "bytes": 1769732,
+      "sha256": "d06fce14c84db94647c99f87f6df7a1e6ea39953efb509f3fe1cb4b9a0cbc6c3"
+    },
+    {
+      "path": "MPQ/world/maps/stonerun/stonerun_28_26_normal.png",
+      "bytes": 5256,
+      "sha256": "87286d911bc9624aacb0c43bc362e82e84fae60c96ad9b119992f971aff6f62f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 22867,
+      "sha256": "ecdf4be4623b22e822b7fb6007c0cec3d37a4771c06e9d5f5ad3b03287beb26a"
+    },
+    {
+      "path": "Server Map Files/maps/8050602.map",
+      "bytes": 133210,
+      "sha256": "140f59c1d0695d10339e7226a2d085f7c998f449a054ec7531fede5ec110d980"
+    },
+    {
+      "path": "Server Map Files/maps/8050603.map",
+      "bytes": 133210,
+      "sha256": "dc6fdc756bcc7f9acdbe31658f514f159c7ebe732ee8cd1a51adabe15d5a3ee5"
+    },
+    {
+      "path": "Server Map Files/maps/8050604.map",
+      "bytes": 133466,
+      "sha256": "2bb0fc5d2c8fbd63c1ea062170eca510c08253fc7189e1cfe02f70ac4b1ec60e"
+    },
+    {
+      "path": "Server Map Files/maps/8050605.map",
+      "bytes": 66134,
+      "sha256": "6266c38b3e0174d606c7a56f346f8bfc0de57bdd45200fb94ce40b67597992f5"
+    },
+    {
+      "path": "Server Map Files/maps/8050702.map",
+      "bytes": 132698,
+      "sha256": "ba350c469bcad2671fccaa1f347dde82253ab1cfacaa2b30f03f7d468eaee8b8"
+    },
+    {
+      "path": "Server Map Files/maps/8050703.map",
+      "bytes": 81542,
+      "sha256": "f23a0c70ae134ba2bb98ead4137a62be37aeecdce3f00c97350e529cd7859d3e"
+    },
+    {
+      "path": "Server Map Files/maps/8050704.map",
+      "bytes": 133466,
+      "sha256": "066d22190ba6aff11cca19624eb6fcf59f01e5641a3677f5bad7c27e4342f429"
+    },
+    {
+      "path": "Server Map Files/maps/8050705.map",
+      "bytes": 66134,
+      "sha256": "2eae49604ea81bd0e6638ec6076903af4d1e3fc7b954b283cbfecf12936e763f"
+    },
+    {
+      "path": "Server Map Files/maps/8050802.map",
+      "bytes": 133210,
+      "sha256": "110339c38ab56de2d4f4b121dfa4f0320a5131d606f40fa5b744f49a882b30a3"
+    },
+    {
+      "path": "Server Map Files/maps/8050803.map",
+      "bytes": 133466,
+      "sha256": "640c54e2068a2fb90a19dfb44ef8d38e5cd93bf260e959dc8f49fe2236e9f080"
+    },
+    {
+      "path": "Server Map Files/maps/8050804.map",
+      "bytes": 133466,
+      "sha256": "19bec1c2078d5916f8d21358159646f1b1d4eb9b03da463854533df01f848b5e"
+    },
+    {
+      "path": "Server Map Files/maps/8050805.map",
+      "bytes": 66134,
+      "sha256": "1f83fd9f273e6fde883f02da63a14e5f46d7b03019a515e02da149fbe776a8fa"
+    },
+    {
+      "path": "Server Map Files/maps/8050902.map",
+      "bytes": 133210,
+      "sha256": "cb71a81281b927433521f243e799ecf8f3629eedab0df259224bc80d309c3076"
+    },
+    {
+      "path": "Server Map Files/maps/8050903.map",
+      "bytes": 132698,
+      "sha256": "596a069d6292d863a6f6ae1e039919891454376c48dc063c7dd363ec0c691ae8"
+    },
+    {
+      "path": "Server Map Files/maps/8050904.map",
+      "bytes": 132698,
+      "sha256": "79dd6024fe557e29af944963c312e7637907973c71db0ac34698c71d4e48d222"
+    },
+    {
+      "path": "Server Map Files/maps/8050905.map",
+      "bytes": 132698,
+      "sha256": "c86f6c63e47eeeb0769bcd3b4bed0075af1ac2d499a013578a05cc0f6e5ba5b3"
+    },
+    {
+      "path": "Server Map Files/maps/9002627.map",
+      "bytes": 114026,
+      "sha256": "ebdc81894a0100bee50bd950538e07d368baafde74bc4fe0ad10615e58c6773a"
+    },
+    {
+      "path": "Server Map Files/maps/9002628.map",
+      "bytes": 68582,
+      "sha256": "c4e3a2def7ef702c5f9208e4b82c792f3a8383cca2c9bbd407de8055a80d3759"
+    },
+    {
+      "path": "Server Map Files/maps/9011331.map",
+      "bytes": 66118,
+      "sha256": "2a1f0bd0c1920bb15b020936c74571aecb93139b88fd37fbefc381d1b3795564"
+    },
+    {
+      "path": "Server Map Files/maps/9011332.map",
+      "bytes": 124694,
+      "sha256": "3283fb574b81e943d573bfdcf3752fb8695b02148504ee9c4928117132a59c17"
+    },
+    {
+      "path": "Server Map Files/maps/9022828.map",
+      "bytes": 66118,
+      "sha256": "3ce5d22bc09eaf6ac699bb6bfc54345b5f11589cff22af632956b92c9f6194c8"
+    },
+    {
+      "path": "Server Map Files/maps/9022829.map",
+      "bytes": 66118,
+      "sha256": "1de9329b563b7120760e65cc63ff0b28fdc5866d02a283803baf5a5dd700630d"
+    },
+    {
+      "path": "Server Map Files/maps/9022830.map",
+      "bytes": 71978,
+      "sha256": "3e7279856b7b4ca127334301c92273a4ac5451306805f0e3ed92b9196029ac6f"
+    },
+    {
+      "path": "Server Map Files/maps/9032626.map",
+      "bytes": 68,
+      "sha256": "d15d6e1fd40e269a6d4aaa8436d4f6b97550c3ba65b6929ebae9d5a363be4ec0"
+    },
+    {
+      "path": "Server Map Files/maps/9032627.map",
+      "bytes": 68,
+      "sha256": "d15d6e1fd40e269a6d4aaa8436d4f6b97550c3ba65b6929ebae9d5a363be4ec0"
+    },
+    {
+      "path": "Server Map Files/maps/9032726.map",
+      "bytes": 68,
+      "sha256": "d15d6e1fd40e269a6d4aaa8436d4f6b97550c3ba65b6929ebae9d5a363be4ec0"
+    },
+    {
+      "path": "Server Map Files/maps/9032727.map",
+      "bytes": 68,
+      "sha256": "d15d6e1fd40e269a6d4aaa8436d4f6b97550c3ba65b6929ebae9d5a363be4ec0"
+    },
+    {
+      "path": "Server Map Files/maps/9042727.map",
+      "bytes": 66118,
+      "sha256": "d73bf259ad685de5f49562bc016662f65e472144468a23d39298a91e666f56e1"
+    },
+    {
+      "path": "Server Map Files/maps/9055534.map",
+      "bytes": 66118,
+      "sha256": "47255c79c7ab008439781c611f717032d779f1850a5b209b2c91ef812f1559d0"
+    },
+    {
+      "path": "Server Map Files/maps/9055634.map",
+      "bytes": 69358,
+      "sha256": "11aa14e72a1703f5dd410dd947583981e27bb235a3ee9984b4585e58267215ee"
+    },
+    {
+      "path": "Server Map Files/maps/9063439.map",
+      "bytes": 72002,
+      "sha256": "3d39a8b52817289a3f927b57b783ae7d86ed51978c2d273a129d0a0bd2f3c928"
+    },
+    {
+      "path": "Server Map Files/maps/9063440.map",
+      "bytes": 133466,
+      "sha256": "f48552a6095616792b8e240d82b2aefed42a7b3fc12fd82169cf1e3220fac740"
+    },
+    {
+      "path": "Server Map Files/maps/9063539.map",
+      "bytes": 104050,
+      "sha256": "28fc308a4da2ce0b88440d7e042e147f6a2cf68ad2549c63b7dd67ccf04e1d50"
+    },
+    {
+      "path": "Server Map Files/maps/9063540.map",
+      "bytes": 133466,
+      "sha256": "95aae56518540752de0f5aa4a35329b2cd629861cc68d0b467aaa4ca008f85b0"
+    },
+    {
+      "path": "Server Map Files/maps/9074732.map",
+      "bytes": 114090,
+      "sha256": "9cc635417ee530a265026df4de192b47b737cc480d63894c94a5688e3f4b5498"
+    },
+    {
+      "path": "Server Map Files/maps/9074733.map",
+      "bytes": 66154,
+      "sha256": "a46e6a0354e7f86258d599fb0031468db7a4650dc466a5318c2eb9c133c4e47a"
+    },
+    {
+      "path": "Server Map Files/maps/9074832.map",
+      "bytes": 108214,
+      "sha256": "13ffb945f763a18db1b3dc78587a49050b8f27fc83c9d0cf65b0e6e2d669923b"
+    },
+    {
+      "path": "Server Map Files/maps/9074833.map",
+      "bytes": 75930,
+      "sha256": "4291011ac78c0a5b10ea374a66777b3a4e9f06440c7de8ae1ccae0b9f22aec25"
+    },
+    {
+      "path": "Server Map Files/maps/9082336.map",
+      "bytes": 66170,
+      "sha256": "bc6bbccc54968192996be786b51cf20d8a550b061c94a83d360e07b4a1b8df77"
+    },
+    {
+      "path": "Server Map Files/maps/9082337.map",
+      "bytes": 133502,
+      "sha256": "65ce4acc38ebeb9e897a71cc416a90f09cb9c43cb7aa2efbc279a53d4bb71418"
+    },
+    {
+      "path": "Server Map Files/maps/9082436.map",
+      "bytes": 112346,
+      "sha256": "97d168e05d8b5c5d56aa758ec32880cbd0d037de108d58756ea49730d610d497"
+    },
+    {
+      "path": "Server Map Files/maps/9082437.map",
+      "bytes": 118018,
+      "sha256": "e245adeb162eb74d04163d16fccfdbda7975adb5b6ec9653097b3c8810857742"
+    },
+    {
+      "path": "Server Map Files/maps/9094230.map",
+      "bytes": 66666,
+      "sha256": "11c679e79f0f4116a1368733d0cf1c1182edcfa052c397e904797082a142cccf"
+    },
+    {
+      "path": "Server Map Files/maps/9094231.map",
+      "bytes": 67178,
+      "sha256": "488a1b548daa1e7917b79850a54d5c53fc09871095b4295b5dc649e6b7b1cb24"
+    },
+    {
+      "path": "Server Map Files/maps/9094330.map",
+      "bytes": 66154,
+      "sha256": "fb6cc1972ab7cdab399fb1edb063afcbc9d0f16f6961c09115855191fa31a3b4"
+    },
+    {
+      "path": "Server Map Files/maps/9094331.map",
+      "bytes": 66666,
+      "sha256": "553139b48a6274b28b5f73457dc97f7c43cfa08127d9333eafeedfa7bc5f0dc0"
+    },
+    {
+      "path": "Server Map Files/maps/9104333.map",
+      "bytes": 66118,
+      "sha256": "222a8f2e0f61f4cc2ce7c42860dc6c5503692422a57efd06ca7fc44f2c824d75"
+    },
+    {
+      "path": "Server Map Files/maps/9115336.map",
+      "bytes": 66118,
+      "sha256": "1496c29136d0f1809205c6419abf3a68ddfcbdbdce7d8917e08f3d9ae04ec471"
+    },
+    {
+      "path": "Server Map Files/maps/9115337.map",
+      "bytes": 66118,
+      "sha256": "e203dd7907fd10b1836bb04469c1419240c9c5b923ad8c9824f617cda5dd4cb4"
+    },
+    {
+      "path": "Server Map Files/maps/9115436.map",
+      "bytes": 66118,
+      "sha256": "3c3c2de6630573a29758c43f813c794d56c8a04a9490d04da3bec50fb97987cf"
+    },
+    {
+      "path": "Server Map Files/maps/9115437.map",
+      "bytes": 66118,
+      "sha256": "203d18ebb0298bc89592c2394cfb081576c8594d3308a288f2a5dad1730dadc5"
+    },
+    {
+      "path": "Server Map Files/maps/9115536.map",
+      "bytes": 66118,
+      "sha256": "bdbdba60d387ab6fc887c9d2ea38550ee0474999c93ea1ec49494510cb4013ee"
+    },
+    {
+      "path": "Server Map Files/maps/9115537.map",
+      "bytes": 66630,
+      "sha256": "e27920ed3f5565db4a807f77c6fc3be58aabdbf2ec6c2237a85744e9602d66a9"
+    },
+    {
+      "path": "Server Map Files/mmaps/805.mmap",
+      "bytes": 28,
+      "sha256": "d84371bef65803207935a19f17ff400997aee916495808b3b150a1ce538f6dcb"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050602.mmtile",
+      "bytes": 151624,
+      "sha256": "414fc6ae7d2dfe08b45c8cd349761db5053fd918eaa0bd7fbecbfa438c73c479"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050603.mmtile",
+      "bytes": 315012,
+      "sha256": "4d8e728f91bd2245f43c080cc4c35debaec73623eda76d5fb732cac6126b8ab8"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050604.mmtile",
+      "bytes": 385644,
+      "sha256": "0805aa70b6c4aa3fa3e6984c0a116780fc314e45db45ac4a2169e64ca972e7e2"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050605.mmtile",
+      "bytes": 243252,
+      "sha256": "c1c2ad87c507b29750c546819f711f848a9603101e04e12dbc53bea5bc87b231"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050702.mmtile",
+      "bytes": 288560,
+      "sha256": "84608830a03e409f5ff6f308d6945018edae68291a3642aba877e56a3a92437a"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050703.mmtile",
+      "bytes": 632800,
+      "sha256": "534481a4c6ac0ee606c9c490bc0f8b4c713014213dbe362ec81f6a45d420ad34"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050704.mmtile",
+      "bytes": 471064,
+      "sha256": "cd917a83570e615fe64c3f22ec7d709b53db71f35107f2d9ca9ce01dd76bd40e"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050705.mmtile",
+      "bytes": 341240,
+      "sha256": "4a7ad164629af98247a127d5e7872a7b7ddbc1e4d16ffacfc9fba5ded252c939"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050802.mmtile",
+      "bytes": 435620,
+      "sha256": "307ccde1209c989abd98f6d670d3566d5d09cc4cd57058f87aebec8007b8caff"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050803.mmtile",
+      "bytes": 747584,
+      "sha256": "0cbc0567a9315b5adc581db404d7b072e2586bb2e5800d7388791c2f45f7a906"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050804.mmtile",
+      "bytes": 448408,
+      "sha256": "2dfd5a97c0f6fab0cfc8720382137cbf3f9be3a883f4d1b1050671687a08f3b1"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050805.mmtile",
+      "bytes": 296188,
+      "sha256": "c7452e43801509392ba44b04b5e6bf88a22d1279e7a4cf3a076dbe4b5bd8cfa0"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050902.mmtile",
+      "bytes": 282112,
+      "sha256": "c9c492d9708d8b86adf05e8940a861d1d13f0f8012fd16d1d325bb8fe75f0a8a"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050903.mmtile",
+      "bytes": 363912,
+      "sha256": "06c8955fdbf6b3476665d9e14eceb2c04bfd2dbdbdb05a3f9055a1c66698755c"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050904.mmtile",
+      "bytes": 285936,
+      "sha256": "4be1ebfd41a3fe33fb16638917593b953e1c7de77b35d6215875754578655015"
+    },
+    {
+      "path": "Server Map Files/mmaps/8050905.mmtile",
+      "bytes": 222408,
+      "sha256": "8e26289b1ecb0fd878cfed43a20531440e9c6fddb95fb0d08b640d8a6679b3ea"
+    },
+    {
+      "path": "Server Map Files/mmaps/900.mmap",
+      "bytes": 28,
+      "sha256": "e07a76cbc27460dae9ce9f4c00036826058312e426300c07d90451b01f1636ba"
+    },
+    {
+      "path": "Server Map Files/mmaps/9002627.mmtile",
+      "bytes": 841176,
+      "sha256": "fd997eb96f8bcd432cbd1a543556c2dba4c0e693f23212af801d255f70ec353e"
+    },
+    {
+      "path": "Server Map Files/mmaps/9002628.mmtile",
+      "bytes": 870168,
+      "sha256": "8136ddb075ee11a4733a4720a0ba4c337cc66649091ee46363f16e582a53e829"
+    },
+    {
+      "path": "Server Map Files/mmaps/901.mmap",
+      "bytes": 28,
+      "sha256": "2980ae63de4623416fc0bf1eafcf9a9841fe24be5f97c5378b97511f9af0193c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9011331.mmtile",
+      "bytes": 940524,
+      "sha256": "81c2509a1a160b9f691d24c3f48922268067295d94e8b36c1f6335107913915d"
+    },
+    {
+      "path": "Server Map Files/mmaps/9011332.mmtile",
+      "bytes": 609076,
+      "sha256": "c596b9eb86d8a93c75749e4148234c0c6f4eb1c0d011c888fdb1fe1a63764708"
+    },
+    {
+      "path": "Server Map Files/mmaps/902.mmap",
+      "bytes": 28,
+      "sha256": "2b4957baaa5e7cf00a5c5434f6a22c43d8aa9c92caeb6d2409cf209ecdcb4d3a"
+    },
+    {
+      "path": "Server Map Files/mmaps/9022828.mmtile",
+      "bytes": 392356,
+      "sha256": "caf57ffae7c723313ba476f6cda5773a77c5c641f37a1c42182c9297d4730233"
+    },
+    {
+      "path": "Server Map Files/mmaps/9022829.mmtile",
+      "bytes": 942716,
+      "sha256": "327d0b24146c0f33e4680d59cdcb932531bdee9421f6b5a581c54a4eaccf023c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9022830.mmtile",
+      "bytes": 894336,
+      "sha256": "e60e510ca416563711f3f946b41e4290e3d909d9111ec495176ab1429e55c954"
+    },
+    {
+      "path": "Server Map Files/mmaps/903.mmap",
+      "bytes": 28,
+      "sha256": "a892f81e49685bad727ee1e70afb43142730bc4d903a3a2d181c0b975711e24c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9032626.mmtile",
+      "bytes": 373264,
+      "sha256": "e4ce0e611271025212d7f29849d72155dc6b0a46133896a7de4d991ffdc8435f"
+    },
+    {
+      "path": "Server Map Files/mmaps/9032627.mmtile",
+      "bytes": 190740,
+      "sha256": "efd51bd0aa235ed6e5eddc3b2495297697da31e5edabaf4d339235e9f829860a"
+    },
+    {
+      "path": "Server Map Files/mmaps/9032726.mmtile",
+      "bytes": 411084,
+      "sha256": "8cfd2cfc2fe7c5b16d240a6066252821081e2f6add14f9e1e03772bf3d178549"
+    },
+    {
+      "path": "Server Map Files/mmaps/9032727.mmtile",
+      "bytes": 192592,
+      "sha256": "3ec939060dbc8339ab6c43beffc20bb59b8b96aaaee98009efc47f8c4cc7c68b"
+    },
+    {
+      "path": "Server Map Files/mmaps/904.mmap",
+      "bytes": 28,
+      "sha256": "c36694b7cf9a7ce7f62b939e7e2139740e576eae8307d758c2ab91919c6764cf"
+    },
+    {
+      "path": "Server Map Files/mmaps/9042727.mmtile",
+      "bytes": 246636,
+      "sha256": "cb98b66cf44cd11bf0d6a7c36f9a8067913367460aa579c0652aee86859b077d"
+    },
+    {
+      "path": "Server Map Files/mmaps/905.mmap",
+      "bytes": 28,
+      "sha256": "dc66e69e73a3b8e5c3d682c226e00b19b3bb99decea384e87ca826a1352f667c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9055534.mmtile",
+      "bytes": 950160,
+      "sha256": "fbf0fe083965d642b0753b166652530580d20023b38ec6470e4780e63b99d123"
+    },
+    {
+      "path": "Server Map Files/mmaps/9055634.mmtile",
+      "bytes": 745840,
+      "sha256": "08252fc38cb3e4f8dadc2e37a1a96d3a6eb2984981da69a0f1f2d6de2924a601"
+    },
+    {
+      "path": "Server Map Files/mmaps/906.mmap",
+      "bytes": 28,
+      "sha256": "6ab211809ef0e57125da53c6c3d26a14102a1cdaeb887b4bc0857d70eb251e2c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9063439.mmtile",
+      "bytes": 529172,
+      "sha256": "303646830bcd8f2f720517df26473a4ca2600c6fb29eeb85be8abfea262bef17"
+    },
+    {
+      "path": "Server Map Files/mmaps/9063440.mmtile",
+      "bytes": 316684,
+      "sha256": "ca23cd85791d03af52741cf347cd1c3e18c0501f422b6236f7d64a70cd9adaf2"
+    },
+    {
+      "path": "Server Map Files/mmaps/9063539.mmtile",
+      "bytes": 479300,
+      "sha256": "dadbcdb02b8c5c35515f237a64a0ecc47a01fc290c9cf5aab48f43ef718ff630"
+    },
+    {
+      "path": "Server Map Files/mmaps/9063540.mmtile",
+      "bytes": 124332,
+      "sha256": "d46cb3237657be4d05be1d3e0047762568788003578547e3f7b6a0205f57b0ea"
+    },
+    {
+      "path": "Server Map Files/mmaps/907.mmap",
+      "bytes": 28,
+      "sha256": "becf1be12bc42c2985ea218841016cf89d549b20c996e818d330dd8dfc8f6f18"
+    },
+    {
+      "path": "Server Map Files/mmaps/9074732.mmtile",
+      "bytes": 1032772,
+      "sha256": "db130aaddba144bb47979045af47b146227f69b6cece6f85cffd22642055add8"
+    },
+    {
+      "path": "Server Map Files/mmaps/9074733.mmtile",
+      "bytes": 898836,
+      "sha256": "ac197da62cf707cdcaf78c80490c6115954bade8a63ad46ffed7a1d02f48fdfe"
+    },
+    {
+      "path": "Server Map Files/mmaps/9074832.mmtile",
+      "bytes": 1119664,
+      "sha256": "2b75388df27dbd8cc4033c8e9620853439462199cee806975075d45b6fe78ae2"
+    },
+    {
+      "path": "Server Map Files/mmaps/9074833.mmtile",
+      "bytes": 773116,
+      "sha256": "57ed824735990ec1d504cdd4e5a6f565123379decaed43e96a4c2d42a016c09b"
+    },
+    {
+      "path": "Server Map Files/mmaps/908.mmap",
+      "bytes": 28,
+      "sha256": "7316396dbe0939d3ca8c79f16bbd4bebf0ed9f6e830e8c233e56eee7b505aa72"
+    },
+    {
+      "path": "Server Map Files/mmaps/9082336.mmtile",
+      "bytes": 103176,
+      "sha256": "e654224454b5f4b2b70de78cec93c499060a042d4ec01fea463e8e3133f9101d"
+    },
+    {
+      "path": "Server Map Files/mmaps/9082337.mmtile",
+      "bytes": 353076,
+      "sha256": "099f00f1ab5c44d86148ac57cd939cff4cec23aa88fa99da99da08f7ba439d4f"
+    },
+    {
+      "path": "Server Map Files/mmaps/9082436.mmtile",
+      "bytes": 448648,
+      "sha256": "1d50e4dfdd519bbe9cd83a82827c297224f82aa2b0f4d82353ac33497c29a00d"
+    },
+    {
+      "path": "Server Map Files/mmaps/9082437.mmtile",
+      "bytes": 385488,
+      "sha256": "19c771f137673d56d4f71b63fd1ee2bce71abdce6e6a9a830e985c814aecd9e7"
+    },
+    {
+      "path": "Server Map Files/mmaps/909.mmap",
+      "bytes": 28,
+      "sha256": "5cbc1cd1b79fb47e1be6a1326eecbf8908f0164284dacd679c0a4835a4e8edc3"
+    },
+    {
+      "path": "Server Map Files/mmaps/9094230.mmtile",
+      "bytes": 818504,
+      "sha256": "d4eb939159c99423803a979c489a523ee8ef1c14654b0f22b6b1d5fa467fa0ea"
+    },
+    {
+      "path": "Server Map Files/mmaps/9094231.mmtile",
+      "bytes": 916156,
+      "sha256": "6bc8cd4627df6d954d742408cee389ef16be2b43901927ee7b6c28ab56201469"
+    },
+    {
+      "path": "Server Map Files/mmaps/9094330.mmtile",
+      "bytes": 579332,
+      "sha256": "c0fec03c3837094eec347af74d17ab106c23abf24875df654d389de00ba27c9e"
+    },
+    {
+      "path": "Server Map Files/mmaps/9094331.mmtile",
+      "bytes": 929492,
+      "sha256": "ae0eee357e1da0e041c807307707af13d9a5604fce6e0a888bc48ac20d63667a"
+    },
+    {
+      "path": "Server Map Files/mmaps/910.mmap",
+      "bytes": 28,
+      "sha256": "aa751e1b03f5c2352c513b9b39d80a2d0abb650e528f3b583e93e1d505c60eb9"
+    },
+    {
+      "path": "Server Map Files/mmaps/9104333.mmtile",
+      "bytes": 849576,
+      "sha256": "b62140a265d89d264968a2b3413b28726c76d39bc293d568a0e859a89bccf191"
+    },
+    {
+      "path": "Server Map Files/mmaps/911.mmap",
+      "bytes": 28,
+      "sha256": "2d1428cfa06cc6a4d441a0a263a1e08cf5c03dfd5495cf7bb4720ade5379dd8f"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115336.mmtile",
+      "bytes": 1140124,
+      "sha256": "4e169e50b3c269fa752b16e16d5b74b88b39803b4ac2dfb6b82c02e20fb1ee14"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115337.mmtile",
+      "bytes": 680288,
+      "sha256": "c83e45f652f6e4805d610cebbd83d728e4155ea153fd41fce7dd2dd311f7707c"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115436.mmtile",
+      "bytes": 881180,
+      "sha256": "a3abfcb1e1d61f2165de71791c9864be5881cee055185c180ce2d07307856e8f"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115437.mmtile",
+      "bytes": 748684,
+      "sha256": "e17762111dd8ef13a36b43020f4221e9c9182feea8a883fffe4d435b8f1a7c81"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115536.mmtile",
+      "bytes": 510704,
+      "sha256": "416b5793c67fd8b41ba3b12f07665b151060e978bd360885c8ecd1268665029e"
+    },
+    {
+      "path": "Server Map Files/mmaps/9115537.mmtile",
+      "bytes": 550952,
+      "sha256": "f31d6111875191df9bd44c8cbe9d6d48cd074af8b0ee4b7dc8d588f7fd5d2022"
+    },
+    {
+      "path": "Server Map Files/vmaps/805.vmtree",
+      "bytes": 101,
+      "sha256": "62039a31ef65f3c1069d6bc38024d1314d9d7df357a1ff4638b816855daa1101"
+    },
+    {
+      "path": "Server Map Files/vmaps/805_03_07.vmtile",
+      "bytes": 250,
+      "sha256": "efd62a3a9b97fe56a97a07fcfd200c987aa493f4d45115d3e4517ae62a06f62c"
+    },
+    {
+      "path": "Server Map Files/vmaps/805_03_08.vmtile",
+      "bytes": 175,
+      "sha256": "1451088ac29974341f8dfddd9f318d92a3085445606649400eccdd8b069e0d96"
+    },
+    {
+      "path": "Server Map Files/vmaps/805_04_07.vmtile",
+      "bytes": 94,
+      "sha256": "420847f01c3171c62b18e894d435acf8e8f27c17b170ec1efb34c45904864aeb"
+    },
+    {
+      "path": "Server Map Files/vmaps/805_04_08.vmtile",
+      "bytes": 94,
+      "sha256": "420847f01c3171c62b18e894d435acf8e8f27c17b170ec1efb34c45904864aeb"
+    },
+    {
+      "path": "Server Map Files/vmaps/900.vmtree",
+      "bytes": 1821,
+      "sha256": "bdf75438bbff561eebe1bb4d14fb4e6b99f79803342dcc8eb0fffa5a179260f2"
+    },
+    {
+      "path": "Server Map Files/vmaps/900_27_26.vmtile",
+      "bytes": 6674,
+      "sha256": "6c3579d347d4d9d4c468be60bd4d5032961a3a6b9ff800a84e70959c16604fa5"
+    },
+    {
+      "path": "Server Map Files/vmaps/900_28_26.vmtile",
+      "bytes": 1121,
+      "sha256": "ccadb41455bb9a9e4fcba4e997347a02b7fc1fba20434200c192671bd0996722"
+    },
+    {
+      "path": "Server Map Files/vmaps/901.vmtree",
+      "bytes": 8693,
+      "sha256": "0000490eae8d764e7c2821ea319c33f69955f9fe077e933846d7de51af6801d3"
+    },
+    {
+      "path": "Server Map Files/vmaps/901_31_13.vmtile",
+      "bytes": 28796,
+      "sha256": "7c18b5e9f2fc45c3a2ba3f1164f16b7c995b62179c266bc4657de1c551834313"
+    },
+    {
+      "path": "Server Map Files/vmaps/901_32_13.vmtile",
+      "bytes": 8185,
+      "sha256": "f2cfdf6d95a4a2f8a1dd4d003ca0adc22dd8e57aa4976c8cddff38768044d39f"
+    },
+    {
+      "path": "Server Map Files/vmaps/902.vmtree",
+      "bytes": 7001,
+      "sha256": "29d913c3592a569bef6808c67c4500489f1aec3bd658044f9abaa1d5b455f12b"
+    },
+    {
+      "path": "Server Map Files/vmaps/902_28_28.vmtile",
+      "bytes": 97,
+      "sha256": "b3c57e235aad60cbacf2442dd2510440bda9937dbf1b995854510c14a3249024"
+    },
+    {
+      "path": "Server Map Files/vmaps/902_29_28.vmtile",
+      "bytes": 9058,
+      "sha256": "7b9412d3a31ad969a1f9a2f277ad9da62ce7cc9b7512c402ad9bb763711e8de9"
+    },
+    {
+      "path": "Server Map Files/vmaps/902_30_28.vmtile",
+      "bytes": 22459,
+      "sha256": "0b57b24aef781823cc192e7a78b64c03b119418eead46e5c7370970653459704"
+    },
+    {
+      "path": "Server Map Files/vmaps/903.vmtree",
+      "bytes": 37317,
+      "sha256": "217985a3cf9442fc861e5a1db6294a546f85ebbf81f48cc06b977bc9bad4e26d"
+    },
+    {
+      "path": "Server Map Files/vmaps/903_26_26.vmtile",
+      "bytes": 154723,
+      "sha256": "5e20724b9945b9d1e3ec83eb96cf2a69fe4a863372b38c07290653aa9607ba47"
+    },
+    {
+      "path": "Server Map Files/vmaps/903_26_27.vmtile",
+      "bytes": 154723,
+      "sha256": "5e20724b9945b9d1e3ec83eb96cf2a69fe4a863372b38c07290653aa9607ba47"
+    },
+    {
+      "path": "Server Map Files/vmaps/903_27_26.vmtile",
+      "bytes": 154723,
+      "sha256": "5e20724b9945b9d1e3ec83eb96cf2a69fe4a863372b38c07290653aa9607ba47"
+    },
+    {
+      "path": "Server Map Files/vmaps/903_27_27.vmtile",
+      "bytes": 154723,
+      "sha256": "5e20724b9945b9d1e3ec83eb96cf2a69fe4a863372b38c07290653aa9607ba47"
+    },
+    {
+      "path": "Server Map Files/vmaps/904.vmtree",
+      "bytes": 2129,
+      "sha256": "0d9a7c0d81a7dbe1f3d6c1b754719c26ec108509a8c63e731451df2426d09bcf"
+    },
+    {
+      "path": "Server Map Files/vmaps/904_27_27.vmtile",
+      "bytes": 8744,
+      "sha256": "49a968fc858b47080c5c8f804fcedc18d3e43581ffc11783381a417e95d1d478"
+    },
+    {
+      "path": "Server Map Files/vmaps/905.vmtree",
+      "bytes": 2685,
+      "sha256": "ea88aa161c64ba9e5525496be9fa10b3d153561c0fc7f210249a3d53968650d2"
+    },
+    {
+      "path": "Server Map Files/vmaps/905_34_55.vmtile",
+      "bytes": 7840,
+      "sha256": "7b816cf7139dd734461ac35c61acc46288f27a0c85b7a1c64b8a57f79028d554"
+    },
+    {
+      "path": "Server Map Files/vmaps/905_34_56.vmtile",
+      "bytes": 5187,
+      "sha256": "a533246af53d1c071b757a4deae8ca5b93f6536d92c9751673d247919017ce49"
+    },
+    {
+      "path": "Server Map Files/vmaps/906.vmtree",
+      "bytes": 6997,
+      "sha256": "a49130d7fe3c15f50ca425d64a361114dd28a261814f34656f07f77b70064316"
+    },
+    {
+      "path": "Server Map Files/vmaps/906_39_34.vmtile",
+      "bytes": 354,
+      "sha256": "60ede558f293c983c608723fef3d8c08971da970a9fe91a5bb1d34d0b973706c"
+    },
+    {
+      "path": "Server Map Files/vmaps/906_39_35.vmtile",
+      "bytes": 24388,
+      "sha256": "c718dead6cd16236800e372aaf12b56ee6595973e5b8cfa5a0eeb1d29a79bb2c"
+    },
+    {
+      "path": "Server Map Files/vmaps/906_40_35.vmtile",
+      "bytes": 4182,
+      "sha256": "498e5c182344fbc6dccbc32be50a1708cee57d8e7363363971689ff398ed1307"
+    },
+    {
+      "path": "Server Map Files/vmaps/907.vmtree",
+      "bytes": 20141,
+      "sha256": "5ac2eeb636823da200f40e0f6abd00f1089021025f4221dafa7188683b5a1aa2"
+    },
+    {
+      "path": "Server Map Files/vmaps/907_32_47.vmtile",
+      "bytes": 18533,
+      "sha256": "c4ce355bd58af43692763262b381d8dc544c3bdaa52ba486fb82537815bc5a99"
+    },
+    {
+      "path": "Server Map Files/vmaps/907_32_48.vmtile",
+      "bytes": 51622,
+      "sha256": "a5169217ff72ff33e8191bbe75458a4286f0bdb29e6d7eee709b69c74cd2a2fa"
+    },
+    {
+      "path": "Server Map Files/vmaps/907_33_47.vmtile",
+      "bytes": 2453,
+      "sha256": "b7084933351e9489e03eee6906f1a4609d08964fb4d08e06f36db5691cb5d8c3"
+    },
+    {
+      "path": "Server Map Files/vmaps/907_33_48.vmtile",
+      "bytes": 20081,
+      "sha256": "b8894f51bfbc97a544d4a53d69281c034e3079acd3489ea7a8a5c46536ce178c"
+    },
+    {
+      "path": "Server Map Files/vmaps/908.vmtree",
+      "bytes": 709,
+      "sha256": "3f6c8b7e29b06340ec79e828c89b0c2c82834a16b8327e427073045e73c3eb1c"
+    },
+    {
+      "path": "Server Map Files/vmaps/908_36_23.vmtile",
+      "bytes": 98,
+      "sha256": "e9a1addf109456d868f0dea8c218134c3fe94fd620d2b2fc76cf669853c5ea50"
+    },
+    {
+      "path": "Server Map Files/vmaps/908_36_24.vmtile",
+      "bytes": 98,
+      "sha256": "e9a1addf109456d868f0dea8c218134c3fe94fd620d2b2fc76cf669853c5ea50"
+    },
+    {
+      "path": "Server Map Files/vmaps/908_37_23.vmtile",
+      "bytes": 2052,
+      "sha256": "46da9d9533654d1a85aceb6146896f0cfaad788948ec50ad60152c4ea5a1a01d"
+    },
+    {
+      "path": "Server Map Files/vmaps/908_37_24.vmtile",
+      "bytes": 1148,
+      "sha256": "7eb3c8701acf0b1ae6d83d65eb4e9d2eb50de86de73ed6d56029c800cf184eb8"
+    },
+    {
+      "path": "Server Map Files/vmaps/909.vmtree",
+      "bytes": 37665,
+      "sha256": "89592ee135bf424d6f5c1efa7e70375fd075711f884bcbd30acfb1368314e579"
+    },
+    {
+      "path": "Server Map Files/vmaps/909_30_42.vmtile",
+      "bytes": 21503,
+      "sha256": "bef4bbe0e871bedf72f0c2353e95dd179529910300afd97d102c233d37a6df06"
+    },
+    {
+      "path": "Server Map Files/vmaps/909_30_43.vmtile",
+      "bytes": 15275,
+      "sha256": "db93d3e375b4f874e3205989ec3b0b6dadd1c2c3ee3f5084d2f57618df88c428"
+    },
+    {
+      "path": "Server Map Files/vmaps/909_31_42.vmtile",
+      "bytes": 53688,
+      "sha256": "8504bfb0eff5524c165425d39ea42cb1c1802496c16a0c97abf9bd84523858f8"
+    },
+    {
+      "path": "Server Map Files/vmaps/909_31_43.vmtile",
+      "bytes": 80401,
+      "sha256": "b95b09a9ea2d80e3c5758e2f5d8f363b7d6edd023ab2d7d49092194157f6e408"
+    },
+    {
+      "path": "Server Map Files/vmaps/910.vmtree",
+      "bytes": 3137,
+      "sha256": "0e6dc080d7726be902968a62e7157ebafc79a293f75d1e5732dde7eb0826b0d6"
+    },
+    {
+      "path": "Server Map Files/vmaps/910_33_43.vmtile",
+      "bytes": 14156,
+      "sha256": "c815864e7c355b302c526c018e881fbd0e5b4f81c3dfabcaa132a6a8ca18567d"
+    },
+    {
+      "path": "Server Map Files/vmaps/911.vmtree",
+      "bytes": 16745,
+      "sha256": "20304476d5912b5996e3332287331e70336dc02974067319193655a90bb58c11"
+    },
+    {
+      "path": "Server Map Files/vmaps/911_36_53.vmtile",
+      "bytes": 16267,
+      "sha256": "beb15d70d1be4649a907529df3263313d3dafd977709b56430cb342b2e879adf"
+    },
+    {
+      "path": "Server Map Files/vmaps/911_36_54.vmtile",
+      "bytes": 1455,
+      "sha256": "8f047d0bd7ac162594d5548a131551f7eec6701095c0b5352f5e8421b8f79089"
+    },
+    {
+      "path": "Server Map Files/vmaps/911_37_53.vmtile",
+      "bytes": 44920,
+      "sha256": "ad81fb8f85b15502fa9ae9647ec27535b7a71c0c75ea46393300d364e67184f1"
+    },
+    {
+      "path": "Server Map Files/vmaps/911_37_54.vmtile",
+      "bytes": 8891,
+      "sha256": "644680bbea7e7e2ce447efcda30b4b22b4469861baa904a5f65745efbe53a12a"
+    },
+    {
+      "path": "Server Map Files/vmaps/Lapbase.wmo.vmo",
+      "bytes": 31736,
+      "sha256": "2c0c008b84a10a7635393f28c47c00b87eea6ca0bfef40387be36838a1099ec2"
+    },
+    {
+      "path": "Server Map Files/vmaps/Mustafar.wmo.vmo",
+      "bytes": 1716268,
+      "sha256": "08e2f84e6fd6ea1b6de23649bb0daafa0876ec57f530326d36cbfc8b2ae3cfce"
+    },
+    {
+      "path": "Server Map Files/vmaps/Pipe.wmo.vmo",
+      "bytes": 26424,
+      "sha256": "c7233941378af4b75bde1c29aab8de33b06b3c8a29c6e4b4cf11b8fd5a14193c"
+    },
+    {
+      "path": "addon/DelvesTeleporter/DelvesTeleporter.lua",
+      "bytes": 14684,
+      "sha256": "d9064b54098bd83a00862c4ddd6c0155ec4e2ccc748d143659f94b99e93e46f4"
+    },
+    {
+      "path": "addon/DelvesTeleporter/DelvesTeleporter.toc",
+      "bytes": 239,
+      "sha256": "b7f113f9bcb7d9bef3fc72488c66104c38dc2c7e20939c2e105bc7de8a7275fc"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenAltarofStorms.tga",
+      "bytes": 524332,
+      "sha256": "7be300707991cfded79ffd4c47387e6b3eef278c018c090c2f770b6c341651d6"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenArathiFarm.tga",
+      "bytes": 524332,
+      "sha256": "f1d087b96885f1b6fd52264ddd460206d287851315cdebd879656210d16dc73f"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenBlackcharCave.tga",
+      "bytes": 524332,
+      "sha256": "81c0e49210ac08f99d3fbaa9744a82da89ce13b25b587be3f090e28edefce770"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenDemonhunterCove.tga",
+      "bytes": 524332,
+      "sha256": "5fa14ab0dba72ff1749e9f509a703ea5391a17eba7c3c8ff0bc1be9a44e24913"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenElwynnFalls.tga",
+      "bytes": 524332,
+      "sha256": "4b9c50d5a738d872c8404692aac208852f1fc61a7b9bd0eeeca9efcd5b227a18"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenForgottenGnomeCamp.tga",
+      "bytes": 524332,
+      "sha256": "14838ed9e0af754d919b03ddbef9e1e8cd8214c712e2fd195946f0d834eefa98"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenMustafar.tga",
+      "bytes": 524332,
+      "sha256": "8ce089aabce088e69bf49ac38fa80d5728fd5aa07f6d625dc8cf46479521f393"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenNewmansLanding.tga",
+      "bytes": 524332,
+      "sha256": "c6c03305ff51e85e5edf0a25813fa05635328dc5c2072458701b26d2f0ab951f"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenQuelthalasIsland.tga",
+      "bytes": 524332,
+      "sha256": "fbbff7d01e2fac9a957fcb3d48652adc5e402558bf1acc081ac4b8a47df88da1"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenSandfury.tga",
+      "bytes": 524332,
+      "sha256": "f601c2b97855f224dfc8227f68e2380ad675cd7b7ac5d8930202ec4fa7fcede9"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenStonetalonLoggingCamp.tga",
+      "bytes": 524332,
+      "sha256": "8f4b0124c53a159968dff11e84749c3c7ca9cbdb8e7e1fc16d4d28454948d00f"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/LoadScreenStonetalonRuins.tga",
+      "bytes": 524332,
+      "sha256": "5538e85145b7477dc7014e5254d8d82b7af0ff9b29e811a1181d025d536548c7"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/MinimapIcon.tga",
+      "bytes": 4140,
+      "sha256": "37059d3896cbc2d110362d9452f571083ad7d73914709144550bd786aac2f634"
+    },
+    {
+      "path": "addon/DelvesTeleporter/Textures/_test_old.tga",
+      "bytes": 1048620,
+      "sha256": "857da9170b2962cf603c86d7416371800273e2f51a7eae8de5d64a9efcd4201f"
+    },
+    {
+      "path": "data/sql/db-world/base/1_delves_creature_model_info_insert.sql",
+      "bytes": 1304,
+      "sha256": "075ebaf5d6701809318ed3d60f971849cc10f3d994595e6819900cc06636856a"
+    },
+    {
+      "path": "data/sql/db-world/base/2_delves_game_graveyard.sql",
+      "bytes": 858,
+      "sha256": "04d6e355ffcb304089de023d0492ad2b93bb95f9b5986da10f1029d1ee27e6d2"
+    },
+    {
+      "path": "data/sql/db-world/base/3_delves_game_tele.sql",
+      "bytes": 907,
+      "sha256": "2299dcbbaed72b038cf023b55a2146f57c64ffd56c6db7438544ef9d74f69f82"
+    },
+    {
+      "path": "data/sql/db-world/base/4_delves_graveyard_zone.sql",
+      "bytes": 577,
+      "sha256": "df013e3312a50ef3dee1268e081549fc8e4ec86d32fcd415a041a16a4315b7f7"
+    },
+    {
+      "path": "data/sql/db-world/base/5_delves_instance_template.sql",
+      "bytes": 274,
+      "sha256": "5971f8372338c3a35d3ee003e162fe40478132187de048627b422a9a9a6fc348"
+    },
+    {
+      "path": "data/sql/db-world/base/6_delves_reference_loot_table.sql",
+      "bytes": 643,
+      "sha256": "9e9110b60bb5104b9a6ef27f2389e5f21e897a7fc7ada4c20574ac9738a9aa68"
+    },
+    {
+      "path": "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+      "bytes": 2389,
+      "sha256": "77ea36c860253ed16c1e6ce1d2e24bdcbbe09af582abee751bfb465e7b13bc60"
+    },
+    {
+      "path": "data/sql/db-world/base/8_delves_Chest(130000).sql",
+      "bytes": 3298,
+      "sha256": "9dfe4f0a0a26f84521fae702875993fdbcdec254ab9bf45f1982b3bda24bdd3e"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Altar of Storms.sql",
+      "bytes": 34488,
+      "sha256": "7354e32a503a20b119c8169b0194a9fe5e379b38f34d1db172675c9ed5c33850"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Arathi Farmland Highlands.sql",
+      "bytes": 57265,
+      "sha256": "62df4a2d8f6e5402613e3e45f8cd4aec05416507a6af16c86a9933caa903c117"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Blackchar Cave.sql",
+      "bytes": 25688,
+      "sha256": "eeb787114ef31d235534dd4a96d5bb2d8ccaa9c4dc2a6be97770884cc913f904"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Demon Hunter Cove (WIP).sql",
+      "bytes": 22034,
+      "sha256": "5665dbe7028b6727da314a6f95350a24b89f4e854841feb4dc891d88b4af7253"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Elwynn Falls.sql",
+      "bytes": 31980,
+      "sha256": "60eb43733515955a682c60bf3255930efe7e44c2c6a37275f64915c3161abbf9"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Forgotten Gnome Camp.sql",
+      "bytes": 37812,
+      "sha256": "6ee1fdf0d43c9a8b72dcf5660b026ad062f6361961ee8b13e90f86c9174266c4"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Gameobjects.sql",
+      "bytes": 15086,
+      "sha256": "f189bd9f3e4a458549a56d77fc3365f59f616280d5cb89432f16a3bb6b0199c9"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Mustafar.sql",
+      "bytes": 18198,
+      "sha256": "cee890a1934b556b2a7772f486a98c67762de756477d8c067f267f4f860c74b9"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Newmans Landing.sql",
+      "bytes": 25467,
+      "sha256": "a7d57452e1140dd50f106e895149de529d90d7b2b1b94fb20db420eca542da19"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_OldIronforge.sql",
+      "bytes": 46018,
+      "sha256": "26fea4c30a174fb38408eb18eb90a6581ebeb8ff7f06daa1cbb7c03b6965826d"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Quelthalas Island.sql",
+      "bytes": 24721,
+      "sha256": "d4cb0c3544ef318c600ef23f1ab6da251cc442a6cbe2bc712be34ebfed11e9c7"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Sandfury Delve.sql",
+      "bytes": 70846,
+      "sha256": "504c3cb9c7e5962845ce28070dd29a63512f80f9ca584014bf4225a0c9ef1865"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Stonetalon Logging Camp.sql",
+      "bytes": 46882,
+      "sha256": "d46ac93f47e82181ac65ce5c7ef5e145757412cc1541fba269f0669008d1b00f"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_Stonetalon Ruins.sql",
+      "bytes": 15458,
+      "sha256": "2e8a2cb0dc667ee911ce5188bc65b608ef7cf6ed8a43a8b701e31a266021e98b"
+    },
+    {
+      "path": "data/sql/db-world/base/delves_creature_template_resistance.sql",
+      "bytes": 806,
+      "sha256": "d2e2b043233126a3beb4318289948197f38df6b04885b6320c3f564349a4e00f"
+    },
+    {
+      "path": "lua_scripts/Aquaspawn.lua",
+      "bytes": 4488,
+      "sha256": "d5231b603e7e57fa68f4f7cac02081f2376843b5b1bc1353ff5479400013433b"
+    },
+    {
+      "path": "lua_scripts/BobaFett.lua",
+      "bytes": 15316,
+      "sha256": "c3ea6fce44558155dc567597969c10c440b919cb8926226f5491afbb7fde0162"
+    },
+    {
+      "path": "lua_scripts/ChiefRunetusk.lua",
+      "bytes": 7477,
+      "sha256": "b112d1290694f80f1dd351d7075a0dafe20ef4dd51c06519d6f2056d9d197224"
+    },
+    {
+      "path": "lua_scripts/ChieftanColdpaw.lua",
+      "bytes": 5807,
+      "sha256": "a2d7d60ba4dc929a6123c9e037aa3a0a1f0eb525d38a05c73f95c40526da4dff"
+    },
+    {
+      "path": "lua_scripts/FavargairOgreKeeper.lua",
+      "bytes": 5468,
+      "sha256": "b994873599573a04400c124824e1dfa757d58994659afce7c42d7f0de1bad36d"
+    },
+    {
+      "path": "lua_scripts/FleetMasterSkaldron.lua",
+      "bytes": 4960,
+      "sha256": "d0b9ae0fc9e48eb052f59f8740947c905c2110436d04898a85723e713675a3a6"
+    },
+    {
+      "path": "lua_scripts/ForemanGlitzbolt.lua",
+      "bytes": 12202,
+      "sha256": "7cce2e49c3a1f3e7fc307ee64cbaccc0c87b98275e17a3563d45a32100b02301"
+    },
+    {
+      "path": "lua_scripts/Ghubo.lua",
+      "bytes": 5913,
+      "sha256": "bfd72bb5b5db435dd87b13f692c0dee59ead0ef1bfb74aa1fed5fc3e874132b2"
+    },
+    {
+      "path": "lua_scripts/Grurvuch.lua",
+      "bytes": 5919,
+      "sha256": "c355b7bf265bf54495828fc9ae735a304fdddcdb97091b5b7712d8249fd7ed4a"
+    },
+    {
+      "path": "lua_scripts/Gurgles.lua",
+      "bytes": 4518,
+      "sha256": "3d9d3e247376167efbcf8a83e64aa6c537b93d61bdde6573bcc7880dda21fc33"
+    },
+    {
+      "path": "lua_scripts/KyloRen.lua",
+      "bytes": 10966,
+      "sha256": "d340789559a4d5ae08a7a69fadbda2acd8d3b8f7604377129e0137f3a1877c7d"
+    },
+    {
+      "path": "lua_scripts/Lithianawan.lua",
+      "bytes": 4823,
+      "sha256": "39a9d1fb13bc72590daf1e2be4d74db18a240936de519eb2afd650a654ac1a4b"
+    },
+    {
+      "path": "lua_scripts/LordMwargadon.lua",
+      "bytes": 4693,
+      "sha256": "76c379df50baa31f7aba22079e8217f67fb1164937242f2e8d8c88d1f4efdab6"
+    },
+    {
+      "path": "lua_scripts/LordZuletekk.lua",
+      "bytes": 6869,
+      "sha256": "68bce4bcf4b83f12ff2c5e92b712ac8048f1cb14a3b7357141cfa366fd385e5c"
+    },
+    {
+      "path": "lua_scripts/NarulFlameseeker.lua",
+      "bytes": 14117,
+      "sha256": "ba3da4996fc70ed08063f9264aa62b809101016df51517f8ca2e4e9c726792d7"
+    },
+    {
+      "path": "lua_scripts/Nessie.lua",
+      "bytes": 11593,
+      "sha256": "a9056b2fc92d8d786c359311770a0f3b9b38584c4687a5ad597673dd8610ed46"
+    },
+    {
+      "path": "lua_scripts/OverlordMoosh.lua",
+      "bytes": 7616,
+      "sha256": "10966ddf48c3c66b861c91fcdede0a88672b4d74526aea5a89dae658d67ffac3"
+    },
+    {
+      "path": "lua_scripts/OverlordRigto.lua",
+      "bytes": 5847,
+      "sha256": "dd24a9256634b2bc6fafc73a439d8383c92afbf62a10238f0e025f36bbf172d9"
+    },
+    {
+      "path": "lua_scripts/OverlordSnivey.lua",
+      "bytes": 7142,
+      "sha256": "1fdad3b86e4d7b3112894d89f4f038f00cdfeb1fa91ec109471043d50bb4cb1d"
+    },
+    {
+      "path": "lua_scripts/RhulkTheDiseased.lua",
+      "bytes": 6219,
+      "sha256": "e17945ecf9a1ab25b02918d87b5264d41203c90c3c7914574dfae8cd106644f5"
+    },
+    {
+      "path": "lua_scripts/RugoldtTheCorrupt.lua",
+      "bytes": 6029,
+      "sha256": "382a6f3fdbc3bfe9ccdf32cec9f8f6c81243c29ef02560223594ee69044b7503"
+    },
+    {
+      "path": "lua_scripts/RuinSmasher.lua",
+      "bytes": 9744,
+      "sha256": "6781c87db5c3f52067453cfdfabd972de649732405d10b5b6eb30c715be81ab2"
+    },
+    {
+      "path": "lua_scripts/Savathun.lua",
+      "bytes": 6915,
+      "sha256": "d4bdbb97a8df7a849818301440c778aadc5ba2a6b7f9ff8d0fb4a04c25998951"
+    },
+    {
+      "path": "lua_scripts/Scervig.lua",
+      "bytes": 5585,
+      "sha256": "89f11487750727645e2b036d1a38403b5805cf0f422c471adae2d6830120eccc"
+    },
+    {
+      "path": "lua_scripts/SouseSanRhazo.lua",
+      "bytes": 5798,
+      "sha256": "a7e1937fc9b7fa443155d3d0c7c86f7f01d431c9e3524973f9fbbec2ef3b4b42"
+    },
+    {
+      "path": "lua_scripts/Vader.lua",
+      "bytes": 14318,
+      "sha256": "109d0989833156c1110403d03310c7367f52b5cdcda896fa65a3768ba34f349c"
+    },
+    {
+      "path": "lua_scripts/Xantosh.lua",
+      "bytes": 6829,
+      "sha256": "61ec63788b5fb18fac50541e69aad80d31345a05bb8a42e04a3e33a4f10d3913"
+    },
+    {
+      "path": "lua_scripts/delves-teleporter.lua",
+      "bytes": 5739,
+      "sha256": "e0e6d074f709ac9138912ca6074150a8671a95740efd9be13b6714749a568abc"
+    }
+  ],
+  "total_bytes": 366888109
+}

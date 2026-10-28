@@ -1,0 +1,867 @@
+{
+  "boss_script_count": 27,
+  "locations": [
+    {
+      "boss_scripts": [
+        "lua_scripts/BobaFett.lua",
+        "lua_scripts/KyloRen.lua",
+        "lua_scripts/NarulFlameseeker.lua",
+        "lua_scripts/Vader.lua"
+      ],
+      "directory": "mustafar",
+      "enabled": false,
+      "name": "Mustafar",
+      "source_instance_type": 2,
+      "source_map": 805,
+      "source_spawn_rows": 72,
+      "source_template_entries": [
+        6491,
+        8908,
+        12100,
+        17477,
+        30643,
+        32237,
+        34069,
+        34086,
+        888432,
+        9500637,
+        9500639,
+        9500643,
+        9500644
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Mustafar.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/ForemanGlitzbolt.lua",
+        "lua_scripts/Nessie.lua",
+        "lua_scripts/RuinSmasher.lua"
+      ],
+      "directory": "stonerun",
+      "enabled": false,
+      "name": "Stonetalon Ruins",
+      "source_instance_type": 2,
+      "source_map": 900,
+      "source_spawn_rows": 66,
+      "source_template_entries": [
+        6491,
+        600657,
+        600658,
+        600659,
+        600660,
+        600661,
+        600662,
+        600663,
+        600664
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Stonetalon Ruins.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [],
+      "directory": "Demoncove",
+      "enabled": false,
+      "name": "Demonhunter Cove",
+      "source_instance_type": 2,
+      "source_map": 901,
+      "source_spawn_rows": 1,
+      "source_template_entries": [
+        6491
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql"
+      ],
+      "upstream_wip": true
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/OverlordMoosh.lua",
+        "lua_scripts/OverlordSnivey.lua"
+      ],
+      "directory": "StoneLog",
+      "enabled": false,
+      "name": "Stonetalon Logging Camp",
+      "source_instance_type": 2,
+      "source_map": 902,
+      "source_spawn_rows": 79,
+      "source_template_entries": [
+        6491,
+        600657,
+        600658,
+        600659,
+        600660,
+        600661,
+        600701,
+        600702
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Stonetalon Logging Camp.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [],
+      "directory": "oldironforge",
+      "enabled": false,
+      "name": "Old Ironforge",
+      "source_instance_type": 2,
+      "source_map": 903,
+      "source_spawn_rows": 1,
+      "source_template_entries": [
+        6491
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql"
+      ],
+      "upstream_wip": true
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/FavargairOgreKeeper.lua"
+      ],
+      "directory": "blackcharcave",
+      "enabled": false,
+      "name": "Blackchar Cave",
+      "source_instance_type": 2,
+      "source_map": 904,
+      "source_spawn_rows": 62,
+      "source_template_entries": [
+        6491,
+        600636,
+        600637,
+        600638,
+        600639,
+        600640,
+        600641,
+        600642
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Blackchar Cave.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/ChiefRunetusk.lua",
+        "lua_scripts/SouseSanRhazo.lua",
+        "lua_scripts/Xantosh.lua"
+      ],
+      "directory": "SandFury",
+      "enabled": false,
+      "name": "SandfuryDelve",
+      "source_instance_type": 2,
+      "source_map": 905,
+      "source_spawn_rows": 58,
+      "source_template_entries": [
+        6491,
+        600613,
+        600614,
+        600615,
+        600616,
+        600617,
+        600618,
+        600619,
+        600620,
+        600621,
+        600622,
+        600623
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Sandfury Delve.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/Ghubo.lua",
+        "lua_scripts/RhulkTheDiseased.lua",
+        "lua_scripts/Savathun.lua"
+      ],
+      "directory": "AFarmlands",
+      "enabled": false,
+      "name": "Arathi Farmlands",
+      "source_instance_type": 2,
+      "source_map": 906,
+      "source_spawn_rows": 121,
+      "source_template_entries": [
+        6491,
+        600689,
+        600690,
+        600691,
+        600692,
+        600693,
+        600694,
+        600695,
+        600696,
+        600697,
+        600698,
+        600699,
+        600700
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Arathi Farmland Highlands.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/Aquaspawn.lua",
+        "lua_scripts/Gurgles.lua",
+        "lua_scripts/LordMwargadon.lua"
+      ],
+      "directory": "elwynn",
+      "enabled": false,
+      "name": "Elwynn Falls",
+      "source_instance_type": 2,
+      "source_map": 907,
+      "source_spawn_rows": 56,
+      "source_template_entries": [
+        6491,
+        600624,
+        600625,
+        600626,
+        600627,
+        600628,
+        600629,
+        600630,
+        600631,
+        600632,
+        600633,
+        600634,
+        600635
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Elwynn Falls.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/FleetMasterSkaldron.lua",
+        "lua_scripts/Lithianawan.lua"
+      ],
+      "directory": "qualisland",
+      "enabled": false,
+      "name": "Quel'Thalas Island",
+      "source_instance_type": 2,
+      "source_map": 908,
+      "source_spawn_rows": 44,
+      "source_template_entries": [
+        6491,
+        600643,
+        600644,
+        600645,
+        600646,
+        600647,
+        600648,
+        600649
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Quelthalas Island.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/Grurvuch.lua",
+        "lua_scripts/Scervig.lua"
+      ],
+      "directory": "gnomecamp",
+      "enabled": false,
+      "name": "Forgotten Gnome Camp",
+      "source_instance_type": 2,
+      "source_map": 909,
+      "source_spawn_rows": 58,
+      "source_template_entries": [
+        6491,
+        600673,
+        600674,
+        600675,
+        600676,
+        600677,
+        600678,
+        600679,
+        600680
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Forgotten Gnome Camp.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/ChieftanColdpaw.lua",
+        "lua_scripts/OverlordRigto.lua"
+      ],
+      "directory": "Newman",
+      "enabled": false,
+      "name": "Newman's Landing",
+      "source_instance_type": 2,
+      "source_map": 910,
+      "source_spawn_rows": 39,
+      "source_template_entries": [
+        6491,
+        600650,
+        600651,
+        600652,
+        600653,
+        600654,
+        600655,
+        600656
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Newmans Landing.sql"
+      ],
+      "upstream_wip": false
+    },
+    {
+      "boss_scripts": [
+        "lua_scripts/LordZuletekk.lua",
+        "lua_scripts/RugoldtTheCorrupt.lua"
+      ],
+      "directory": "altarstorms",
+      "enabled": false,
+      "name": "Altar of Storms",
+      "source_instance_type": 2,
+      "source_map": 911,
+      "source_spawn_rows": 103,
+      "source_template_entries": [
+        6491,
+        600665,
+        600666,
+        600667,
+        600668,
+        600669,
+        600670,
+        600671,
+        600672
+      ],
+      "spawn_files": [
+        "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql",
+        "data/sql/db-world/base/delves_Altar of Storms.sql"
+      ],
+      "upstream_wip": false
+    }
+  ],
+  "note": "Counts describe INSERT rows; upstream DELETE/UPDATE statements are recorded but not executed. Files may overlap or reference external templates/items. Source IDs are not Evermore allocations.",
+  "runtime_blockers": [
+    "Native mmap tiles are version 19; pinned Evermore core9e4a232a requires20.",
+    "ALE/Eluna scripts need an engine integration or C++ port; no Lua engine in checked server manifest.",
+    "Allocate/check IDs and adapt raid metadata, tuning, progression and loot before world import.",
+    "Rebuild client DBC additions on the current complete patch chain, preserving lighting changes."
+  ],
+  "schema_version": 1,
+  "source_files": 64,
+  "sql_files": {
+    "data/sql/db-world/base/1_delves_creature_model_info_insert.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "creature_model_info": 9
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/2_delves_game_graveyard.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "game_graveyard": 13
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/3_delves_game_tele.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "game_tele": 12
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/4_delves_graveyard_zone.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "graveyard_zone": 13
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/5_delves_instance_template.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "instance_template": 12
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/6_delves_reference_loot_table.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "reference_loot_template": 11
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/7_delves_spirit_healers_spawn.sql": {
+      "creature_spawn_maps": [
+        805,
+        900,
+        901,
+        902,
+        903,
+        904,
+        905,
+        906,
+        907,
+        908,
+        909,
+        910,
+        911
+      ],
+      "ignored_mutations": [],
+      "insert_counts": {
+        "creature": 13
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/8_delves_Chest(130000).sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "gameobject": 15,
+        "gameobject_loot_template": 4,
+        "gameobject_template": 1
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/delves_Altar of Storms.sql": {
+      "creature_spawn_maps": [
+        911
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "UPDATE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 102,
+        "creature_equip_template": 4,
+        "creature_loot_template": 156,
+        "creature_onkill_reputation": 2,
+        "creature_template": 8,
+        "creature_template_addon": 8,
+        "creature_template_model": 8,
+        "creature_template_spell": 18,
+        "skinning_loot_template": 4,
+        "smart_scripts": 11
+      },
+      "template_levels": [
+        83,
+        84
+      ]
+    },
+    "data/sql/db-world/base/delves_Arathi Farmland Highlands.sql": {
+      "creature_spawn_maps": [
+        906
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 120,
+        "creature_equip_template": 2,
+        "creature_loot_template": 398,
+        "creature_onkill_reputation": 3,
+        "creature_template": 12,
+        "creature_template_addon": 1,
+        "creature_template_model": 23,
+        "creature_template_spell": 26,
+        "skinning_loot_template": 4,
+        "smart_scripts": 20
+      },
+      "template_levels": [
+        82,
+        83,
+        84,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_Blackchar Cave.sql": {
+      "creature_spawn_maps": [
+        904
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 61,
+        "creature_equip_template": 7,
+        "creature_loot_template": 66,
+        "creature_template": 7,
+        "creature_template_model": 8,
+        "creature_template_spell": 23,
+        "smart_scripts": 23
+      },
+      "template_levels": [
+        83,
+        84
+      ]
+    },
+    "data/sql/db-world/base/delves_Demon Hunter Cove (WIP).sql": {
+      "creature_spawn_maps": [
+        1
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 51,
+        "creature_equip_template": 8,
+        "creature_loot_template": 78,
+        "creature_onkill_reputation": 3,
+        "creature_template": 8,
+        "creature_template_model": 14,
+        "creature_template_spell": 22,
+        "smart_scripts": 22
+      },
+      "template_levels": [
+        83,
+        84,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_Elwynn Falls.sql": {
+      "creature_spawn_maps": [
+        907
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 55,
+        "creature_equip_template": 9,
+        "creature_loot_template": 136,
+        "creature_onkill_reputation": 4,
+        "creature_template": 12,
+        "creature_template_model": 12,
+        "creature_template_spell": 19,
+        "smart_scripts": 23
+      },
+      "template_levels": [
+        83
+      ]
+    },
+    "data/sql/db-world/base/delves_Forgotten Gnome Camp.sql": {
+      "creature_spawn_maps": [
+        909
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 57,
+        "creature_equip_template": 7,
+        "creature_loot_template": 237,
+        "creature_template": 8,
+        "creature_template_model": 8,
+        "creature_template_spell": 22,
+        "smart_scripts": 16
+      },
+      "template_levels": [
+        83,
+        84
+      ]
+    },
+    "data/sql/db-world/base/delves_Gameobjects.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "gameobject": 57,
+        "gameobject_loot_template": 4,
+        "gameobject_template": 1
+      },
+      "template_levels": []
+    },
+    "data/sql/db-world/base/delves_Mustafar.sql": {
+      "creature_spawn_maps": [
+        805
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 71,
+        "creature_equip_template": 3,
+        "creature_loot_template": 18,
+        "creature_template": 5,
+        "creature_template_model": 3,
+        "creature_template_resistance": 2
+      },
+      "template_levels": [
+        80,
+        81,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_Newmans Landing.sql": {
+      "creature_spawn_maps": [
+        910
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 38,
+        "creature_equip_template": 6,
+        "creature_loot_template": 113,
+        "creature_onkill_reputation": 7,
+        "creature_template": 7,
+        "creature_template_model": 7,
+        "creature_template_spell": 19,
+        "smart_scripts": 14
+      },
+      "template_levels": [
+        83,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_OldIronforge.sql": {
+      "creature_spawn_maps": [
+        0
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "UPDATE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 50,
+        "creature_equip_template": 13,
+        "creature_loot_template": 244,
+        "creature_template": 13,
+        "creature_template_model": 21,
+        "creature_template_resistance": 12,
+        "creature_template_spell": 22,
+        "pickpocketing_loot_template": 44,
+        "smart_scripts": 30
+      },
+      "template_levels": [
+        82,
+        84
+      ]
+    },
+    "data/sql/db-world/base/delves_Quelthalas Island.sql": {
+      "creature_spawn_maps": [
+        908
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 43,
+        "creature_equip_template": 7,
+        "creature_loot_template": 100,
+        "creature_template": 7,
+        "creature_template_model": 11,
+        "creature_template_spell": 18,
+        "smart_scripts": 15
+      },
+      "template_levels": [
+        83,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_Sandfury Delve.sql": {
+      "creature_spawn_maps": [
+        905
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 57,
+        "creature_equip_template": 9,
+        "creature_loot_template": 612,
+        "creature_template": 11,
+        "creature_template_model": 18,
+        "creature_template_spell": 16,
+        "smart_scripts": 21
+      },
+      "template_levels": [
+        83,
+        84
+      ]
+    },
+    "data/sql/db-world/base/delves_Stonetalon Logging Camp.sql": {
+      "creature_spawn_maps": [
+        902
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 78,
+        "creature_equip_template": 6,
+        "creature_loot_template": 333,
+        "creature_onkill_reputation": 3,
+        "creature_template": 7,
+        "creature_template_model": 15,
+        "creature_template_spell": 15,
+        "smart_scripts": 9
+      },
+      "template_levels": [
+        82,
+        83,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_Stonetalon Ruins.sql": {
+      "creature_spawn_maps": [
+        900
+      ],
+      "ignored_mutations": [
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE",
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature": 65,
+        "creature_equip_template": 1,
+        "creature_loot_template": 6,
+        "creature_onkill_reputation": 1,
+        "creature_template": 3,
+        "creature_template_model": 3,
+        "creature_template_spell": 6
+      },
+      "template_levels": [
+        84,
+        85
+      ]
+    },
+    "data/sql/db-world/base/delves_creature_template_resistance.sql": {
+      "creature_spawn_maps": [],
+      "ignored_mutations": [
+        "DELETE"
+      ],
+      "insert_counts": {
+        "creature_template_resistance": 20
+      },
+      "template_levels": []
+    }
+  },
+  "status": "Imported source collection; runtime conversion and installation pending",
+  "upstream_commit": "aaea411c6ea1831e19e284ed4e4445f83f796272"
+}

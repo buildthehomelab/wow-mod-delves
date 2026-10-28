@@ -1,0 +1,436 @@
+-- Delves Teleporter — client addon (WotLK 3.3.5)
+-- Requires server: lua_scripts/delves/delves-teleporter.lua
+
+local TEXTURE_ROOT = "Interface\\AddOns\\DelvesTeleporter\\Textures\\"
+local COMMAND_PREFIX = "DT:"
+local LEAVE_COMMAND = "LEAVE"
+local HIDDEN_CHANNEL = "DelvesTP"
+local hiddenChannelId = nil
+
+-- id must match game_tele ids on the server whitelist
+-- blizzard = true uses a client BLP path (no addon texture file)
+local DELVES = {
+    { id = 5013, name = "Mustafar",                size = 10, texture = "LoadScreenMustafar" },
+    { id = 4000, name = "Stonetalon Ruins",        size = 10, texture = "LoadScreenStonetalonRuins" },
+    { id = 4001, name = "Demon Hunter Cove",       size = 10, texture = "LoadScreenDemonhunterCove", wip = true },
+    { id = 4002, name = "Stonetalon Logging Camp", size = 10, texture = "LoadScreenStonetalonLoggingCamp" },
+    { id = 4003, name = "Blackchar Cave",          size = 10, texture = "LoadScreenBlackcharCave" },
+    { id = 4004, name = "Sandfury Delve",          size = 10, texture = "LoadScreenSandfury" },
+    { id = 4005, name = "Arathi Highlands Farm",   size = 10, texture = "LoadScreenArathiFarm" },
+    { id = 4006, name = "Elwynn Falls",            size = 10, texture = "LoadScreenElwynnFalls" },
+    { id = 4007, name = "Quel'Thalas Island",      size = 10, texture = "LoadScreenQuelthalasIsland" },
+    { id = 4008, name = "Forgotten Gnome Camp",    size = 10, texture = "LoadScreenForgottenGnomeCamp" },
+    { id = 4009, name = "Newman's Landing",        size = 10, texture = "LoadScreenNewmansLanding" },
+    { id = 4010, name = "Altar of Storms",         size = 10, texture = "LoadScreenAltarofStorms" },
+    { id = 4011, name = "Old Ironforge",           size = 10, texture = "Interface\\Glues\\LoadingScreens\\LoadScreenBlackrockDepths", blizzard = true, wip = true },
+}
+
+local RECOMMENDED_LEVEL = "80"
+
+local COLS = 3
+local CARD_W, CARD_H, PAD = 210, 168, 10
+local IMG_H = 108
+local GRID_W = COLS * CARD_W + (COLS - 1) * PAD
+
+local function EnsureHiddenChannel()
+    if hiddenChannelId then
+        return hiddenChannelId
+    end
+    JoinChannelByName(HIDDEN_CHANNEL)
+    hiddenChannelId = GetChannelName(HIDDEN_CHANNEL)
+    return hiddenChannelId
+end
+
+local function SendDelveTeleportCommand(teleId)
+    local channelId = EnsureHiddenChannel()
+    if channelId then
+        SendChatMessage(COMMAND_PREFIX .. teleId, "CHANNEL", nil, channelId)
+    else
+        PrintMsg("|cffFF8800Could not join DelvesTP channel — using /say (you may see a speech bubble).|r")
+        SendChatMessage(COMMAND_PREFIX .. teleId, "SAY")
+    end
+end
+
+local function SendLeaveDelveCommand()
+    local channelId = EnsureHiddenChannel()
+    if channelId then
+        SendChatMessage(COMMAND_PREFIX .. LEAVE_COMMAND, "CHANNEL", nil, channelId)
+    else
+        PrintMsg("|cffFF8800Could not join DelvesTP channel — using /say (you may see a speech bubble).|r")
+        SendChatMessage(COMMAND_PREFIX .. LEAVE_COMMAND, "SAY")
+    end
+end
+
+local function RequestLeaveDelve()
+    SendLeaveDelveCommand()
+    PrintMsg("Requesting to leave delve...")
+end
+
+local function HideDelveCommandFilter(_, _, msg, sender)
+    if sender == UnitName("player") and msg:match("^" .. COMMAND_PREFIX) then
+        return true
+    end
+end
+
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", HideDelveCommandFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", HideDelveCommandFilter)
+
+local loginFrame = CreateFrame("Frame")
+loginFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+loginFrame:SetScript("OnEvent", function()
+    hiddenChannelId = nil
+    EnsureHiddenChannel()
+end)
+
+local function PrintMsg(msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cff33ccff[Delves]|r " .. msg)
+end
+
+local function ResolveTexturePath(delve)
+    if delve.blizzard then
+        return delve.texture
+    end
+    return TEXTURE_ROOT .. delve.texture
+end
+
+local function GetCardPosition(index, total)
+    local row = math.floor((index - 1) / COLS)
+    local y = -(row * (CARD_H + PAD))
+
+    if index == total then
+        local x = math.floor((GRID_W - CARD_W) / 2)
+        return x, y
+    end
+
+    local col = (index - 1) % COLS
+    local x = col * (CARD_W + PAD)
+    return x, y
+end
+
+--------------------------------------------------------------------------------
+-- Main frame
+--------------------------------------------------------------------------------
+
+local frame = CreateFrame("Frame", "DelvesTeleporterFrame", UIParent)
+frame:SetSize(GRID_W + 48, 560)
+frame:SetPoint("CENTER")
+frame:SetFrameStrata("DIALOG")
+frame:SetMovable(true)
+frame:EnableMouse(true)
+frame:RegisterForDrag("LeftButton")
+frame:SetScript("OnDragStart", frame.StartMoving)
+frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+frame:Hide()
+
+local bg = frame:CreateTexture(nil, "BACKGROUND")
+bg:SetAllPoints()
+bg:SetTexture(0.05, 0.05, 0.08, 0.95)
+
+local border = CreateFrame("Frame", nil, frame)
+border:SetPoint("TOPLEFT", -4, 4)
+border:SetPoint("BOTTOMRIGHT", 4, -4)
+border:SetBackdrop({
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    edgeSize = 16,
+    insets = { left = 4, right = 4, top = 4, bottom = 4 },
+})
+
+local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+title:SetPoint("TOP", 0, -14)
+title:SetText("Delves")
+
+local subtitle = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+subtitle:SetPoint("TOP", title, "BOTTOM", 0, -4)
+subtitle:SetText("Click a delve to teleport")
+
+local closeBtn = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
+closeBtn:SetPoint("TOPRIGHT", -2, -2)
+
+local scrollFrame = CreateFrame("ScrollFrame", "DelvesTeleporterScroll", frame, "UIPanelScrollFrameTemplate")
+scrollFrame:SetPoint("TOPLEFT", 16, -52)
+scrollFrame:SetPoint("BOTTOMRIGHT", -32, 44)
+
+local leaveBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+leaveBtn:SetSize(140, 24)
+leaveBtn:SetPoint("BOTTOM", 0, 14)
+leaveBtn:SetText("Leave Delve")
+leaveBtn:SetScript("OnClick", RequestLeaveDelve)
+leaveBtn:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    GameTooltip:SetText("Leave Delve", 1, 1, 1)
+    GameTooltip:AddLine("Return to where you were before entering a delve.", nil, nil, nil, true)
+    GameTooltip:Show()
+end)
+leaveBtn:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+end)
+
+local content = CreateFrame("Frame", nil, scrollFrame)
+content:SetSize(GRID_W, 1)
+scrollFrame:SetScrollChild(content)
+
+local function CreateDelveCard(index, delve, total)
+    local x, y = GetCardPosition(index, total)
+
+    local card = CreateFrame("Button", nil, content)
+    card:SetSize(CARD_W, CARD_H)
+    card:SetPoint("TOPLEFT", content, "TOPLEFT", x, y)
+
+    local cardBg = card:CreateTexture(nil, "BACKGROUND")
+    cardBg:SetAllPoints()
+    cardBg:SetTexture(0.12, 0.12, 0.16, 1)
+
+    local highlight = card:CreateTexture(nil, "HIGHLIGHT")
+    highlight:SetAllPoints()
+    highlight:SetTexture(1, 1, 1, 0.08)
+
+    local imgBg = card:CreateTexture(nil, "BORDER")
+    imgBg:SetPoint("TOPLEFT", 4, -4)
+    imgBg:SetPoint("TOPRIGHT", -4, -4)
+    imgBg:SetHeight(IMG_H)
+    imgBg:SetTexture(0.02, 0.02, 0.02, 1)
+
+    if delve.texture then
+        local tex = card:CreateTexture(nil, "ARTWORK")
+        tex:SetPoint("TOPLEFT", imgBg, "TOPLEFT", 1, -1)
+        tex:SetPoint("BOTTOMRIGHT", imgBg, "BOTTOMRIGHT", -1, 1)
+        tex:SetTexture(ResolveTexturePath(delve))
+        tex:SetTexCoord(0, 1, 0, 1)
+    end
+
+    local nameFs = card:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    nameFs:SetPoint("TOPLEFT", imgBg, "BOTTOMLEFT", 4, -6)
+    nameFs:SetWidth(CARD_W - 16)
+    nameFs:SetJustifyH("LEFT")
+    nameFs:SetText(delve.name)
+
+    local levelFs = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    levelFs:SetPoint("TOPLEFT", nameFs, "BOTTOMLEFT", 0, -2)
+    levelFs:SetText("Level " .. RECOMMENDED_LEVEL)
+
+    local sizeFs = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    sizeFs:SetPoint("TOPLEFT", levelFs, "BOTTOMLEFT", 0, -2)
+    sizeFs:SetText(delve.size .. " players")
+
+    if delve.wip then
+        local wipFs = card:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        wipFs:SetPoint("BOTTOMRIGHT", -8, 8)
+        wipFs:SetText("|cffFF8800WIP|r")
+    end
+
+    card:SetScript("OnEnter", function()
+        GameTooltip:SetOwner(card, "ANCHOR_RIGHT")
+        GameTooltip:SetText(delve.name, 1, 1, 1)
+        GameTooltip:AddLine("Recommended level: " .. RECOMMENDED_LEVEL, nil, nil, nil, true)
+        GameTooltip:AddLine("Recommended size: " .. delve.size .. " players", nil, nil, nil, true)
+        GameTooltip:AddLine("Click to teleport", 0.5, 1, 0.5, true)
+        if delve.wip then
+            GameTooltip:AddLine("Work in progress — may be incomplete.", 1, 0.6, 0, true)
+        end
+        GameTooltip:Show()
+    end)
+    card:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+    card:SetScript("OnClick", function()
+        SendDelveTeleportCommand(delve.id)
+        PrintMsg("Requesting teleport to " .. delve.name .. "...")
+    end)
+end
+
+local total = #DELVES
+local rowCount = math.ceil(total / COLS)
+content:SetHeight(rowCount * (CARD_H + PAD))
+
+for i, delve in ipairs(DELVES) do
+    CreateDelveCard(i, delve, total)
+end
+
+--------------------------------------------------------------------------------
+-- Slash commands + minimap button
+--------------------------------------------------------------------------------
+
+local function ToggleFrame()
+    if frame:IsShown() then
+        frame:Hide()
+    else
+        frame:Show()
+    end
+end
+
+SLASH_DELVESTELEPORTER1 = "/delves"
+SLASH_DELVESTELEPORTER2 = "/dt"
+SlashCmdList["DELVESTELEPORTER"] = ToggleFrame
+
+DelvesTeleporterDB = DelvesTeleporterDB or {}
+if DelvesTeleporterDB.minimapAngle == nil then
+    DelvesTeleporterDB.minimapAngle = 2.2
+end
+
+local MINIMAP_RADIUS = 80
+
+local miniBtn = CreateFrame("Button", "DelvesTeleporterMiniMapButton", Minimap)
+miniBtn:SetSize(31, 31)
+miniBtn:SetFrameStrata("HIGH")
+miniBtn:SetFrameLevel(Minimap:GetFrameLevel() + 20)
+miniBtn:EnableMouse(true)
+miniBtn:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+miniBtn:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
+
+local function PlaceMinimapButton()
+    local angle = DelvesTeleporterDB.minimapAngle
+    local x = math.cos(angle) * MINIMAP_RADIUS
+    local y = math.sin(angle) * MINIMAP_RADIUS
+    miniBtn:ClearAllPoints()
+    miniBtn:SetPoint("CENTER", Minimap, "CENTER", x, y)
+end
+
+PlaceMinimapButton()
+
+local miniIcon = miniBtn:CreateTexture(nil, "BACKGROUND")
+miniIcon:SetSize(20, 20)
+miniIcon:SetPoint("CENTER", 0, 1)
+miniIcon:SetTexture(TEXTURE_ROOT .. "MinimapIcon")
+
+local miniBorder = miniBtn:CreateTexture(nil, "OVERLAY")
+miniBorder:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
+miniBorder:SetSize(52, 52)
+miniBorder:SetPoint("TOPLEFT", -10, 10)
+
+local popup = CreateFrame("Frame", "DelvesTeleporterMiniPopup", UIParent)
+popup:SetSize(168, 72)
+popup:SetFrameStrata("FULLSCREEN_DIALOG")
+popup:SetFrameLevel(100)
+popup:Hide()
+popup:EnableMouse(true)
+
+local popupBg = popup:CreateTexture(nil, "BACKGROUND")
+popupBg:SetAllPoints()
+popupBg:SetTexture(0.05, 0.05, 0.08, 0.95)
+
+local popupBorder = CreateFrame("Frame", nil, popup)
+popupBorder:SetPoint("TOPLEFT", -3, 3)
+popupBorder:SetPoint("BOTTOMRIGHT", 3, -3)
+popupBorder:SetBackdrop({
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    edgeSize = 12,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 },
+})
+
+local function CreatePopupTextButton(text, yOffset, onClick)
+    local btn = CreateFrame("Button", nil, popup)
+    btn:SetSize(152, 22)
+    btn:SetPoint("TOP", 0, yOffset)
+
+    local label = btn:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+    label:SetPoint("LEFT", 10, 0)
+    label:SetText(text)
+
+    btn:SetScript("OnEnter", function()
+        label:SetTextColor(1, 0.82, 0)
+    end)
+    btn:SetScript("OnLeave", function()
+        label:SetTextColor(1, 1, 1)
+    end)
+    btn:SetScript("OnClick", function()
+        popup:Hide()
+        onClick()
+    end)
+end
+
+CreatePopupTextButton("Browse Delves", -10, ToggleFrame)
+CreatePopupTextButton("Leave Delve", -34, RequestLeaveDelve)
+
+local popupDismiss = CreateFrame("Button", nil, UIParent)
+popupDismiss:SetFrameStrata("FULLSCREEN_DIALOG")
+popupDismiss:SetFrameLevel(99)
+popupDismiss:SetAllPoints(UIParent)
+popupDismiss:EnableMouse(true)
+popupDismiss:Hide()
+popupDismiss:SetScript("OnClick", function()
+    popup:Hide()
+    popupDismiss:Hide()
+end)
+
+local function ToggleMinimapPopup()
+    if popup:IsShown() then
+        popup:Hide()
+        popupDismiss:Hide()
+        return
+    end
+    popup:ClearAllPoints()
+    popup:SetPoint("TOPLEFT", miniBtn, "BOTTOMLEFT", -8, -6)
+    popup:Show()
+    popupDismiss:Show()
+    GameTooltip:Hide()
+end
+
+miniBtn:SetScript("OnClick", function(self, button)
+    if self.skipClick then
+        self.skipClick = nil
+        return
+    end
+    if button == "RightButton" then
+        ToggleMinimapPopup()
+    else
+        popup:Hide()
+        popupDismiss:Hide()
+        ToggleFrame()
+    end
+end)
+
+local DRAG_THRESHOLD = 4
+
+miniBtn:SetScript("OnMouseDown", function(self, button)
+    if button == "LeftButton" then
+        self.dragCandidate = true
+        self.dragMoved = false
+        self.dragStartX, self.dragStartY = GetCursorPosition()
+    end
+end)
+
+miniBtn:SetScript("OnMouseUp", function(self, button)
+    if button == "LeftButton" then
+        if self.dragMoved then
+            self.skipClick = true
+        end
+        self.dragCandidate = false
+    end
+end)
+
+miniBtn:SetScript("OnUpdate", function(self)
+    if not self.dragCandidate or not IsMouseButtonDown("LeftButton") then
+        return
+    end
+
+    local mx, my = GetCursorPosition()
+    if not self.dragMoved then
+        local dx = mx - self.dragStartX
+        local dy = my - self.dragStartY
+        if (dx * dx + dy * dy) < (DRAG_THRESHOLD * DRAG_THRESHOLD) then
+            return
+        end
+        self.dragMoved = true
+        GameTooltip:Hide()
+    end
+
+    local scale = Minimap:GetEffectiveScale()
+    mx, my = mx / scale, my / scale
+    local cx, cy = Minimap:GetCenter()
+    DelvesTeleporterDB.minimapAngle = math.atan2(my - cy, mx - cx)
+    PlaceMinimapButton()
+end)
+
+miniBtn:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+    GameTooltip:SetText("Delves Teleporter")
+    GameTooltip:AddLine("Left-click to browse delves", 1, 1, 1, true)
+    GameTooltip:AddLine("Right-click for options", 1, 1, 1, true)
+    GameTooltip:AddLine("Drag to move", 0.7, 0.7, 0.7, true)
+    GameTooltip:Show()
+end)
+miniBtn:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+end)
+
+PrintMsg("Loaded. Type |cff00ff00/delves|r to open.")

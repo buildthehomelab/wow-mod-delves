@@ -210,3 +210,14 @@ A core build compiles the actual server scripts. See
 [server adapter](docs/SERVER-ADAPTER.md), [scaling](docs/SCALING-AND-STARTUP.md),
 [encounter](docs/EARTHCRAWL-ENCOUNTER.md) and
 [reward delivery](docs/REWARD-DELIVERY.md) for implementation boundaries.
+
+
+## Araxia collection
+
+The full [Araxia delve collection](reference/araxia/collection/README.md) is now
+imported as pinned source and an offline asset staging manifest: 13 locations,
+27 boss scripts and all 581 upstream files. Run `tools/stage_araxia_collection.py`
+against the full pinned upstream checkout to verify and stage the assets.
+The upstream mmap19 tiles require rebuilding for Evermore's mmap20, and its
+ALE/Eluna encounters still require an engine integration or C++ ports before
+these locations can be enabled. This collection does not alter Earthcrawl.
