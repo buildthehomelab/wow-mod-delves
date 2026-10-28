@@ -1,0 +1,37 @@
+{
+  "repository": "https://github.com/araxiaonline/Delves",
+  "commit": "aaea411c6ea1831e19e284ed4e4445f83f796272",
+  "license": "MIT (see LICENSE)",
+  "files": [
+    {
+      "upstream_path": "LICENSE",
+      "local_path": "LICENSE",
+      "sha256": "203a620948410283b0ca6c696133983ebd4050f1f258c5a66bfcb7f943190d5b"
+    },
+    {
+      "upstream_path": "data/sql/db-world/base/delves_Elwynn Falls.sql",
+      "local_path": "elwynn-falls.sql.reference",
+      "sha256": "60eb43733515955a682c60bf3255930efe7e44c2c6a37275f64915c3161abbf9"
+    },
+    {
+      "upstream_path": "lua_scripts/Aquaspawn.lua",
+      "local_path": "Aquaspawn.lua.reference",
+      "sha256": "d5231b603e7e57fa68f4f7cac02081f2376843b5b1bc1353ff5479400013433b"
+    },
+    {
+      "upstream_path": "lua_scripts/Gurgles.lua",
+      "local_path": "Gurgles.lua.reference",
+      "sha256": "3d9d3e247376167efbcf8a83e64aa6c537b93d61bdde6573bcc7880dda21fc33"
+    },
+    {
+      "upstream_path": "lua_scripts/LordMwargadon.lua",
+      "local_path": "LordMwargadon.lua.reference",
+      "sha256": "76c379df50baa31f7aba22079e8217f67fb1164937242f2e8d8c88d1f4efdab6"
+    },
+    {
+      "upstream_path": "DBC_CSV/DBFilesClient/Map.csv",
+      "local_path": "Map.csv.reference",
+      "sha256": "420c1eb48bdf79146735281d91c0581ac92ef448754c8561df40c68fa420ed1e"
+    }
+  ]
+}
