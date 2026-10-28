@@ -19,6 +19,9 @@ namespace Evermore::Delves
     {
         constexpr uint32 TestMap = 890;
         uint32 contentRevision = 0;
+        uint32 minimumLevel = 20;
+        uint32 maximumLevel = 60;
+        uint32 maximumTier = 3;
         WorldLocation entrance;
 
         struct Visit
@@ -84,7 +87,7 @@ namespace Evermore::Delves
             if (!instance)
                 return;
             ChatHandler chat(player->GetSession());
-            if (visit->revision != contentRevision || visit->tier < 1 || visit->tier > 3 || player->GetGroup() ||
+            if (visit->revision != contentRevision || visit->level < minimumLevel || visit->level > maximumLevel || visit->tier < 1 || visit->tier > maximumTier || player->GetGroup() ||
                 player->GetLevel() != visit->level || player->GetMap()->GetPlayers().getSize() != 1)
             {
                 chat.SendSysMessage("Delve test admission refused. Use .delve leave to return safely.");
@@ -129,12 +132,13 @@ namespace Evermore::Delves
         static bool Enter(ChatHandler* handler, uint32 tier)
         {
             Player* player = handler->GetSession()->GetPlayer();
-            if (!IsHuman(player) || tier < 1 || tier > 3 || !player->IsAlive() || player->IsInCombat() ||
+            if (!IsHuman(player) || tier < 1 || tier > maximumTier || !player->IsAlive() || player->IsInCombat() ||
                 player->GetGroup() || player->IsInFlight() || player->GetTransport() || player->GetVehicle() ||
                 player->IsBeingTeleported() || (player->GetMapId() != 0 && player->GetMapId() != 1 && player->GetMapId() != 530 && player->GetMapId() != 571) ||
-                player->GetLevel() < 20 || player->GetLevel() > 60)
+                player->GetLevel() < minimumLevel || player->GetLevel() > maximumLevel)
             {
-                handler->SendSysMessage("Test entry requires a solo, living level 20-60 administrator on a continent, out of combat and transport. Tier must be 1-3.");
+                handler->PSendSysMessage("Test entry requires a solo, living level {}-{} administrator on a continent, out of combat and transport. Tier must be 1-{}.",
+                    minimumLevel, maximumLevel, maximumTier);
                 return true;
             }
             OnArrival(player); // Clears an acknowledged same-map return after its teleport has finished.
@@ -222,6 +226,11 @@ void AddEvermoreDelveTestControls(uint32 revision)
     using namespace Evermore::Delves;
     if (!sConfigMgr->GetOption<bool>("Delves.Prototype.TestCommands.Enable", false) ||
         !sConfigMgr->GetOption<bool>("Delves.Prototype.TestCommands.EntryConfigured", false))
+        return;
+    minimumLevel = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MinLevel", 20);
+    maximumLevel = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MaxLevel", 60);
+    maximumTier = sConfigMgr->GetOption<uint32>("Delves.Prototype.TestCommands.MaxTier", 3);
+    if (minimumLevel < 20 || maximumLevel > 60 || minimumLevel > maximumLevel || !maximumTier || maximumTier > 3)
         return;
     entrance = WorldLocation(890,
         sConfigMgr->GetOption<float>("Delves.Prototype.TestCommands.EntryX", 0.0f),

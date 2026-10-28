@@ -59,3 +59,30 @@ jobs:
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < data/sql/characters/2026_10_27_00_delves_journal.sql
           mysql --protocol=tcp -h 127.0.0.1 -uroot delve_test < tests/JournalSchema.sql
+
+  pilot-world-sql:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: delve-ci-only
+          MYSQL_DATABASE: world_delve_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: buildthehomelab/wow-azerothcore
+          ref: 9e4a232a84d375a8906717c5139fb8d6bf2e41d6
+          path: .core
+      - name: Install database client
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends default-mysql-client
+      - name: Verify isolated world install, collision refusal and transactional rollback
+        env:
+          MYSQL_PWD: delve-ci-only
+        run: python3 tools/check_pilot_world.py --core .core --database world_delve_test

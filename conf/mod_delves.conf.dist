@@ -17,6 +17,10 @@ Delves.Prototype.TestCommands.EntryX = 0
 Delves.Prototype.TestCommands.EntryY = 0
 Delves.Prototype.TestCommands.EntryZ = 0
 Delves.Prototype.TestCommands.EntryO = 0
+# May restrict the existing 20-60 / tier1-3 test envelope; never widens it.
+Delves.Prototype.TestCommands.MinLevel = 20
+Delves.Prototype.TestCommands.MaxLevel = 60
+Delves.Prototype.TestCommands.MaxTier = 3
 
 # First healer-role prototype; requires dedicated, reviewed world templates.
 # Entry must bind npc_evermore_delve_brann and be friendly to its owner.
