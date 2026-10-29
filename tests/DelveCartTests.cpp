@@ -44,6 +44,14 @@ int main()
     Check(checks == 1,"contact visibility was not checked");
     Check(occluded.Advance(500,&victim,[](CartPoint const&, CartPoint const&) { return true; }).impact,
         "occluded contact consumed later exposed impact");
+    Cart stationary(7,42,9,{{0,0,0},{10,0,0}},10,1,1,0);
+    victim={7,42,9,{0,0,0}};
+    Check(!stationary.Advance(0,&victim).impact,"zero-duration update damaged spawn occupant");
+    Check(stationary.Advance(1,&victim).impact,"zero-duration update consumed real movement impact");
+    Cart warned(7,42,9,{{0,0,0},{10,0,0}},10,1,1,2000);
+    Check(!warned.Advance(2000,&victim).impact,"warning expiry damaged player before movement");
+    Check(!warned.Advance(0,&victim).impact,"stationary warning boundary damaged player");
+    Check(warned.Advance(1,&victim).impact,"warning expiry consumed first movement impact");
     bool rejected=false;
     try { Cart bad(7,42,9,{{0,0,0},{std::numeric_limits<double>::infinity(),0,0}},10,1,2,2000); }
     catch(std::invalid_argument const&) { rejected=true; }
