@@ -122,6 +122,7 @@ namespace Evermore::Delves
             instance->RefreshEncounterScale();
             instance->EnsureCompanion(player);
             chat.SendSysMessage("Delve test checkpoint loaded. Use .delve status for objectives and .delve leave to return.");
+            chat.SendSysMessage(instance->ObjectiveText());
         }
     }
 
@@ -250,6 +251,7 @@ namespace Evermore::Delves
                 run->Status() == RunStatus::Complete ? "complete" : "abandoned";
             handler->PSendSysMessage("Delve run {}: tier {}, {}, stage {}, progress {}, checkpoint blocked {}.",
                 run->Id(), run->Tier(), state, run->Stage(), run->Progress(), instance->Blocked());
+            handler->SendSysMessage(instance->ObjectiveText());
             handler->SendSysMessage(DescribeReward(player, *run));
             return true;
         }

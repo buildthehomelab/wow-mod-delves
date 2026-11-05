@@ -32,6 +32,7 @@ namespace Evermore::Delves
         void Load(char const* data) override;
         std::optional<Run> CurrentRun() const;
         bool Blocked() const;
+        std::string ObjectiveText() const;
 
     private:
         bool IsRealMemberPresent(Player const* player) const;
